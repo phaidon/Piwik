@@ -1,0 +1,100 @@
+# Piwik statistics for Zikula.
+# Copyright (C) 2009
+# This file is distributed under the same license as the piwik package.
+# Sven Schomacker <hilope@gmail.com>, 2009.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Zikula component\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-10-30 06:26-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: pnversion.php:18 pntemplates/piwik_user_menu.htm:3
+#: pntemplates/piwik_admin_menu.htm:12
+msgid "piwik statistics"
+msgstr ""
+
+#: pnversion.php:19
+#: pntemplates/piwik_admin_menu.htm:12
+msgid "piwik"
+msgstr ""
+
+#: pninit.php:22
+msgid "This version of piwik only works with Zikula 1.2.x and higher."
+msgstr ""
+
+#: pninit.php:62
+msgid "Error creating Hook!"
+msgstr ""
+
+#: pninit.php:25
+msgid "Error deleting Hook!"
+msgstr ""
+
+#: pnadmin.php:72
+msgid ""
+"Invalid 'authkey':  this probably means that you pressed the 'Back' button, "
+"or that the page 'authkey' expired. Please refresh the page and try again."
+msgstr ""
+
+#: pnadmin.php:79 pnadmin.php:89 pnadmin.php:94
+#: pnadmin.php:99 pnadmin.php:105 pnadmin.php:111
+msgid "Configuration not updated"
+msgstr ""
+
+#: pnadmin.php:116
+msgid "Done! Module configuration updated."
+msgstr ""
+
+#: pnadminapi.php:22
+#: pntemplates/piwik_admin_modifyconfig.htm:7
+msgid "Settings"
+msgstr ""
+
+#: pntemplates/piwik_admin_modifyconfig.htm:9
+msgid "Enable Tracking"
+msgstr ""
+
+#: pntemplates/piwik_admin_modifyconfig.htm:13
+msgid "URL to your piwik installation"
+msgstr ""
+
+#: pntemplates/piwik_admin_modifyconfig.htm:17
+msgid "Site-ID"
+msgstr ""
+
+#: pntemplates/piwik_admin_modifyconfig.htm:21
+msgid "Piwik Token"
+msgstr ""
+
+#: pntemplates/piwik_admin_modifyconfig.htm:25
+msgid "Track admin pages"
+msgstr ""
+
+#: pntemplates/piwik_admin_modifyconfig.htm:29
+msgid "Track Links"
+msgstr ""
+
+#: pntemplates/piwik_admin_modifyconfig.htm:33
+msgid "Save Configuration"
+msgstr ""
+
+#: pntemplates/piwik_admin_modifyconfig.htm:34
+msgid "Cancel"
+msgstr ""
+
+#: pnadminapi.php:23
+msgid "View statistics"
+msgstr ""
+
+#: pnadmin.php:87
+msgid "Piwik-URL starts not with http or https!"
+msgstr ""
+

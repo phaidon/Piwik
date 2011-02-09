@@ -1,0 +1,4 @@
+Thanks.
+ - Piwik guys (http://piwik.org)
+ - Frank Schummertz (he always gives the best tips ;) )
+ - Axel Guckelsberger for the great way to show statistics

@@ -1,0 +1,9 @@
+piwik version 0.3
+  - new user views
+  - bugfixes #2
+
+piwik version 0.2
+  - gettext version of 0.1
+
+piwik version 0.1
+  - initial release
