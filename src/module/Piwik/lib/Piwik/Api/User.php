@@ -17,7 +17,7 @@
 class Piwik_Api_User extends Zikula_Api {
 
     // activate tracker in site source
-    public function tracker($args)
+    public function tracker($args = array() )
     {
 
         // no security check because code should be loaded in every page!
@@ -26,13 +26,13 @@ class Piwik_Api_User extends Zikula_Api {
         $adminpage = FormUtil::getPassedValue('type', isset($args['type']) ? $args['type'] : null, 'GET');
 
         // return if admin pages should not be trackes
-        if ($adminpage && $this->getVar('piwik', 'tracking_adminpages') == '0') return;
-
+        if ($adminpage && $this->getVar('tracking_adminpages') == '0') {
+            return;
+        }
         // only add piwik code to source if tracking is enabled
-        if ($this->getVar('piwik', 'tracking_enable') == '1') {
-            $renderer = Zikula_View::getInstance('piwik');
-            $renderer->assign($this->getVar('piwik'));
-            $trackercode = $renderer->fetch('piwik_userapi_tracker.tpl');
+        if ($this->getVar('tracking_enable') == 1) {
+            $view = Zikula_View::getInstance('Piwik');
+            $trackercode = $view->fetch('userapi/tracker.tpl');
 
             // add the scripts to page footer
             PageUtil::AddVar('footer', $trackercode);

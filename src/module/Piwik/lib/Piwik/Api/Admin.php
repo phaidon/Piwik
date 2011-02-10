@@ -23,7 +23,7 @@ class Piwik_Api_Admin extends Zikula_Api {
         // create array of links
         $links = array();
         $links[] = array('url' => ModUtil::url('Piwik', 'admin', 'modifyconfig'), 'text' => $this->__('Settings') );
-        $links[] = array('url' => ModUtil::url('Piwik', 'user', 'main'), 'text' => $this->__('View statistics') );
+        //$links[] = array('url' => ModUtil::url('Piwik', 'user', 'main'), 'text' => $this->__('View statistics') );
 
         // return array
         return $links;

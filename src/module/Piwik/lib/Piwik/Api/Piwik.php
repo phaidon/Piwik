@@ -20,7 +20,7 @@ class Piwik_Api_Piwik extends Zikula_Api {
     {
         // Security check
         if (!SecurityUtil::checkPermission( 'Piwik::', '::', ACCESS_READ)) {
-        return LogUtil::registerPermissionError();
+            return LogUtil::registerPermissionError();
         }
 
         // get vars from input
@@ -42,7 +42,7 @@ class Piwik_Api_Piwik extends Zikula_Api {
         $token = $pvars['tracking_token'];
 
         if (!$token || empty($token)) {
-        return LogUtil::registerStatus (__('No token for Piwik found.', $dom));
+            return LogUtil::registerStatus (__('No token for Piwik found.', $dom));
         }
 
         $currentType = FormUtil::getPassedValue('type', 'user', 'GETPOST');
@@ -74,8 +74,8 @@ class Piwik_Api_Piwik extends Zikula_Api {
         curl_close($ch);
 
         if ($format == 'PHP') {
-        $result = unserialize($result);
-        return $result[0];
+            $result = unserialize($result);
+            return $result[0];
         }
 
         return $result;

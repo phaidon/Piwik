@@ -36,12 +36,12 @@ class Piwik_Handler_ModifyConfig  extends Form_Handler
         $data = $view->getValues();
 
 
-        $this->setVar('piwik', 'tracking_enable',       $data['tracking_enable']);
-        $this->setVar('piwik', 'tracking_piwikpath',    $data['tracking_piwikpath']);
-        $this->setVar('piwik', 'tracking_siteid',       $data['tracking_siteid']);
-        $this->setVar('piwik', 'tracking_token',        $data['tracking_token']);
-        $this->setVar('piwik', 'tracking_adminpages',   $data['tracking_adminpages']);
-        $this->setVar('piwik', 'tracking_linktracking', $data['tracking_linktracking']);
+        $this->setVar('tracking_enable',       $data['tracking_enable']);
+        $this->setVar('tracking_piwikpath',    $data['tracking_piwikpath']);
+        $this->setVar('tracking_siteid',       $data['tracking_siteid']);
+        $this->setVar('tracking_token',        $data['tracking_token']);
+        $this->setVar('tracking_adminpages',   $data['tracking_adminpages']);
+        $this->setVar('tracking_linktracking', $data['tracking_linktracking']);
         return true;
 
         // check piwikpath for starting with 'http'

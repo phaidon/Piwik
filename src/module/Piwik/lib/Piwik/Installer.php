@@ -25,23 +25,33 @@ class Piwik_Installer extends Zikula_Installer
 
     public function install()
     {
-        // Set module defaults
+        // Set default values for module
+        $this->defaultdata();
+
+        EventUtil::registerPersistentModuleHandler('Piwik', 'core.postinit', array('Piwik_Listeners', 'coreinit'));
+       
+        // Initialisation successful
+        return true;
+    }
+
+    /**
+    * Create the default data for the users module.
+    *
+    * This function is only ever called once during the lifetime of a particular
+    * module instance.
+    *
+    * @return void
+    */
+    public function defaultdata()
+    {
         $this->setVar('tracking_enable'       , 0);
         $this->setVar('tracking_piwikpath'    , 'domain.com/piwik');
         $this->setVar('tracking_siteid'       , '0');
         $this->setVar('tracking_token'        , 'abcdef123456');
         $this->setVar('tracking_adminpages'   , 0);
         $this->setVar('tracking_linktracking' , 1);
-
-        // create systeminit hook
-        if (!ModUtil::registerHook('zikula', 'systeminit', 'API', 'piwik', 'user', 'tracker')) {
-            return LogUtil::registerError(__('Error creating Hook!'));
-        }
-        ModUtil::apiFunc('Modules', 'admin', 'enablehooks', array('callermodname' => 'zikula', 'hookmodname' => 'piwik'));
-
-        // Initialisation successful
-        return true;
     }
+
 
     /**
     * Upgrade the errors module from an old version
@@ -70,9 +80,7 @@ class Piwik_Installer extends Zikula_Installer
         // Deletion successful
 
         // delete the system init hook
-        if (!ModUtil::unregisterHook('zikula', 'systeminit', 'API', 'piwik', 'user', 'tracker')) {
-              return LogUtil::registerError($this->__('Error deleting Hook!'));
-        }
+        EventUtil::unregisterPersistentModuleHandler('Piwik', 'core.postinit', array('Piwik_Listeners', 'coreinit'));
 
         return true;
 
