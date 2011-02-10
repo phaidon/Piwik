@@ -26,16 +26,16 @@ class Piwik_Installer extends Zikula_Installer
     public function install()
     {
         // Set module defaults
-        $this->setVar('piwik', 'tracking_enable'       , 0);
-        $this->setVar('piwik', 'tracking_piwikpath'    , 'domain.com/piwik');
-        $this->setVar('piwik', 'tracking_siteid'       , '0');
-        $this->setVar('piwik', 'tracking_token'        , 'abcdef123456');
-        $this->setVar('piwik', 'tracking_adminpages'   , 0);
-        $this->setVar('piwik', 'tracking_linktracking' , 1);
+        $this->setVar('tracking_enable'       , 0);
+        $this->setVar('tracking_piwikpath'    , 'domain.com/piwik');
+        $this->setVar('tracking_siteid'       , '0');
+        $this->setVar('tracking_token'        , 'abcdef123456');
+        $this->setVar('tracking_adminpages'   , 0);
+        $this->setVar('tracking_linktracking' , 1);
 
         // create systeminit hook
         if (!ModUtil::registerHook('zikula', 'systeminit', 'API', 'piwik', 'user', 'tracker')) {
-            return LogUtil::registerError(__('Error creating Hook!', $dom));
+            return LogUtil::registerError(__('Error creating Hook!'));
         }
         ModUtil::apiFunc('Modules', 'admin', 'enablehooks', array('callermodname' => 'zikula', 'hookmodname' => 'piwik'));
 
