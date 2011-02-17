@@ -14,10 +14,10 @@
  * information regarding copyright and licensing.
  */
 
-class Piwik_Handler_ModifyConfig  extends Form_Handler
+class Piwik_Handler_ModifyConfig  extends Zikula_Form_Handler
 {
 
-    function initialize(Form_View $view)
+    function initialize(Zikula_Form_View $view)
     {
         $this->view->caching = false;
         $this->view->assign(ModUtil::getVar('piwik'));
@@ -26,7 +26,7 @@ class Piwik_Handler_ModifyConfig  extends Form_Handler
     }
 
 
-    function handleCommand(Form_View $view, &$args)
+    function handleCommand(Zikula_Form_View $view, &$args)
     {
         // check for valid form
         if (!$view->isValid()) {
