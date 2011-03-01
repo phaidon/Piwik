@@ -28,6 +28,11 @@ class Piwik_Handler_ModifyConfig  extends Zikula_Form_Handler
 
     function handleCommand(Zikula_Form_View $view, &$args)
     {
+        if ($args['commandName'] == 'cancel') {
+            $url = ModUtil::url('Piwik', 'admin', 'modifyconfig' );
+            return $view->redirect($url);
+        }
+        
         // check for valid form
         if (!$view->isValid()) {
             return false;
