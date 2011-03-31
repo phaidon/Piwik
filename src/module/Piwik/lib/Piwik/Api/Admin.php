@@ -14,7 +14,7 @@
  * information regarding copyright and licensing.
  */
 
-class Piwik_Api_Admin extends Zikula_Api {
+class Piwik_Api_Admin extends Zikula_AbstracApi {
 
     // get available admin panel links
     public function getlinks($args)

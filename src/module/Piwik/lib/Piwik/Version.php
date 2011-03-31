@@ -14,7 +14,7 @@
  * information regarding copyright and licensing.
  */
 
-class Piwik_Version extends Zikula_Version
+class Piwik_Version extends Zikula_AbstracVersion
 {
     public function getMetaData()
     {

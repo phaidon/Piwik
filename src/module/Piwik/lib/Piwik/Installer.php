@@ -14,7 +14,7 @@
  * information regarding copyright and licensing.
  */
 
-class Piwik_Installer extends Zikula_Installer
+class Piwik_Installer extends Zikula_AbstracInstaller
 {
     /**
     * initialise the template module

@@ -14,7 +14,7 @@
  * information regarding copyright and licensing.
  */
 
-class Piwik_Api_User extends Zikula_Api {
+class Piwik_Api_User extends Zikula_AbstractApi {
 
     // activate tracker in site source
     public function tracker($args = array() )

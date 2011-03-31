@@ -14,13 +14,17 @@
  * information regarding copyright and licensing.
  */
 
-class Piwik_Handler_ModifyConfig  extends Zikula_Form_Handler
+class Piwik_Handler_ModifyConfig  extends Zikula_Form_AbstractHandler
 {
 
     function initialize(Zikula_Form_View $view)
     {
+         if (!SecurityUtil::checkPermission('Piwik::', '::', ACCESS_ADMIN)) {
+            throw new Zikula_Exception_Forbidden(LogUtil::getErrorMsgPermission());
+        }
+        
         $this->view->caching = false;
-        $this->view->assign(ModUtil::getVar('piwik'));
+        $this->view->assign($this->getVars());
 
         return true;
     }
@@ -29,7 +33,7 @@ class Piwik_Handler_ModifyConfig  extends Zikula_Form_Handler
     function handleCommand(Zikula_Form_View $view, &$args)
     {
         if ($args['commandName'] == 'cancel') {
-            $url = ModUtil::url('Piwik', 'admin', 'modifyconfig' );
+            $url = ModUtil::url($this->name, 'admin', 'modifyconfig' );
             return $view->redirect($url);
         }
         
@@ -41,12 +45,7 @@ class Piwik_Handler_ModifyConfig  extends Zikula_Form_Handler
         $data = $view->getValues();
 
 
-        $this->setVar('tracking_enable',       $data['tracking_enable']);
-        $this->setVar('tracking_piwikpath',    $data['tracking_piwikpath']);
-        $this->setVar('tracking_siteid',       $data['tracking_siteid']);
-        $this->setVar('tracking_token',        $data['tracking_token']);
-        $this->setVar('tracking_adminpages',   $data['tracking_adminpages']);
-        $this->setVar('tracking_linktracking', $data['tracking_linktracking']);
+        $this->setVars($data);
         return true;
 
         // check piwikpath for starting with 'http'
