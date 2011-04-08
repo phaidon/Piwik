@@ -14,7 +14,7 @@
  * information regarding copyright and licensing.
  */
 
-class Piwik_Api_Piwik extends Zikula_AbstracApi {
+class Piwik_Api_Piwik extends Zikula_AbstractApi {
 
     public function request($args)
     {

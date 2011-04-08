@@ -14,7 +14,7 @@
  * information regarding copyright and licensing.
  */
 
-class Piwik_Controller_Admin extends Zikula_AbstracController {
+class Piwik_Controller_Admin extends Zikula_AbstractController {
 
     // main function
     public function main()
