@@ -28,4 +28,15 @@ class Piwik_Controller_Admin extends Zikula_AbstractController {
         $form = FormUtil::newForm('Piwik', $this);
         return $form->execute('admin/modifyconfig.tpl', new Piwik_Handler_ModifyConfig());
     }
+    
+    
+    // dashboard function
+    public function dashboard()
+    {
+        $form = FormUtil::newForm('Piwik', $this);
+        return $form->execute('admin/dashboard.tpl', new Piwik_Handler_Dashboard());
+    }    
+    
+    
+
 }

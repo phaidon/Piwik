@@ -21,11 +21,17 @@ class Piwik_Api_Admin extends Zikula_AbstractApi {
     {
 
         // create array of links
-        $links = array();
-        $links[] = array(
-            'url' => ModUtil::url('Piwik', 'admin', 'modifyconfig'), 
-            'text' => $this->__('Settings'),
-            'class' => 'z-icon-es-config'
+        $links = array(
+            array(
+                'url' => ModUtil::url('Piwik', 'admin', 'modifyconfig'), 
+                'text' => $this->__('Settings'),
+                'class' => 'z-icon-es-config'
+            ),
+            array(
+                'url' => ModUtil::url('Piwik', 'admin', 'dashboard'), 
+                'text' => $this->__('Piwik dashboard'),
+                'class' => 'z-icon-es-view'
+            ),
         );
         //$links[] = array('url' => ModUtil::url('Piwik', 'user', 'main'), 'text' => $this->__('View statistics') );
         return $links;
