@@ -11,5 +11,5 @@
     }
     catch( err ) {}
 </script>
-<noscript><p><img src="http://{$modvars.Piwik.tracking_piwikpath}/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
+<noscript><p><img src="http://{$modvars.Piwik.tracking_piwikpath}/piwik.php?idsite={$modvars.Piwik.tracking_siteid}" style="border:0" alt="" /></p></noscript>
 <!-- End Piwik Tag -->
