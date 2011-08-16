@@ -1,0 +1,166 @@
+# Piwik statistics for Zikula.
+# Copyright (C) 2009
+# This file is distributed under the same license as the piwik package.
+# Sven Schomacker <hilope@gmail.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: Piwik\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-08-16 13:36+0200\n"
+"PO-Revision-Date: 2011-08-16 13:37+0100\n"
+"Last-Translator: Fabian Wuertz <xadras@sidux.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.0.1\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+
+#: lib/Piwik/Version.php:22
+msgid "Piwik statistics module"
+msgstr "Piwik-Statistik-Modull"
+
+#: lib/Piwik/Version.php:23
+msgid "Piwik statistics"
+msgstr "Piwik-Statistiken"
+
+#. !url must be different to displayname
+#: lib/Piwik/Version.php:25
+msgid "Piwik"
+msgstr "Piwik"
+
+#: lib/Piwik/Api/Piwik.php:45
+msgid "No token for Piwik found."
+msgstr "Es konnte kein Piwik-Token gefunden werden."
+
+#: lib/Piwik/Api/Admin.php:27
+msgid "Settings"
+msgstr "Konfiguration"
+
+#: lib/Piwik/Api/Admin.php:32
+#: templates/admin/dashboard.tpl:4
+msgid "Piwik dashboard"
+msgstr "Piwik-Dashboard"
+
+#: lib/Piwik/Handler/Dashboard.php:33
+msgid "Day"
+msgstr "Tag"
+
+#: lib/Piwik/Handler/Dashboard.php:34
+msgid "Week"
+msgstr "Woche"
+
+#: lib/Piwik/Handler/Dashboard.php:35
+msgid "Month"
+msgstr "Monat"
+
+#: lib/Piwik/Handler/Dashboard.php:36
+msgid "Year"
+msgstr "Jahr"
+
+#: lib/Piwik/Handler/Dashboard.php:37
+msgid "Date range"
+msgstr "Zeitspanne"
+
+#: templates/admin/dashboard.tpl:12
+#: templates/admin/modifyconfig.tpl:11
+msgid "General settings"
+msgstr "Allgemeine Einstellungen"
+
+#: templates/admin/dashboard.tpl:15
+msgid "Date"
+msgstr "Datum"
+
+#: templates/admin/dashboard.tpl:19
+msgid "Period"
+msgstr "Zeitraum"
+
+#: templates/admin/dashboard.tpl:24
+msgid "Show"
+msgstr "Anzeigen"
+
+#: templates/admin/dashboard.tpl:37
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: templates/admin/modifyconfig.tpl:4
+msgid "Modify configuration"
+msgstr "Speichern der Konfiguration"
+
+#: templates/admin/modifyconfig.tpl:14
+msgid "Enable Tracking"
+msgstr "Aktiviere Erfassung"
+
+#: templates/admin/modifyconfig.tpl:18
+msgid "URL to your piwik installation"
+msgstr "URL zur Piwik-Installation"
+
+#: templates/admin/modifyconfig.tpl:22
+msgid "Site-ID"
+msgstr "Seiten-ID"
+
+#: templates/admin/modifyconfig.tpl:26
+msgid "Piwik Token"
+msgstr "Piwik-Token"
+
+#: templates/admin/modifyconfig.tpl:30
+msgid "Track admin pages"
+msgstr "Erfasse auch Seiten der Administration"
+
+#: templates/admin/modifyconfig.tpl:34
+msgid "Track Links"
+msgstr "Erfasse Links"
+
+#: templates/admin/modifyconfig.tpl:39
+msgid "Save"
+msgstr "Speichern"
+
+#: templates/admin/modifyconfig.tpl:40
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#, fuzzy
+#~ msgid "Usage statistics overall"
+#~ msgstr "Statistiken ansehen"
+
+#, fuzzy
+#~ msgid "Global visitor configuration"
+#~ msgstr "Speichern der Konfiguration"
+
+#~ msgid "piwik statistics"
+#~ msgstr "Piwik Statistiken"
+
+#, fuzzy
+#~ msgid "Page statistic"
+#~ msgstr "Statistiken ansehen"
+
+#~ msgid "This version of piwik only works with Zikula 1.2.x and higher."
+#~ msgstr "Diese Version von piwik benötigt Zikula 1.2.x oder höher"
+
+#~ msgid "Error creating Hook!"
+#~ msgstr "Fehler beim Erstellen des Hooks!"
+
+#~ msgid "Error deleting Hook!"
+#~ msgstr "Fehler beim Löschen des Hooks!"
+
+#~ msgid ""
+#~ "Invalid 'authkey':  this probably means that you pressed the 'Back' "
+#~ "button, or that the page 'authkey' expired. Please refresh the page and "
+#~ "try again."
+#~ msgstr ""
+#~ "Ungültiger Authentifizierungsschlüssel ('AuthKey'): Möglichweise wurde "
+#~ "der 'Zurück' Button im Browser benutzt, gesicherte Formulare in mehreren "
+#~ "Browser-Tabs gespeichert oder der 'AuthKey' ist abgelaufen. Bitte die "
+#~ "Seite neu laden und es erneut versuchen."
+
+#~ msgid "Configuration not updated"
+#~ msgstr "Konfiguration wurde nicht aktualisiert"
+
+#~ msgid "Done! Module configuration updated."
+#~ msgstr "Die Konfiguration wurde aktualisiert."
+
+#~ msgid "Piwik-URL starts not with http or https!"
+#~ msgstr "Piwik-URL beginnt nicht mit http oder https!"

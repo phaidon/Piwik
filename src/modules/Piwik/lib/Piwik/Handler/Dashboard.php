@@ -34,7 +34,7 @@ class Piwik_Handler_Dashboard extends Zikula_Form_AbstractHandler
             array('value' =>  'week',  'text' => $this->__('Week') ),
             array('value' =>  'month', 'text' => $this->__('Month') ),
             array('value' =>  'year',  'text' => $this->__('Year') ),
-            array('value' =>  'range', 'text' => $this->__('Dete range') ),
+            array('value' =>  'range', 'text' => $this->__('Date range') ),
         );
         $this->view->assign('periods', $periods);
         
