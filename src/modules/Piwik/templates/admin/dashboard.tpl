@@ -1,3 +1,4 @@
+{ajaxheader modname=Piwik filename=dashboard.js noscriptaculous=true effects=true}
 {adminheader}
 <div class="z-admin-content-pagetitle">
     {icon type="config" size="small"}
@@ -12,12 +13,22 @@
     <legend>{gt text='General settings'}</legend>
 
     <div class="z-formrow">
+        {formlabel for="period" __text='Period'}
+        {formdropdownlist id="period" items=$periods}  
+    </div>
+    <div class="z-formrow" id='date'>
         {formlabel for="date" __text='Date'}
         {formdateinput useSelectionMode=1 id="date" ifFormat='%e. %B %Y' dateformat='%e. %B %Y'}
     </div>
-    <div class="z-formrow">
-        {formlabel for="period" __text='Period'}
-        {formdropdownlist id="period" items=$periods}  
+    <div id="fromto">
+        <div class="z-formrow">
+            {formlabel for="from" __text='From'}
+            {formdateinput useSelectionMode=1 id="from" ifFormat='%e. %B %Y' dateformat='%e. %B %Y'}
+        </div>
+        <div class="z-formrow">
+            {formlabel for="to" __text='To'}
+            {formdateinput useSelectionMode=1 id="to" ifFormat='%e. %B %Y' dateformat='%e. %B %Y'}
+        </div>
     </div>
 
     <div class="z-formbuttons z-buttons">

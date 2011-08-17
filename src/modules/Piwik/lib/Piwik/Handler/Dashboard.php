@@ -25,6 +25,8 @@ class Piwik_Handler_Dashboard extends Zikula_Form_AbstractHandler
         
         $this->view->caching = false;
         $this->view->assign('date',   'today');
+        $this->view->assign('from',   'today');
+        $this->view->assign('to',     'today');
         $this->view->assign('period', 'day');
  
         $periods = array(
