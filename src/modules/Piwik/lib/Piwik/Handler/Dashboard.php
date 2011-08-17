@@ -8,7 +8,7 @@
  *
  * @license GNU/LGPLv3 (or at your option, any later version).
  * @package Piwik
- * @link http://code.zikula.org/piwik
+ * @link https://github.com/phaidon/Piwik
  *
  * Please see the NOTICE file distributed with this source code for further
  * information regarding copyright and licensing.
@@ -26,9 +26,7 @@ class Piwik_Handler_Dashboard extends Zikula_Form_AbstractHandler
         $this->view->caching = false;
         $this->view->assign('date',   'today');
         $this->view->assign('period', 'day');
-
-        
-        
+ 
         $periods = array(
             array('value' =>  'day',   'text' => $this->__('Day') ),
             array('value' =>  'week',  'text' => $this->__('Week') ),
@@ -38,26 +36,20 @@ class Piwik_Handler_Dashboard extends Zikula_Form_AbstractHandler
         );
         $this->view->assign('periods', $periods);
         
-        
         return true;
     }
 
 
     function handleCommand(Zikula_Form_View $view, &$args)
-    {
-        
+    {    
         // check for valid form
         if (!$view->isValid()) {
             return false;
         }
         
-        
-        $data = $view->getValues();
-        
+        $data = $view->getValues();       
         $this->view->assign($data);
         return true;
-
-
     }
 
 }

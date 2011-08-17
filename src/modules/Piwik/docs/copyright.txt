@@ -1,0 +1,10 @@
+Copyright: © 2011 Piwik development team
+
+Authors:
+    * Fabian Wuertz (main programmer)
+    * Herr.Vorragend
+
+Credits:
+    * Piwik guys (http://piwik.org)
+    * Frank Schummertz (he always gives the best tips ;) )
+    * Axel Guckelsberger for the great way to show statistics

@@ -8,7 +8,7 @@
  *
  * @license GNU/LGPLv3 (or at your option, any later version).
  * @package Piwik
- * @link http://code.zikula.org/piwik
+ * @link https://github.com/phaidon/Piwik
  *
  * Please see the NOTICE file distributed with this source code for further
  * information regarding copyright and licensing.
@@ -33,7 +33,6 @@ class Piwik_Api_Admin extends Zikula_AbstractApi {
                 'class' => 'z-icon-es-view'
             ),
         );
-        //$links[] = array('url' => ModUtil::url('Piwik', 'user', 'main'), 'text' => $this->__('View statistics') );
         return $links;
     }
 
