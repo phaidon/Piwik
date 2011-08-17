@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zikula component\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-16 13:36+0200\n"
+"POT-Creation-Date: 2011-08-17 10:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,7 +38,7 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: lib/Piwik/Api/Admin.php:32 templates/admin/dashboard.tpl:4
+#: lib/Piwik/Api/Admin.php:32 templates/admin/dashboard.tpl:5
 msgid "Piwik dashboard"
 msgstr ""
 
@@ -58,62 +58,70 @@ msgstr ""
 msgid "Year"
 msgstr ""
 
-#: lib/Piwik/Handler/Dashboard.php:37
+#: lib/Piwik/Handler/Dashboard.php:37 templates/admin/dashboard.tpl:13
 msgid "Date range"
 msgstr ""
 
-#: templates/admin/dashboard.tpl:12 templates/admin/modifyconfig.tpl:11
-msgid "General settings"
-msgstr ""
-
-#: templates/admin/dashboard.tpl:15
-msgid "Date"
-msgstr ""
-
-#: templates/admin/dashboard.tpl:19
+#: templates/admin/dashboard.tpl:16
 msgid "Period"
 msgstr ""
 
-#: templates/admin/dashboard.tpl:24
+#: templates/admin/dashboard.tpl:20
+msgid "Date"
+msgstr ""
+
+#: templates/admin/dashboard.tpl:25
+msgid "From"
+msgstr ""
+
+#: templates/admin/dashboard.tpl:29
+msgid "To"
+msgstr ""
+
+#: templates/admin/dashboard.tpl:35
 msgid "Show"
 msgstr ""
 
-#: templates/admin/dashboard.tpl:37
+#: templates/admin/dashboard.tpl:48
 msgid "Dashboard"
 msgstr ""
 
-#: templates/admin/modifyconfig.tpl:4
+#: templates/admin/modifyconfig.tpl:5
 msgid "Modify configuration"
 msgstr ""
 
-#: templates/admin/modifyconfig.tpl:14
+#: templates/admin/modifyconfig.tpl:12
+msgid "General settings"
+msgstr ""
+
+#: templates/admin/modifyconfig.tpl:15
 msgid "Enable Tracking"
 msgstr ""
 
-#: templates/admin/modifyconfig.tpl:18
+#: templates/admin/modifyconfig.tpl:21
 msgid "URL to your piwik installation"
 msgstr ""
 
-#: templates/admin/modifyconfig.tpl:22
+#: templates/admin/modifyconfig.tpl:25
 msgid "Site-ID"
 msgstr ""
 
-#: templates/admin/modifyconfig.tpl:26
+#: templates/admin/modifyconfig.tpl:29
 msgid "Piwik Token"
 msgstr ""
 
-#: templates/admin/modifyconfig.tpl:30
+#: templates/admin/modifyconfig.tpl:33
 msgid "Track admin pages"
 msgstr ""
 
-#: templates/admin/modifyconfig.tpl:34
+#: templates/admin/modifyconfig.tpl:37
 msgid "Track Links"
 msgstr ""
 
-#: templates/admin/modifyconfig.tpl:39
+#: templates/admin/modifyconfig.tpl:43
 msgid "Save"
 msgstr ""
 
-#: templates/admin/modifyconfig.tpl:40
+#: templates/admin/modifyconfig.tpl:44
 msgid "Cancel"
 msgstr ""

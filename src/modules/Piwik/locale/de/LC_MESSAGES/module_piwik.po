@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Piwik\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-16 13:36+0200\n"
-"PO-Revision-Date: 2011-08-16 13:37+0100\n"
+"POT-Creation-Date: 2011-08-17 10:59+0200\n"
+"PO-Revision-Date: 2011-08-17 10:59+0100\n"
 "Last-Translator: Fabian Wuertz <xadras@sidux.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -41,7 +41,7 @@ msgid "Settings"
 msgstr "Konfiguration"
 
 #: lib/Piwik/Api/Admin.php:32
-#: templates/admin/dashboard.tpl:4
+#: templates/admin/dashboard.tpl:5
 msgid "Piwik dashboard"
 msgstr "Piwik-Dashboard"
 
@@ -62,63 +62,71 @@ msgid "Year"
 msgstr "Jahr"
 
 #: lib/Piwik/Handler/Dashboard.php:37
+#: templates/admin/dashboard.tpl:13
 msgid "Date range"
 msgstr "Zeitspanne"
 
-#: templates/admin/dashboard.tpl:12
-#: templates/admin/modifyconfig.tpl:11
-msgid "General settings"
-msgstr "Allgemeine Einstellungen"
-
-#: templates/admin/dashboard.tpl:15
-msgid "Date"
-msgstr "Datum"
-
-#: templates/admin/dashboard.tpl:19
+#: templates/admin/dashboard.tpl:16
 msgid "Period"
 msgstr "Zeitraum"
 
-#: templates/admin/dashboard.tpl:24
+#: templates/admin/dashboard.tpl:20
+msgid "Date"
+msgstr "Datum"
+
+#: templates/admin/dashboard.tpl:25
+msgid "From"
+msgstr "Von"
+
+#: templates/admin/dashboard.tpl:29
+msgid "To"
+msgstr "Bis"
+
+#: templates/admin/dashboard.tpl:35
 msgid "Show"
 msgstr "Anzeigen"
 
-#: templates/admin/dashboard.tpl:37
+#: templates/admin/dashboard.tpl:48
 msgid "Dashboard"
 msgstr "Dashboard"
 
-#: templates/admin/modifyconfig.tpl:4
+#: templates/admin/modifyconfig.tpl:5
 msgid "Modify configuration"
 msgstr "Speichern der Konfiguration"
 
-#: templates/admin/modifyconfig.tpl:14
+#: templates/admin/modifyconfig.tpl:12
+msgid "General settings"
+msgstr "Allgemeine Einstellungen"
+
+#: templates/admin/modifyconfig.tpl:15
 msgid "Enable Tracking"
 msgstr "Aktiviere Erfassung"
 
-#: templates/admin/modifyconfig.tpl:18
+#: templates/admin/modifyconfig.tpl:21
 msgid "URL to your piwik installation"
 msgstr "URL zur Piwik-Installation"
 
-#: templates/admin/modifyconfig.tpl:22
+#: templates/admin/modifyconfig.tpl:25
 msgid "Site-ID"
 msgstr "Seiten-ID"
 
-#: templates/admin/modifyconfig.tpl:26
+#: templates/admin/modifyconfig.tpl:29
 msgid "Piwik Token"
 msgstr "Piwik-Token"
 
-#: templates/admin/modifyconfig.tpl:30
+#: templates/admin/modifyconfig.tpl:33
 msgid "Track admin pages"
 msgstr "Erfasse auch Seiten der Administration"
 
-#: templates/admin/modifyconfig.tpl:34
+#: templates/admin/modifyconfig.tpl:37
 msgid "Track Links"
 msgstr "Erfasse Links"
 
-#: templates/admin/modifyconfig.tpl:39
+#: templates/admin/modifyconfig.tpl:43
 msgid "Save"
 msgstr "Speichern"
 
-#: templates/admin/modifyconfig.tpl:40
+#: templates/admin/modifyconfig.tpl:44
 msgid "Cancel"
 msgstr "Abbrechen"
 
