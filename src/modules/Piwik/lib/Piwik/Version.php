@@ -23,9 +23,9 @@ class Piwik_Version extends Zikula_AbstractVersion
         $meta['displayname']    = $this->__('Piwik statistics');
         //!url must be different to displayname
         $meta['url']            = $this->__('Piwik');
-        $meta['version']        = '0.5.0';
+        $meta['version']        = '1.0.0';
         $meta['author']         = '';
-        $meta['contact']        = 'http://code.zikula.org/piwik/';
+        $meta['contact']        = 'https://github.com/phaidon/Piwik';
         // recommended and required modules
         $meta['dependencies']   = array();
         $meta['securityschema'] = array('Piwik::' => '::');
