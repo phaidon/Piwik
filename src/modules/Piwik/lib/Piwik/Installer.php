@@ -31,6 +31,12 @@ class Piwik_Installer extends Zikula_AbstractInstaller
         EventUtil::registerPersistentModuleHandler('Piwik', 'core.postinit', array('Piwik_Listeners', 'coreinit'));
        
         // Initialisation successful
+        $url = ModUtil::url(
+            'Piwik',
+            'admin',
+            'modifyconfig'
+        ); 
+        LogUtil::registerStatus($this->__f("You installed the Piwik module succesfully. To activate the tracking please setup the module <a href='%s'>here</a>.", $url));        
         return true;
     }
 
@@ -45,7 +51,7 @@ class Piwik_Installer extends Zikula_AbstractInstaller
     public function defaultdata()
     {
         $this->setVar('tracking_enable'       , 0);
-        $this->setVar('tracking_piwikpath'    , 'domain.com/piwik');
+        $this->setVar('tracking_piwikpath'    , 'yourdomain.com/piwikpath');
         $this->setVar('tracking_siteid'       , '0');
         $this->setVar('tracking_token'        , 'abcdef123456');
         $this->setVar('tracking_adminpages'   , 0);
