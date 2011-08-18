@@ -8,3 +8,9 @@ Credits:
     * Piwik guys (http://piwik.org)
     * Frank Schummertz (he always gives the best tips ;) )
     * Axel Guckelsberger for the great way to show statistics
+
+
+The following icons are from oxygen-icon-theme
+© 2005 by David Vignoni
+License: LGPL
+    * images/admin.png
