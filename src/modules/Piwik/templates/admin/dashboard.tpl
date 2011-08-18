@@ -10,7 +10,7 @@
 {formvalidationsummary}
 
 <fieldset>
-    <legend>{gt text='Date range}</legend>
+    <legend>{gt text='Date range'}</legend>
 
     <div class="z-formrow">
         {formlabel for="period" __text='Period'}
