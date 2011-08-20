@@ -16,7 +16,14 @@
 
 class Piwik_Api_Admin extends Zikula_AbstractApi {
 
-    // get available admin panel links
+    /**
+     * get links
+     * 
+     * return the links for the admin menu
+     * 
+     * @param array $args
+     * @return arry admin links
+     */
     public function getlinks($args)
     {
 

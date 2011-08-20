@@ -17,6 +17,12 @@
 class Piwik_Handler_ModifyConfig  extends Zikula_Form_AbstractHandler
 {
 
+    /**
+     * initialise the form handler
+     * 
+     * @param Zikula_Form_View $view
+     * @return boolean true/false
+     */
     function initialize(Zikula_Form_View $view)
     {
          if (!SecurityUtil::checkPermission('Piwik::', '::', ACCESS_ADMIN)) {
@@ -29,7 +35,13 @@ class Piwik_Handler_ModifyConfig  extends Zikula_Form_AbstractHandler
         return true;
     }
 
-
+    /**
+     * interpret the form handler
+     * 
+     * @param Zikula_Form_View $view
+     * @param array $args
+     * @return boolean true/false
+     */
     function handleCommand(Zikula_Form_View $view, &$args)
     {
         if ($args['commandName'] == 'cancel') {
@@ -47,12 +59,6 @@ class Piwik_Handler_ModifyConfig  extends Zikula_Form_AbstractHandler
 
         $this->setVars($data);
         return true;
-
-        // check piwikpath for starting with 'http'
-        //if (substr($tracking_piwikpath, 0, 4) != 'http') {
-        //return LogUtil::registerError ($this->__('Piwik-URL starts not with http or https!'));
-
-
     }
 
 }

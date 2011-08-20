@@ -21,7 +21,6 @@ class Piwik_Listeners
      * Event listener for 'core.postinit' event.
      * 
      * @param Zikula_Event $event
-     *
      * @return void
      */
     public static function coreinit(Zikula_Event $event)

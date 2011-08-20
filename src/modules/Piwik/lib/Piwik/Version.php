@@ -16,6 +16,13 @@
 
 class Piwik_Version extends Zikula_AbstractVersion
 {
+    /**
+     * meta data
+     *
+     * this function return the meta data of the module
+     * 
+     * @return array
+     */
     public function getMetaData()
     {
         $meta = array();
@@ -26,7 +33,6 @@ class Piwik_Version extends Zikula_AbstractVersion
         $meta['version']        = '1.0.0';
         $meta['author']         = '';
         $meta['contact']        = 'https://github.com/phaidon/Piwik';
-        // recommended and required modules
         $meta['dependencies']   = array();
         $meta['securityschema'] = array('Piwik::' => '::');
         return $meta;

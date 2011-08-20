@@ -14,17 +14,23 @@
  * information regarding copyright and licensing.
  */
 
-class Piwik_Api_User extends Zikula_AbstractApi {
+class Piwik_Api_User extends Zikula_AbstractApi
+{
 
-    // activate tracker in site source
+    /**
+     * tracker
+     * 
+     * activate tracker in site source
+     * 
+     * @param array $args
+     * @return boolean true/false
+     */
     public function tracker($args = array() )
     {
-
         // no security check because code should be loaded in every page!
 
         // check if we are in admin pages
         $adminpage = FormUtil::getPassedValue('type', isset($args['type']) ? $args['type'] : null, 'GET');
-
         // return if admin pages should not be trackes
         if ($adminpage && $this->getVar('tracking_adminpages') == '0') {
             return;
@@ -39,4 +45,5 @@ class Piwik_Api_User extends Zikula_AbstractApi {
         }
         return true;
     }
+    
 }

@@ -16,13 +16,25 @@
 
 class Piwik_Controller_Admin extends Zikula_AbstractController {
 
-    // main function
+    /**
+     * main
+     *
+     * This function is a redirect to modifyconfig
+     * 
+     * @return function
+     */
     public function main()
     {
         return $this->modifyconfig();
     }
 
-    // main function
+    /**
+     * Modify config
+     *
+     * This function allows to modify the settings of the module
+     * 
+     * @return Zikula_Form_AbstractHandler
+     */
     public function modifyconfig()
     {
         $form = FormUtil::newForm('Piwik', $this);
@@ -30,13 +42,17 @@ class Piwik_Controller_Admin extends Zikula_AbstractController {
     }
     
     
-    // dashboard function
+    /**
+     * Piwik dashboad
+     *
+     * This function shows the Piwik dashboard
+     * 
+     * @return Zikula_Form_AbstractHandler
+     */
     public function dashboard()
     {
         $form = FormUtil::newForm('Piwik', $this);
         return $form->execute('admin/dashboard.tpl', new Piwik_Handler_Dashboard());
     }    
-    
-    
 
 }

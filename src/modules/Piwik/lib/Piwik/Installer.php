@@ -16,13 +16,15 @@
 
 class Piwik_Installer extends Zikula_AbstractInstaller
 {
+
     /**
-    * initialise the template module
-    * This function is only ever called once during the lifetime of a particular
-    * module instance
-    */
-
-
+     * initialise the template module
+     *
+     * This function is only ever called once during the lifetime of a particular
+     * module instance
+     * 
+     * @return true
+     */
     public function install()
     {
         // Set default values for module
@@ -41,13 +43,13 @@ class Piwik_Installer extends Zikula_AbstractInstaller
     }
 
     /**
-    * Create the default data for the users module.
-    *
-    * This function is only ever called once during the lifetime of a particular
-    * module instance.
-    *
-    * @return void
-    */
+     * Create the default data for the users module.
+     *
+     * This function is only ever called once during the lifetime of a particular
+     * module instance.
+     *
+     * @return true
+     */
     public function defaultdata()
     {
         $this->setVar('tracking_enable'       , 0);
@@ -56,18 +58,19 @@ class Piwik_Installer extends Zikula_AbstractInstaller
         $this->setVar('tracking_token'        , 'abcdef123456');
         $this->setVar('tracking_adminpages'   , 0);
         $this->setVar('tracking_linktracking' , 1);
+        return true;
     }
 
 
     /**
-    * Upgrade the errors module from an old version
-    *
-    * This function must consider all the released versions of the module!
-    * If the upgrade fails at some point, it returns the last upgraded version.
-    *
-    * @param        string   $oldVersion   version number string to upgrade from
-    * @return       mixed    true on success, last valid version string or false if fails
-    */
+     * Upgrade the errors module from an old version
+     *
+     * This function must consider all the released versions of the module!
+     * If the upgrade fails at some point, it returns the last upgraded version.
+     *
+     * @param        string   $oldVersion   version number string to upgrade from
+     * @return       mixed    true on success, last valid version string or false if fails
+     */
     public function upgrade($oldversion)
     {
         // Update successful
@@ -75,20 +78,19 @@ class Piwik_Installer extends Zikula_AbstractInstaller
     }
 
     /**
-    * delete the errors module
-    * This function is only ever called once during the lifetime of a particular
-    * module instance
-    */
+     * delete the errors module
+     * 
+     * This function is only ever called once during the lifetime of a particular
+     * module instance
+     * 
+     * @return true 
+     */
     public function uninstall()
     {
         // Delete any module variables
         $this->delVars();
-        // Deletion successful
-
         // delete the system init hook
         EventUtil::unregisterPersistentModuleHandler('Piwik', 'core.postinit', array('Piwik_Listeners', 'coreinit'));
-
         return true;
-
     }
 }
