@@ -30,7 +30,11 @@ class Piwik_Installer extends Zikula_AbstractInstaller
         // Set default values for module
         $this->defaultdata();
 
-        EventUtil::registerPersistentModuleHandler('Piwik', 'core.postinit', array('Piwik_Listeners', 'coreinit'));
+        EventUtil::registerPersistentModuleHandler(
+            'Piwik',
+            'core.postinit',
+            array('Piwik_Listeners', 'coreinit')
+        );
        
         // Initialisation successful
         $url = ModUtil::url(
@@ -52,12 +56,12 @@ class Piwik_Installer extends Zikula_AbstractInstaller
      */
     public function defaultdata()
     {
-        $this->setVar('tracking_enable'       , 0);
+        $this->setVar('tracking_enable'       , false);
         $this->setVar('tracking_piwikpath'    , 'yourdomain.com/piwikpath');
-        $this->setVar('tracking_siteid'       , '0');
+        $this->setVar('tracking_siteid'       , 0);
         $this->setVar('tracking_token'        , 'abcdef123456');
-        $this->setVar('tracking_adminpages'   , 0);
-        $this->setVar('tracking_linktracking' , 1);
+        $this->setVar('tracking_adminpages'   , false);
+        $this->setVar('tracking_linktracking' , true);
         return true;
     }
 
@@ -90,7 +94,11 @@ class Piwik_Installer extends Zikula_AbstractInstaller
         // Delete any module variables
         $this->delVars();
         // delete the system init hook
-        EventUtil::unregisterPersistentModuleHandler('Piwik', 'core.postinit', array('Piwik_Listeners', 'coreinit'));
+        EventUtil::unregisterPersistentModuleHandler(
+            'Piwik',
+            'core.postinit',
+            array('Piwik_Listeners', 'coreinit')
+        );
         return true;
     }
 }
