@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright Piwik Team 2011
  *
@@ -14,33 +13,40 @@
  * information regarding copyright and licensing.
  */
 
+/**
+ * This class provides a handler to modify the module settings.
+ */
 class Piwik_Handler_ModifyConfig  extends Zikula_Form_AbstractHandler
 {
 
     /**
-     * initialise the form handler
+     * This function initialise the form handler.
      * 
-     * @param Zikula_Form_View $view
-     * @return boolean true/false
+     * @param Zikula_Form_View $view Reference to Form render object..
+     * 
+     * @return boolean
+     * 
+     * @throws Zikula_Exception_Forbidden If the current user does not have adequate permissions to perform this function.
      */
     function initialize(Zikula_Form_View $view)
     {
-         if (!SecurityUtil::checkPermission('Piwik::', '::', ACCESS_ADMIN)) {
+        if (!SecurityUtil::checkPermission('Piwik::', '::', ACCESS_ADMIN)) {
             throw new Zikula_Exception_Forbidden(LogUtil::getErrorMsgPermission());
         }
         
-        $this->view->caching = false;
-        $this->view->assign($this->getVars());
+        $view->caching = false;
+        $view->assign($this->getVars());
 
         return true;
     }
 
     /**
-     * interpret the form handler
+     * This function interprets the form handler.
      * 
-     * @param Zikula_Form_View $view
-     * @param array $args
-     * @return boolean true/false
+     * @param Zikula_Form_View $view  Reference to Form render object.
+     * @param array            &$args Arguments of the command.
+     * 
+     * @return boolean
      */
     function handleCommand(Zikula_Form_View $view, &$args)
     {
@@ -55,8 +61,6 @@ class Piwik_Handler_ModifyConfig  extends Zikula_Form_AbstractHandler
         }
         
         $data = $view->getValues();
-
-
         $this->setVars($data);
         return true;
     }

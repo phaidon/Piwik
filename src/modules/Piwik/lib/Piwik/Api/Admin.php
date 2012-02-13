@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright Piwik Team 2011
  *
@@ -14,17 +13,19 @@
  * information regarding copyright and licensing.
  */
 
+/**
+ * Admin api class.
+ */
 class Piwik_Api_Admin extends Zikula_AbstractApi {
 
     /**
-     * get links
+     * Get links
      * 
-     * return the links for the admin menu
+     * This function returns the links for the admin menu.
      * 
-     * @param array $args
-     * @return arry admin links
+     * @return arry Admin links
      */
-    public function getlinks($args)
+    public function getlinks()
     {
 
         // create array of links

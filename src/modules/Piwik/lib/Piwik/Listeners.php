@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright Piwik Team 2011
  *
@@ -14,13 +13,17 @@
  * information regarding copyright and licensing.
  */
 
+/**
+ * Provides module listeners for the Piwik module.
+ */
 class Piwik_Listeners
 {
 
     /**
      * Event listener for 'core.postinit' event.
      * 
-     * @param Zikula_Event $event
+     * @param Zikula_Event $event Event.
+     * 
      * @return void
      */
     public static function coreinit(Zikula_Event $event)

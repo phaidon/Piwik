@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright Piwik Team 2011
  *
@@ -14,14 +13,20 @@
  * information regarding copyright and licensing.
  */
 
+/**
+ * This class provides a handler to see the piwik dashboard.
+ */
 class Piwik_Handler_Dashboard extends Zikula_Form_AbstractHandler
 {
 
     /**
-     * initialise the form handler
+     * Initialise the form handler
      * 
-     * @param Zikula_Form_View $view
-     * @return boolean true/false
+     * @param Zikula_Form_View $view Reference to Form render object.
+     * 
+     * @return boolean
+     * 
+     * @throws Zikula_Exception_Forbidden If the current user does not have adequate permissions to perform this function.
      */
     function initialize(Zikula_Form_View $view)
     {
@@ -29,11 +34,11 @@ class Piwik_Handler_Dashboard extends Zikula_Form_AbstractHandler
             throw new Zikula_Exception_Forbidden(LogUtil::getErrorMsgPermission());
         }
         
-        $this->view->caching = false;
-        $this->view->assign('date',   'today');
-        $this->view->assign('from',   'today');
-        $this->view->assign('to',     'today');
-        $this->view->assign('period', 'day');
+        $view->caching = false;
+        $view->assign('date',   'today');
+        $view->assign('from',   'today');
+        $view->assign('to',     'today');
+        $view->assign('period', 'day');
  
         $periods = array(
             array('value' =>  'day',   'text' => $this->__('Day')),
@@ -42,20 +47,23 @@ class Piwik_Handler_Dashboard extends Zikula_Form_AbstractHandler
             array('value' =>  'year',  'text' => $this->__('Year')),
             array('value' =>  'range', 'text' => $this->__('Date range')),
         );
-        $this->view->assign('periods', $periods);
+        $view->assign('periods', $periods);
         
         return true;
     }
 
     /**
-     * interpret the form handler
+     * This function interprets the form handler
      * 
-     * @param Zikula_Form_View $view
-     * @param array $args
-     * @return boolean true/false
+     * @param Zikula_Form_View $view  Reference to Form render object.
+     * @param array            &$args Arguments of the command.
+     * 
+     * @return boolean
      */
     function handleCommand(Zikula_Form_View $view, &$args)
-    {    
+    {  
+        unset($args);
+        
         // check for valid form
         if (!$view->isValid()) {
             return false;

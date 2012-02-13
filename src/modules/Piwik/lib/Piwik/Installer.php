@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright Piwik Team 2011
  *
@@ -14,6 +13,9 @@
  * information regarding copyright and licensing.
  */
 
+/**
+ * Provides module installation and upgrade services for the Piwik module.
+ */
 class Piwik_Installer extends Zikula_AbstractInstaller
 {
 
@@ -72,8 +74,9 @@ class Piwik_Installer extends Zikula_AbstractInstaller
      * This function must consider all the released versions of the module!
      * If the upgrade fails at some point, it returns the last upgraded version.
      *
-     * @param        string   $oldVersion   version number string to upgrade from
-     * @return       mixed    true on success, last valid version string or false if fails
+     * @param string $oldversion Version number string to upgrade from.
+     * 
+     * @return mixed True on success, last valid version string or false if fails.
      */
     public function upgrade($oldversion)
     {

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright Piwik Team 2011
  *
@@ -14,16 +13,20 @@
  * information regarding copyright and licensing.
  */
 
+/**
+ * User api class.
+ */
 class Piwik_Api_User extends Zikula_AbstractApi
 {
 
     /**
-     * tracker
+     * Tracker
      * 
-     * activate tracker in site source
+     * This function activates tracker in site source.
      * 
-     * @param array $args
-     * @return boolean true/false
+     * @param array $args Tracker arguments.
+     * 
+     * @return boolean
      */
     public function tracker($args = array() )
     {
@@ -34,7 +37,7 @@ class Piwik_Api_User extends Zikula_AbstractApi
 
         // return if admin pages should not be trackes
         if ($adminpage && $this->getVar('tracking_adminpages') == '0') {
-            return;
+            return true;
         }
         // only add piwik code to source if tracking is enabled
         if ($this->getVar('tracking_enable') == 1) {

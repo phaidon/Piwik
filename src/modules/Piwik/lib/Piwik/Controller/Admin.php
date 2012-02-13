@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright Piwik Team 2011
  *
@@ -14,6 +13,9 @@
  * information regarding copyright and licensing.
  */
 
+/**
+ * Access to (administrative) user-initiated actions for the Wikula module.
+ */
 class Piwik_Controller_Admin extends Zikula_AbstractController {
 
     /**
@@ -21,7 +23,7 @@ class Piwik_Controller_Admin extends Zikula_AbstractController {
      *
      * This function is a redirect to modifyconfig
      * 
-     * @return function
+     * @return statement
      */
     public function main()
     {

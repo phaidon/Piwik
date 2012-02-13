@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright Piwik Team 2011
  *
@@ -14,12 +13,15 @@
  * information regarding copyright and licensing.
  */
 
+/**
+ * Provides metadata for this module to the Extensions module.
+ */
 class Piwik_Version extends Zikula_AbstractVersion
 {
     /**
-     * meta data
+     * Meta data
      *
-     * this function return the meta data of the module
+     * This function returns the meta data of the module.
      * 
      * @return array
      */
