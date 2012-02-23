@@ -6,65 +6,66 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Piwik\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-17 10:59+0200\n"
-"PO-Revision-Date: 2011-08-17 10:59+0100\n"
-"Last-Translator: Fabian Wuertz <xadras@sidux.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: de\n"
+"POT-Creation-Date: 2012-02-23 20:29+0100\n"
+"PO-Revision-Date: 2012-02-23 20:35+0100\n"
+"Last-Translator: Fabian Wuertz <dev@wuertz.org>\n"
+"Language-Team: Piwik Developement Team\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.1\n"
 "X-Poedit-Language: German\n"
 "X-Poedit-Country: GERMANY\n"
 
-#: lib/Piwik/Version.php:22
-msgid "Piwik statistics module"
-msgstr "Piwik-Statistik-Modull"
-
-#: lib/Piwik/Version.php:23
-msgid "Piwik statistics"
-msgstr "Piwik-Statistiken"
-
-#. !url must be different to displayname
-#: lib/Piwik/Version.php:25
-msgid "Piwik"
-msgstr "Piwik"
-
-#: lib/Piwik/Api/Piwik.php:45
-msgid "No token for Piwik found."
-msgstr "Es konnte kein Piwik-Token gefunden werden."
-
-#: lib/Piwik/Api/Admin.php:27
+#: lib/Piwik/Api/Admin.php:35
 msgid "Settings"
 msgstr "Konfiguration"
 
-#: lib/Piwik/Api/Admin.php:32
+#: lib/Piwik/Api/Admin.php:40
 #: templates/admin/dashboard.tpl:5
 msgid "Piwik dashboard"
 msgstr "Piwik-Dashboard"
 
-#: lib/Piwik/Handler/Dashboard.php:33
+#: lib/Piwik/Handler/Dashboard.php:44
 msgid "Day"
 msgstr "Tag"
 
-#: lib/Piwik/Handler/Dashboard.php:34
+#: lib/Piwik/Handler/Dashboard.php:45
 msgid "Week"
 msgstr "Woche"
 
-#: lib/Piwik/Handler/Dashboard.php:35
+#: lib/Piwik/Handler/Dashboard.php:46
 msgid "Month"
 msgstr "Monat"
 
-#: lib/Piwik/Handler/Dashboard.php:36
+#: lib/Piwik/Handler/Dashboard.php:47
 msgid "Year"
 msgstr "Jahr"
 
-#: lib/Piwik/Handler/Dashboard.php:37
+#: lib/Piwik/Handler/Dashboard.php:48
 #: templates/admin/dashboard.tpl:13
 msgid "Date range"
 msgstr "Zeitspanne"
+
+#: lib/Piwik/Installer.php:47
+#, php-format
+msgid "You installed the Piwik module succesfully. To activate the tracking please setup the module <a href='%s'>here</a>."
+msgstr "Die Piwik-Installation wurde erfolgreich durchgeführt. Zum Aktivieren des Trackings muss das Modul <a href='%s'>hier</a> konfiguriert werden."
+
+#: lib/Piwik/Version.php:31
+msgid "Piwik statistics module"
+msgstr "Piwik-Statistik-Modull"
+
+#: lib/Piwik/Version.php:32
+msgid "Piwik statistics"
+msgstr "Piwik-Statistiken"
+
+#. !url must be different to displayname
+#: lib/Piwik/Version.php:34
+msgid "Piwik"
+msgstr "Piwik"
 
 #: templates/admin/dashboard.tpl:16
 msgid "Period"
@@ -106,29 +107,44 @@ msgstr "Aktiviere Erfassung"
 msgid "URL to your piwik installation"
 msgstr "URL zur Piwik-Installation"
 
-#: templates/admin/modifyconfig.tpl:25
+#: templates/admin/modifyconfig.tpl:23
+msgid "Please insert the url of the Piwik installation WITHOUT http:// or https:// and WITHOUT a trailing slash.<br />Example: yourdomain.com/piwikpathh"
+msgstr "Bitte die URL der Piwik Installation ohne das http:// or https:// einfügen. <br />Beispiel: yourdomain.com/piwikpathh"
+
+#: templates/admin/modifyconfig.tpl:26
 msgid "Site-ID"
 msgstr "Seiten-ID"
 
-#: templates/admin/modifyconfig.tpl:29
+#: templates/admin/modifyconfig.tpl:28
+msgid "The side-id can be found here:"
+msgstr "Die Seiten-ID kann hier gefunden werden:"
+
+#: templates/admin/modifyconfig.tpl:31
 msgid "Piwik Token"
 msgstr "Piwik-Token"
 
 #: templates/admin/modifyconfig.tpl:33
+msgid "The token can be found here:"
+msgstr "Der Token kann hier gefunden werden:"
+
+#: templates/admin/modifyconfig.tpl:36
 msgid "Track admin pages"
 msgstr "Erfasse auch Seiten der Administration"
 
-#: templates/admin/modifyconfig.tpl:37
+#: templates/admin/modifyconfig.tpl:40
 msgid "Track Links"
 msgstr "Erfasse Links"
 
-#: templates/admin/modifyconfig.tpl:43
+#: templates/admin/modifyconfig.tpl:46
 msgid "Save"
 msgstr "Speichern"
 
-#: templates/admin/modifyconfig.tpl:44
+#: templates/admin/modifyconfig.tpl:47
 msgid "Cancel"
 msgstr "Abbrechen"
+
+#~ msgid "No token for Piwik found."
+#~ msgstr "Es konnte kein Piwik-Token gefunden werden."
 
 #, fuzzy
 #~ msgid "Usage statistics overall"
