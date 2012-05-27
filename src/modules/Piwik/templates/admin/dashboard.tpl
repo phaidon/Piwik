@@ -1,26 +1,30 @@
-{ajaxheader modname=Piwik filename=dashboard.js noscriptaculous=true effects=true}
+{*ajaxheader modname=Piwik filename=dashboard.js noscriptaculous=true effects=true*}
 {adminheader}
 <div class="z-admin-content-pagetitle">
     {icon type="config" size="small"}
     <h3>{gt text="Piwik dashboard"}</h3>
 </div>
 
+<a href="http://{$modvars.Piwik.tracking_piwikpath}">
+    {gt text='Show more statistics'}
+</a><br /><br />
 
 {form cssClass="z-form"}
 {formvalidationsummary}
 
 <fieldset>
-    <legend>{gt text='Date range'}</legend>
 
     <div class="z-formrow">
         {formlabel for="period" __text='Period'}
         {formdropdownlist id="period" items=$periods}  
     </div>
-    <div class="z-formrow" id='date'>
+    <div class="z-formrow">
         {formlabel for="date" __text='Date'}
-        {formdateinput useSelectionMode=1 id="date" ifFormat='%e. %B %Y' dateformat='%e. %B %Y'}
+        {formdateinput id="date" useSelectionMode=1 ifFormat='%Y-%m-%d'  daFormat='%e. %B %Y' defaultValue=$date}
     </div>
-    <div id="fromto">
+    
+    
+    {*<div id="fromto">
         <div class="z-formrow">
             {formlabel for="from" __text='From'}
             {formdateinput useSelectionMode=1 id="from" ifFormat='%e. %B %Y' dateformat='%e. %B %Y'}
@@ -29,27 +33,20 @@
             {formlabel for="to" __text='To'}
             {formdateinput useSelectionMode=1 id="to" ifFormat='%e. %B %Y' dateformat='%e. %B %Y'}
         </div>
-    </div>
+    </div>*}
 
     <div class="z-formbuttons z-buttons">
         {formbutton class="z-bt-ok" commandName="save" __text="Show"}
     </div>
 </fieldset>
 
+    
+{modapifunc modname="Piwik" type="dashboard" func=showOverview period=$period date=$date}
+
+{modapifunc modname="Piwik" type="dashboard" func=showPages period=$period date=$date}
 
 {/form}
 
-<div id="slider-container" style="display: none">
-    <div id="sliderbar"></div>
-</div>
 
-<br />
-
-<h3>{gt text='Dashboard'}</h3>
-{include file="admin/stats_single.tpl" widgetModule="Dashboard" widgetAction="index"}
-
-<p><a href="{modurl modname="Piwik" type="user" func="stats"}" title="Die erweiterten Statistiken anzeigen">Die erweiterten Statistiken anzeigen</a></p>
-
-</div>
 
 {adminfooter}

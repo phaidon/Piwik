@@ -62,5 +62,3 @@
         
     </tbody>
 </table>
-            
-{adminfooter}

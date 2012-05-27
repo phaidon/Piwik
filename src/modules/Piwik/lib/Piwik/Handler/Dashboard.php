@@ -34,8 +34,9 @@ class Piwik_Handler_Dashboard extends Zikula_Form_AbstractHandler
             throw new Zikula_Exception_Forbidden(LogUtil::getErrorMsgPermission());
         }
         
+        
         $view->caching = false;
-        $view->assign('date',   'today');
+        $view->assign('date',   date('Y-m-d'));
         $view->assign('from',   'today');
         $view->assign('to',     'today');
         $view->assign('period', 'day');
@@ -45,7 +46,7 @@ class Piwik_Handler_Dashboard extends Zikula_Form_AbstractHandler
             array('value' =>  'week',  'text' => $this->__('Week')),
             array('value' =>  'month', 'text' => $this->__('Month')),
             array('value' =>  'year',  'text' => $this->__('Year')),
-            array('value' =>  'range', 'text' => $this->__('Date range')),
+            //array('value' =>  'range', 'text' => $this->__('Date range')),
         );
         $view->assign('periods', $periods);
         

@@ -146,11 +146,20 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
 	}
     
     
-    public function showOverview() {
+    public function showOverview($args = array()) {
+        
+        if (!isset($args['period'])) {
+            $args['period'] = 'week';
+        }
+        if (!isset($args['date'])) {
+            $args['date'] = 'today';
+        }
+        
+
         $params = array(
             'method' => 'VisitsSummary.get',
-            'period' => 'week',
-            'date'   => 'today'
+            'period' => $args['period'],
+            'date'   => $args['date']
         );
         $data = ModUtil::apiFunc($this->name, 'dashboard', 'data', $params);
         $data['total_time'] = 
@@ -166,11 +175,19 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
     }
     
     
-    public function showPages() {
+    public function showPages($args = array()) {
+        
+        if (!isset($args['period'])) {
+            $args['period'] = 'week';
+        }
+        if (!isset($args['date'])) {
+            $args['date'] = 'today';
+        }
+        
         $params = array(
             'method' => 'Actions.getPageTitles',
-            'period' => 'week',
-            'date'   => 'today'
+            'period' => $args['period'],
+            'date'   => $args['date']
         );
         $data = $this->data($params);
         

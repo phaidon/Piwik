@@ -59,26 +59,6 @@ class Piwik_Controller_Admin extends Zikula_AbstractController {
     
     
     /**
-     * Piwik dashboad
-     *
-     * This function shows the Piwik dashboard
-     * 
-     * @return Zikula_Form_AbstractHandler
-     */
-    public function dashboard2()
-    {
-        if (!SecurityUtil::checkPermission('Piwik::', '::', ACCESS_ADMIN)) {
-            throw new Zikula_Exception_Forbidden(LogUtil::getErrorMsgPermission());
-        }
-        
-        $output  = ModUtil::apiFunc($this->name, 'dashboard', 'showOverview');
-        $output .= ModUtil::apiFunc($this->name, 'dashboard', 'showPages');
-        
-        return $output;
-    } 
-    
-    
-    /**
      * troubleshooting
      *
      * This function give hints for the troubleshooting

@@ -1,6 +1,3 @@
-{adminheader}
-
-
 <table class="z-admintable">
     <thead>
         <tr>
