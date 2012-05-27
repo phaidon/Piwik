@@ -18,6 +18,48 @@
  */
 class Piwik_Api_Admin extends Zikula_AbstractApi {
 
+    
+    /**
+     * Get Piwik sites
+     * 
+     * This function returns the sites of the Piwik instance.
+     * 
+     * @return arry Piwik sites
+     */
+    public function getSites()
+    {
+        $tracking_piwikpath = $this->getVar('tracking_piwikpath', '');
+        $tracking_enable = $this->getVar('tracking_enable', false);
+        
+        if (!$tracking_enable) {
+            return true;
+        }
+        
+        if (empty($tracking_piwikpath)) {
+            return false;
+        }
+
+        $params = array(
+            'method' => 'SitesManager.getSitesWithAtLeastViewAccess'
+        );
+        $sites0 = ModUtil::apiFunc($this->name, 'dashboard', 'data', $params);
+        
+        if (!$sites0) {
+            return LogUtil::registerError('An error occured. Please check URL and auth token. You need at least view access to one site.');
+        }
+        
+        $sites = array();
+        foreach($sites0 as $site) {
+            $sites[] = array(
+                'value' => $site['idsite'],
+                'text'  => $site['name']
+            );
+        }
+        
+        return $sites;
+    }
+    
+    
     /**
      * Get links
      * 
@@ -39,6 +81,11 @@ class Piwik_Api_Admin extends Zikula_AbstractApi {
                 'url' => ModUtil::url('Piwik', 'admin', 'dashboard'), 
                 'text' => $this->__('Piwik dashboard'),
                 'class' => 'z-icon-es-view'
+            ),
+            array(
+                'url' => ModUtil::url('Piwik', 'admin', 'troubleshooting'), 
+                'text' => $this->__('Troubleshooting'),
+                'class' => 'z-icon-es-help'
             ),
         );
         return $links;

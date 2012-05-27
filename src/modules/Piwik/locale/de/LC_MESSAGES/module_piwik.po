@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Piwik\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-23 20:29+0100\n"
-"PO-Revision-Date: 2012-04-24 09:25+0100\n"
-"Last-Translator: Carsten Volmer <carsten@zikula.org>\n"
+"POT-Creation-Date: 2012-05-27 14:52+0200\n"
+"PO-Revision-Date: 2012-05-27 15:06+0100\n"
+"Last-Translator: Fabian Wuertz <dev@wuertz.org>\n"
 "Language-Team: Piwik Developement Team\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,16 +18,20 @@ msgstr ""
 "X-Generator: Pootle 2.0.1\n"
 "X-Poedit-Language: German\n"
 "X-Poedit-Country: GERMANY\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 
-#: lib/Piwik/Api/Admin.php:35
+#: lib/Piwik/Api/Admin.php:77
 msgid "Settings"
 msgstr "Konfiguration"
 
-#: lib/Piwik/Api/Admin.php:40
+#: lib/Piwik/Api/Admin.php:82
 #: templates/admin/dashboard.tpl:5
 msgid "Piwik dashboard"
 msgstr "Piwik-Dashboard"
+
+#: lib/Piwik/Api/Admin.php:87
+#: templates/admin/troubleshooting.tpl:4
+msgid "Troubleshooting"
+msgstr "Problembehebung"
 
 #: lib/Piwik/Handler/Dashboard.php:44
 msgid "Day"
@@ -92,33 +96,25 @@ msgstr "Anzeigen"
 msgid "Dashboard"
 msgstr "Dashboard"
 
-#: templates/admin/modifyconfig.tpl:5
+#: templates/admin/modifyconfig.tpl:10
 msgid "Modify configuration"
-msgstr "Konfiguration ändern"
+msgstr "Konfiguration speichern"
 
-#: templates/admin/modifyconfig.tpl:12
+#: templates/admin/modifyconfig.tpl:17
 msgid "General settings"
 msgstr "Allgemeine Einstellungen"
 
-#: templates/admin/modifyconfig.tpl:15
+#: templates/admin/modifyconfig.tpl:20
 msgid "Enable Tracking"
-msgstr "Erfassung aktivieren"
-
-#: templates/admin/modifyconfig.tpl:21
-msgid "URL to your piwik installation"
-msgstr "URL zur Piwik-Installation"
-
-#: templates/admin/modifyconfig.tpl:23
-msgid "Please insert the url of the Piwik installation WITHOUT http:// or https:// and WITHOUT a trailing slash.<br />Example: yourdomain.com/piwikpathh"
-msgstr "Bitte die URL der Piwik Installation ohne das http:// or https:// einfügen. <br />Beispiel: yourdomain.com/piwikpathh"
+msgstr "Erfassung aktiviere"
 
 #: templates/admin/modifyconfig.tpl:26
-msgid "Site-ID"
-msgstr "Seiten-ID"
+msgid "URL to your Piwik installation"
+msgstr "URL zur Piwik-Installation"
 
 #: templates/admin/modifyconfig.tpl:28
-msgid "The side-id can be found here:"
-msgstr "Die Seiten-ID kann hier gefunden werden:"
+msgid "Example: http://www.yourdomain.com/piwikpath"
+msgstr "Beispiel: http://www.yourdomain.com/piwikpath"
 
 #: templates/admin/modifyconfig.tpl:31
 msgid "Piwik Token"
@@ -128,21 +124,108 @@ msgstr "Piwik-Token"
 msgid "The token can be found here:"
 msgstr "Der Token kann hier gefunden werden:"
 
-#: templates/admin/modifyconfig.tpl:36
+#: templates/admin/modifyconfig.tpl:37
+msgid "Site"
+msgstr "Seite"
+
+#: templates/admin/modifyconfig.tpl:42
 msgid "Track admin pages"
 msgstr "Erfasse auch Seiten der Administration"
 
-#: templates/admin/modifyconfig.tpl:40
+#: templates/admin/modifyconfig.tpl:46
 msgid "Track Links"
 msgstr "Erfasse Links"
 
-#: templates/admin/modifyconfig.tpl:46
+#: templates/admin/modifyconfig.tpl:52
 msgid "Save"
 msgstr "Speichern"
 
-#: templates/admin/modifyconfig.tpl:47
+#: templates/admin/modifyconfig.tpl:53
 msgid "Cancel"
 msgstr "Abbrechen"
+
+#: templates/admin/troubleshooting.tpl:8
+msgid "If this module does not log the accesses properly please check the following:"
+msgstr "Wenn die Seitenbesuche nicht aufgezeichnet werden, sollten folgende drei Dinge überprüft werden:"
+
+#: templates/admin/troubleshooting.tpl:12
+msgid "Check again if your Piwik path, token and side are configured corect."
+msgstr "Ist der Piwiki-Pfad, der Token und die Seite richtig konfiguriert."
+
+#: templates/admin/troubleshooting.tpl:13
+msgid "Check if the Piwik code (see above) appears in the source code of your page."
+msgstr "Erscheint der Piwik-Code (siehe unten) im Quellcode der Seite."
+
+#: templates/admin/troubleshooting.tpl:15
+msgid "Compare the Piwik code (see above) with this one of the Piwik web frontend."
+msgstr "Ist der Piwik-Code (sie unten) und derjenige aus dem Piwik-Frontend identisch."
+
+#: templates/admin/troubleshooting.tpl:30
+msgid "If you still have problems feel free to post in the Zikula forums."
+msgstr "Bei Hilfe gibt es in den Zikula-Foren."
+
+#: templates/dashboard/overview.tpl:8
+msgid "Overview"
+msgstr "Übersicht"
+
+#: templates/dashboard/overview.tpl:15
+msgid "Visitors"
+msgstr "Besucher"
+
+#: templates/dashboard/overview.tpl:23
+msgid "Unique visitors"
+msgstr "Einzigartige Besuche"
+
+#: templates/dashboard/overview.tpl:31
+msgid "Page Views"
+msgstr "Seitenbesuche"
+
+#: templates/dashboard/overview.tpl:39
+msgid "Max. page views in one visit"
+msgstr "Max. Seiten/Besuch"
+
+#: templates/dashboard/overview.tpl:47
+msgid "Total time spent"
+msgstr "Verbrachte Zeit"
+
+#: templates/dashboard/overview.tpl:55
+msgid "Time/visit"
+msgstr "Zeit/Besuch"
+
+#: templates/dashboard/overview.tpl:63
+msgid "Bounce count"
+msgstr "Absprungrate"
+
+#: templates/dashboard/pages.tpl:6
+msgid "Page"
+msgstr "Seite"
+
+#: templates/dashboard/pages.tpl:9
+msgid "Unique"
+msgstr "Einzigartig"
+
+#: templates/dashboard/pages.tpl:12
+msgid "Visits"
+msgstr "Besuche"
+
+#: templates/dashboard/pages.tpl:42
+msgid "No data available."
+msgstr "Keine Daten verfügbar"
+
+#: templates/dashboard/pages.tpl:51
+msgid "Others"
+msgstr "Andere"
+
+#~ msgid ""
+#~ "Please insert the url of the Piwik installation WITHOUT http:// or "
+#~ "https:// and WITHOUT a trailing slash.<br />Example: yourdomain.com/"
+#~ "piwikpathh"
+#~ msgstr ""
+#~ "Bitte die URL der Piwik Installation ohne das http:// or https:// "
+#~ "einfügen. <br />Beispiel: yourdomain.com/piwikpathh"
+
+#~ msgid "The side-id can be found here:"
+#~ msgstr "Die Seiten-ID kann hier gefunden werden:"
 
 #~ msgid "No token for Piwik found."
 #~ msgstr "Es konnte kein Piwik-Token gefunden werden."

@@ -33,10 +33,15 @@ class Piwik_Handler_ModifyConfig  extends Zikula_Form_AbstractHandler
         if (!SecurityUtil::checkPermission('Piwik::', '::', ACCESS_ADMIN)) {
             throw new Zikula_Exception_Forbidden(LogUtil::getErrorMsgPermission());
         }
+
+        $sites = ModUtil::apiFunc($this->name, 'admin', 'getSites');
+        $view->assign('sites', $sites);
         
         $view->caching = false;
-        $view->assign($this->getVars());
-
+        $vars = $this->getVars();
+        $vars['tracking_piwikpath'] = 'http://'.$vars['tracking_piwikpath'];
+        $view->assign($vars);        
+        
         return true;
     }
 
@@ -60,9 +65,18 @@ class Piwik_Handler_ModifyConfig  extends Zikula_Form_AbstractHandler
             return false;
         }
         
+        
+        
+        
         $data = $view->getValues();
+        
+        $data['tracking_piwikpath'] = str_replace('https://', '', $data['tracking_piwikpath']);
+        $data['tracking_piwikpath'] = str_replace('http://', '',  $data['tracking_piwikpath']); 
+        
         $this->setVars($data);
-        return true;
+        
+        $url = ModUtil::url($this->name, 'admin', 'modifyconfig');
+        return $this->view->redirect($url);
     }
 
 }
