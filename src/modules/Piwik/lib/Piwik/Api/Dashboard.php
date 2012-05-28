@@ -73,13 +73,15 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
         if (!isset($params['date'])) {
             $params['date'] = '';
         }
+        if (!isset($params['limit'])) {
+            $params['limit'] = -1;
+        }
         
-        $intLimit  = -1;
         $strURL    = 'http://'.$this->getVar('tracking_piwikpath');
         $intSite   = $this->getVar('tracking_siteid');		
         $strURL   .= '/index.php?module=API&method='.$params['method'];
         $strURL   .= '&idSite='.$intSite.'&period='.$params['period'].'&date='.$params['date'];
-        $strURL   .= '&format=PHP&filter_limit='.$intLimit;
+        $strURL   .= '&format=PHP&filter_limit='.$params['limit'];
         $strURL   .= '&token_auth='.$this->getVar('tracking_token');
         $strResult = $this->get_remote_file($strURL);			
         return unserialize($strResult);
@@ -148,14 +150,8 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
     
     public function showOverview($args = array()) {
         
-        if (!isset($args['period'])) {
-            $args['period'] = 'week';
-        }
-        if (!isset($args['date'])) {
-            $args['date'] = 'today';
-        }
+        $args = $this->setDefaults($args);
         
-
         $params = array(
             'method' => 'VisitsSummary.get',
             'period' => $args['period'],
@@ -171,6 +167,7 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
             floor(($data['avg_time_on_site'] % 3600)/60).'m '.
             floor(($data['avg_time_on_site'] % 3600) % 60).'s';
         return $this->view->assign('data', $data)
+                          ->assign($args)
                           ->fetch('dashboard/overview.tpl');
     }
     
@@ -178,7 +175,7 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
     public function showPages($args = array()) {
         
         if (!isset($args['period'])) {
-            $args['period'] = 'week';
+            $args['period'] = 'days';
         }
         if (!isset($args['date'])) {
             $args['date'] = 'today';
@@ -194,7 +191,149 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
         
         return $this->view->assign('data', $data)
                           ->assign('intMax', 9)
+                          ->assign($args)
                           ->fetch('dashboard/pages.tpl');
+    }
+    
+    
+    public function showVisitors($args = array()) {
+        
+        $args = $this->setDefaults($args);
+        
+        switch ($args['period']) {
+            case 'day':
+                $args['date'] = 'last30';
+                break;
+            case 'week':
+                $args['date'] = 'last12';
+                break;
+            case 'month':
+                $args['date'] = 'last12';
+                break;
+            case 'year':
+                $args['date'] = 'last5';
+                break;
+        }
+        
+        
+        $data = array();
+        
+        $data['Visitors'] = $this->data( array(
+            'method' => 'VisitsSummary.getVisits', 
+            'period' => $args['period'], 
+            'date'   => $args['date'],
+            'limit'  => $args['limit']
+        ));
+        
+        $data['Unique'] = $this->data( array(
+            'method' => 'VisitsSummary.getUniqueVisitors',
+            'period' => $args['period'],
+            'date'   => $args['date'],
+            'limit'  => $args['limit']
+        ));
+        $data['Bounced'] = $this->data( array(
+            'method' => 'VisitsSummary.getBounceCount',
+            'period' => $args['period'],
+            'date'   => $args['date'],
+            'limit'  => $args['limit']
+        ));
+
+        $strValues = $strLabels = $strBounced =  $strValuesU = $strCounter = '';
+        $intUSum = $intCount = 0; 
+        if (is_array($data['Visitors']))
+            foreach ($data['Visitors'] as $strDate => $intValue) {
+                $intCount++;
+                $strValues .= $intValue.',';
+                $strValuesU .= $data['Unique'][$strDate].',';
+                $strBounced .= $data['Bounced'][$strDate].',';
+                switch ($args['period']) {
+                    case 'day':
+                        $label = substr($strDate,-2);
+                        break;
+                    case 'week':
+                        $date = new DateTime(substr($strDate,5,10));
+                        $label = $date->format('W/y');
+                        break;
+                    case 'month':
+                        $label = substr($strDate,-2).'/'.substr($strDate,2,2);
+                        break;
+                    case 'year':
+                        $label = $strDate;
+                        break;
+                }
+                $strLabels .= '['.$intCount.',"'.$label.'"],';
+                $intUSum += $data['Unique'][$strDate];
+            }
+        else {
+            $strValues = '0,';
+            $strLabels = '[0,"-"],';
+            $strValuesU = '0,';
+            $strBounced = '0,';    
+        }
+        $intAvg = round($intUSum/30,0);
+        $strValues = substr($strValues, 0, -1);
+        $strValuesU = substr($strValuesU, 0, -1);
+        $strLabels = substr($strLabels, 0, -1);
+        $strBounced = substr($strBounced, 0, -1);
+        $strCounter = substr($strCounter, 0, -1);
+        
+
+        $data['Visitors'] = array_reverse($data['Visitors']);
+        
+        return $this->view->assign('intUSum',    $intUSum)
+                          ->assign('intAvg',     $intAvg)
+                          ->assign('strValues',  $strValues)
+                          ->assign('strValuesU', $strValuesU)
+                          ->assign('strLabels',  $strLabels)
+                          ->assign('strBounced', $strBounced)
+                          ->assign($data)
+                          ->assign($args)
+                          ->fetch('dashboard/visitors.tpl');
+    }
+    
+    
+    private function setDefaults($args = array()) {
+        
+        if (empty($args['period'])) {
+            $args['period'] = 'days';
+        }
+        if (empty($args['date'])) {
+            $args['date'] = 'today';
+        }
+        
+        return $args;
+    }
+    
+    
+    /**
+     * Get links
+     * 
+     * This function returns the links for the admin menu.
+     * 
+     * @return arry Admin links
+     */
+    public function getlinks()
+    {
+
+        // create array of links
+        $links = array(
+            array(
+                'url' => ModUtil::url('Piwik', 'admin', 'dashboard'), 
+                'text' => $this->__('Overview'),
+                'class' => 'z-icon-es-display'
+            ),
+            array(
+                'url' => ModUtil::url('Piwik', 'admin', 'dashboard2'), 
+                'text' => $this->__('Visits in the last time'),
+                'class' => 'z-icon-es-view'
+            ),
+            array(
+                'url' => 'http://'.$this->getVar(tracking_piwikpath), 
+                'text' => $this->__('Piwik web interface'),
+                'class' => 'z-icon-es-url'
+            ),
+        );
+        return $links;
     }
     
 }

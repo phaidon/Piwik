@@ -3,6 +3,7 @@
         <tr>
             <th colspan='2'>
                 {gt text='Overview'}
+                {include file='dashboard/timeperiod.tpl'}
             </th>
         </tr>
     </thead>

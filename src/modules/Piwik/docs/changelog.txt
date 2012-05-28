@@ -1,12 +1,18 @@
-Piwik 0.1.0 (2011-08-20)
+Piwik 1.1.0 (2012-05-28)
+  * API-Dashboard added.
+  * Automatical site detection added.
+  * Translation files updated.
+  * Troubleshooting page added.
+
+Piwik 1.0.0 (2011-08-20)
   * Recoding of the module for Zikula 1.3.x
 
 Piwik 0.3
-  * new user views
-  * bugfixes #2
+  * New user views
+  * Bugfixes #2
 
-Piwik 0.)
-  * gettext version of 0.1
+Piwik 0.2
+  * Gettext version of 0.1
 
 Piwik 0.1
-  * initial release
+  * Initial release

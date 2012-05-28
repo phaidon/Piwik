@@ -59,6 +59,21 @@ class Piwik_Controller_Admin extends Zikula_AbstractController {
     
     
     /**
+     * Piwik dashboad
+     *
+     * This function shows the Piwik dashboard
+     * 
+     * @return Zikula_Form_AbstractHandler
+     */
+    public function dashboard2()
+    {
+        $form = FormUtil::newForm('Piwik', $this);
+        return $form->execute('admin/dashboard2.tpl', new Piwik_Handler_Dashboard());
+    }
+    
+    
+    
+    /**
      * troubleshooting
      *
      * This function give hints for the troubleshooting

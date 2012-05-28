@@ -5,9 +5,7 @@
     <h3>{gt text="Piwik dashboard"}</h3>
 </div>
 
-<a href="http://{$modvars.Piwik.tracking_piwikpath}">
-    {gt text='Show more statistics'}
-</a><br /><br />
+{modulelinks modname='Piwik' type='dashboard'}<br />
 
 {form cssClass="z-form"}
 {formvalidationsummary}
@@ -41,12 +39,9 @@
 </fieldset>
 
     
-{modapifunc modname="Piwik" type="dashboard" func=showOverview period=$period date=$date}
-
-{modapifunc modname="Piwik" type="dashboard" func=showPages period=$period date=$date}
+{modapifunc modname='Piwik' type='dashboard' func='showOverview' period=$period date=$date}
+{modapifunc modname='Piwik' type='dashboard' func='showPages'    period=$period date=$date}
 
 {/form}
-
-
 
 {adminfooter}

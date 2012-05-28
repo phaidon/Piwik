@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Piwik\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-27 14:52+0200\n"
-"PO-Revision-Date: 2012-05-27 15:06+0100\n"
+"POT-Creation-Date: 2012-05-28 14:23+0200\n"
+"PO-Revision-Date: 2012-05-28 14:29+0100\n"
 "Last-Translator: Fabian Wuertz <dev@wuertz.org>\n"
 "Language-Team: Piwik Developement Team\n"
 "MIME-Version: 1.0\n"
@@ -25,6 +25,7 @@ msgstr "Konfiguration"
 
 #: lib/Piwik/Api/Admin.php:82
 #: templates/admin/dashboard.tpl:5
+#: templates/admin/dashboard2.tpl:4
 msgid "Piwik dashboard"
 msgstr "Piwik-Dashboard"
 
@@ -33,26 +34,35 @@ msgstr "Piwik-Dashboard"
 msgid "Troubleshooting"
 msgstr "Problembehebung"
 
-#: lib/Piwik/Handler/Dashboard.php:44
+#: lib/Piwik/Api/Dashboard.php:322
+#: templates/dashboard/overview.tpl:5
+msgid "Overview"
+msgstr "Übersicht"
+
+#: lib/Piwik/Api/Dashboard.php:327
+msgid "Visits in the last time"
+msgstr "Besuche in der letzten Zeit"
+
+#: lib/Piwik/Api/Dashboard.php:332
+msgid "Piwik web interface"
+msgstr "Piwik Web-Interface"
+
+#: lib/Piwik/Handler/Dashboard.php:45
 msgid "Day"
 msgstr "Tag"
 
-#: lib/Piwik/Handler/Dashboard.php:45
+#: lib/Piwik/Handler/Dashboard.php:46
+#: templates/dashboard/timeperiod.tpl:4
 msgid "Week"
 msgstr "Woche"
 
-#: lib/Piwik/Handler/Dashboard.php:46
+#: lib/Piwik/Handler/Dashboard.php:47
 msgid "Month"
 msgstr "Monat"
 
-#: lib/Piwik/Handler/Dashboard.php:47
+#: lib/Piwik/Handler/Dashboard.php:48
 msgid "Year"
 msgstr "Jahr"
-
-#: lib/Piwik/Handler/Dashboard.php:48
-#: templates/admin/dashboard.tpl:13
-msgid "Date range"
-msgstr "Zeitspanne"
 
 #: lib/Piwik/Installer.php:47
 #, php-format
@@ -73,28 +83,27 @@ msgid "Piwik"
 msgstr "Piwik"
 
 #: templates/admin/dashboard.tpl:16
+#: templates/admin/dashboard2.tpl:15
 msgid "Period"
 msgstr "Zeitraum"
 
 #: templates/admin/dashboard.tpl:20
+#: templates/dashboard/visitors.tpl:31
 msgid "Date"
 msgstr "Datum"
 
-#: templates/admin/dashboard.tpl:25
+#: templates/admin/dashboard.tpl:27
 msgid "From"
 msgstr "Von"
 
-#: templates/admin/dashboard.tpl:29
+#: templates/admin/dashboard.tpl:31
 msgid "To"
 msgstr "Bis"
 
-#: templates/admin/dashboard.tpl:35
+#: templates/admin/dashboard.tpl:37
+#: templates/admin/dashboard2.tpl:20
 msgid "Show"
 msgstr "Anzeigen"
-
-#: templates/admin/dashboard.tpl:48
-msgid "Dashboard"
-msgstr "Dashboard"
 
 #: templates/admin/modifyconfig.tpl:10
 msgid "Modify configuration"
@@ -104,117 +113,175 @@ msgstr "Konfiguration speichern"
 msgid "General settings"
 msgstr "Allgemeine Einstellungen"
 
-#: templates/admin/modifyconfig.tpl:20
+#: templates/admin/modifyconfig.tpl:19
 msgid "Enable Tracking"
 msgstr "Erfassung aktiviere"
 
-#: templates/admin/modifyconfig.tpl:26
+#: templates/admin/modifyconfig.tpl:27
+msgid "Account settings"
+msgstr "Piwik Benutzer Einstellungen"
+
+#: templates/admin/modifyconfig.tpl:29
 msgid "URL to your Piwik installation"
 msgstr "URL zur Piwik-Installation"
 
-#: templates/admin/modifyconfig.tpl:28
-msgid "Example: http://www.yourdomain.com/piwikpath"
-msgstr "Beispiel: http://www.yourdomain.com/piwikpath"
-
 #: templates/admin/modifyconfig.tpl:31
-msgid "Piwik Token"
+msgid "Example: http://www.yourdomain.com/piwik"
+msgstr "Beispiel: http://www.yourdomain.com/path"
+
+#: templates/admin/modifyconfig.tpl:34
+msgid "Piwik token"
 msgstr "Piwik-Token"
 
-#: templates/admin/modifyconfig.tpl:33
-msgid "The token can be found here:"
-msgstr "Der Token kann hier gefunden werden:"
+#: templates/admin/modifyconfig.tpl:36
+msgid "Your personal authentification token can be found in the Piwik web interface on the API page. It looks like 1234a5cd6789e0a12345b678cd9012ef."
+msgstr "Der persönliche Authentifizierungs-Schüssel (Token) kann im eigenen Piwik Web-Interface gefunden werden. Er sieht z.B. so aus: 1234a5cd6789e0a12345b678cd9012ef."
 
-#: templates/admin/modifyconfig.tpl:37
+#: templates/admin/modifyconfig.tpl:41
 msgid "Site"
 msgstr "Seite"
 
-#: templates/admin/modifyconfig.tpl:42
+#: templates/admin/modifyconfig.tpl:49
+msgid "Tracking settings"
+msgstr "Tracking-Einstellungen"
+
+#: templates/admin/modifyconfig.tpl:51
 msgid "Track admin pages"
 msgstr "Erfasse auch Seiten der Administration"
 
-#: templates/admin/modifyconfig.tpl:46
+#: templates/admin/modifyconfig.tpl:55
 msgid "Track Links"
 msgstr "Erfasse Links"
 
-#: templates/admin/modifyconfig.tpl:52
+#: templates/admin/modifyconfig.tpl:63
 msgid "Save"
 msgstr "Speichern"
 
-#: templates/admin/modifyconfig.tpl:53
+#: templates/admin/modifyconfig.tpl:64
 msgid "Cancel"
 msgstr "Abbrechen"
 
 #: templates/admin/troubleshooting.tpl:8
-msgid "If this module does not log the accesses properly please check the following:"
-msgstr "Wenn die Seitenbesuche nicht aufgezeichnet werden, sollten folgende drei Dinge überprüft werden:"
+msgid "If Piwik does not log the page accesses please check the following questions:"
+msgstr "Wenn Piwik die Seitenbesuche nicht aufgezeichnet, sollte folgende drei Fragen nachgegangen werden:"
+
+#: templates/admin/troubleshooting.tpl:11
+msgid "Are your Piwik settings (path, token and side) corect configured?"
+msgstr "Ist Piwiki (Pfad, Token und Seite) richtig konfiguriert?"
 
 #: templates/admin/troubleshooting.tpl:12
-msgid "Check again if your Piwik path, token and side are configured corect."
-msgstr "Ist der Piwiki-Pfad, der Token und die Seite richtig konfiguriert."
+msgid "Does the Piwik code (see above) appears in the source code of your page."
+msgstr "Erscheint der Piwik-Code (siehe unten) im Quellcode der Seite?"
 
-#: templates/admin/troubleshooting.tpl:13
-msgid "Check if the Piwik code (see above) appears in the source code of your page."
-msgstr "Erscheint der Piwik-Code (siehe unten) im Quellcode der Seite."
+#: templates/admin/troubleshooting.tpl:14
+msgid "Is the Piwik code (see above) identical with this one of the Piwik web interface?"
+msgstr "Ist der Piwik-Code (sie unten) und derjenige aus dem Piwik-Frontend identisch?"
 
-#: templates/admin/troubleshooting.tpl:15
-msgid "Compare the Piwik code (see above) with this one of the Piwik web frontend."
-msgstr "Ist der Piwik-Code (sie unten) und derjenige aus dem Piwik-Frontend identisch."
+#: templates/admin/troubleshooting.tpl:31
+msgid "If this does not help feel free to ask in the Zikula forums for help."
+msgstr "Weitere Hilfe gibt es in den Zikula-Foren."
 
-#: templates/admin/troubleshooting.tpl:30
-msgid "If you still have problems feel free to post in the Zikula forums."
-msgstr "Bei Hilfe gibt es in den Zikula-Foren."
-
-#: templates/dashboard/overview.tpl:8
-msgid "Overview"
-msgstr "Übersicht"
-
-#: templates/dashboard/overview.tpl:15
+#: templates/dashboard/overview.tpl:13
 msgid "Visitors"
 msgstr "Besucher"
 
-#: templates/dashboard/overview.tpl:23
+#: templates/dashboard/overview.tpl:21
 msgid "Unique visitors"
 msgstr "Einzigartige Besuche"
 
-#: templates/dashboard/overview.tpl:31
+#: templates/dashboard/overview.tpl:29
 msgid "Page Views"
 msgstr "Seitenbesuche"
 
-#: templates/dashboard/overview.tpl:39
+#: templates/dashboard/overview.tpl:37
 msgid "Max. page views in one visit"
 msgstr "Max. Seiten/Besuch"
 
-#: templates/dashboard/overview.tpl:47
+#: templates/dashboard/overview.tpl:45
 msgid "Total time spent"
 msgstr "Verbrachte Zeit"
 
-#: templates/dashboard/overview.tpl:55
+#: templates/dashboard/overview.tpl:53
 msgid "Time/visit"
 msgstr "Zeit/Besuch"
 
-#: templates/dashboard/overview.tpl:63
+#: templates/dashboard/overview.tpl:61
 msgid "Bounce count"
 msgstr "Absprungrate"
 
-#: templates/dashboard/pages.tpl:6
-msgid "Page"
-msgstr "Seite"
+#: templates/dashboard/pages.tpl:5
+msgid "Visited pages"
+msgstr "Besuche Seiten"
 
-#: templates/dashboard/pages.tpl:9
+#: templates/dashboard/pages.tpl:11
+msgid "Title"
+msgstr "Titel"
+
+#: templates/dashboard/pages.tpl:14
+#: templates/dashboard/visitors.tpl:33
 msgid "Unique"
 msgstr "Einzigartig"
 
-#: templates/dashboard/pages.tpl:12
+#: templates/dashboard/pages.tpl:17
+#: templates/dashboard/visitors.tpl:32
 msgid "Visits"
 msgstr "Besuche"
 
-#: templates/dashboard/pages.tpl:42
+#: templates/dashboard/pages.tpl:47
 msgid "No data available."
 msgstr "Keine Daten verfügbar"
 
-#: templates/dashboard/pages.tpl:51
+#: templates/dashboard/pages.tpl:56
 msgid "Others"
 msgstr "Andere"
+
+#: templates/dashboard/visitors.tpl:11
+#, php-format
+msgid "Visits in the last %s days"
+msgstr "Besuche in den %s letzten Tagen"
+
+#: templates/dashboard/visitors.tpl:13
+#, php-format
+msgid "Visits in the last %s weeks"
+msgstr "Besuche in den %s letzten Wochen"
+
+#: templates/dashboard/visitors.tpl:15
+#, php-format
+msgid "Visits in the last %s months"
+msgstr "Besuche in den %s letzten Monaten"
+
+#: templates/dashboard/visitors.tpl:17
+#, php-format
+msgid "Visits in the last %s years"
+msgstr "Besuche in den %s letzten Jahren"
+
+#: templates/dashboard/visitors.tpl:34
+msgid "Bounced"
+msgstr "Absprungrate"
+
+#: templates/dashboard/visitors.tpl:48
+msgid "Unique TOTAL"
+msgstr "Unique GESAMT"
+
+#: templates/dashboard/visitors.tpl:48
+msgid "Sum"
+msgstr "Summe"
+
+#: templates/dashboard/visitors.tpl:48
+msgid "Avg"
+msgstr "Durchschnitt"
+
+#~ msgid "Date range"
+#~ msgstr "Zeitspanne"
+
+#~ msgid "Dashboard"
+#~ msgstr "Dashboard"
+
+#~ msgid "The token can be found here:"
+#~ msgstr "Der Token kann hier gefunden werden:"
+
+#~ msgid "Page"
+#~ msgstr "Seite"
 
 #~ msgid ""
 #~ "Please insert the url of the Piwik installation WITHOUT http:// or "

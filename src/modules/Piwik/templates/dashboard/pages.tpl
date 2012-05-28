@@ -1,9 +1,14 @@
-
 <table class="z-admintable">
     <thead>
         <tr>
+            <th colspan=3>
+                {gt text='Visited pages'}
+                {include file='dashboard/timeperiod.tpl'}
+            </th>
+        </tr>
+        <tr>
             <th>
-                {gt text='Page'}
+                {gt text='Title'}
             </th>
             <th>
                 {gt text='Unique'}
