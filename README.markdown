@@ -25,7 +25,6 @@ You should now have a fully functioning Piwik installation.
 
 ### Piwik path
 
-Please insert the path to the Piwik installation WITHOUT http:// or https:// and WITHOUT a trailing slash.
 Example:
 
   yourdomain.com/piwik
@@ -45,3 +44,24 @@ You have to fill out the path to Piwik installation, the site-id and your token.
 
 * All support questions should be posted to the [Zikula Modules forum](http://community.zikula.org/module-Forum-viewforum-forum-23.htm)
 * Bugs and feature requests can be posted here in the [Issues tracker](https://github.com/phaidon/Piwik/issues)
+
+## Changelog
+
+### Piwik 1.1.0 (2012-05-28)
+  * API-Dashboard added.
+  * Automatical site detection added.
+  * Translation files updated.
+  * Troubleshooting page added.
+
+### Piwik 1.0.0 (2011-08-20)
+  * Recoding of the module for Zikula 1.3.x
+
+### Piwik 0.3
+  * New user views
+  * Bugfixes #2
+
+### Piwik 0.2
+  * Gettext version of 0.1
+
+### Piwik 0.1
+  * Initial release
