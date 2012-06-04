@@ -24,7 +24,7 @@ class Piwik_Api_Admin extends Zikula_AbstractApi {
      * 
      * This function returns the sites of the Piwik instance.
      * 
-     * @return arry Piwik sites
+     * @return array Piwik sites
      */
     public function getSites()
     {
@@ -65,7 +65,7 @@ class Piwik_Api_Admin extends Zikula_AbstractApi {
      * 
      * This function returns the links for the admin menu.
      * 
-     * @return arry Admin links
+     * @return array Admin links
      */
     public function getlinks()
     {

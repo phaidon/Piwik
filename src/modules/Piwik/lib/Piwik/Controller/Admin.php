@@ -23,7 +23,7 @@ class Piwik_Controller_Admin extends Zikula_AbstractController {
      *
      * This function is a redirect to modifyconfig
      * 
-     * @return statement
+     * @return string
      */
     public function main()
     {
@@ -71,14 +71,15 @@ class Piwik_Controller_Admin extends Zikula_AbstractController {
         return $form->execute('admin/dashboard2.tpl', new Piwik_Handler_Dashboard());
     }
     
-    
-    
+
     /**
      * troubleshooting
      *
      * This function give hints for the troubleshooting
      * 
      * @return Zikula_Form_AbstractHandler
+     *
+     * @throws Zikula_Exception_Forbidden If the current user does not have adequate permissions to perform this function.
      */
     public function troubleshooting()
     {
@@ -88,6 +89,5 @@ class Piwik_Controller_Admin extends Zikula_AbstractController {
         
         return $this->view->fetch('admin/troubleshooting.tpl');
     } 
-    
 
 }

@@ -52,15 +52,15 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
         $this->view = $view;
         return $this;
     }
-    
+
     /**
      * Tracker
-     * 
+     *
      * This function activates tracker in site source.
-     * 
-     * @param array $args Tracker arguments.
-     * 
-     * @return boolean
+     *
+     * @param array $params Tracker arguments.
+     *
+     * @return bool|string
      */
     public function data($params)
     {
@@ -86,37 +86,7 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
         $strResult = $this->get_remote_file($strURL);			
         return unserialize($strResult);
     }
-    
-    
-    function call_API($strMethod, $strPeriod='', $strDate='', $intLimit='',$bolExpanded=false) {
-		$strKey = $strMethod.'_'.$strPeriod.'_'.$strDate.'_'.$intLimit;
-		if (empty($this->aryCache[$strKey])) {
-			$strToken = self::$aryGlobalSettings['piwik_token'];
-			$strURL = self::$aryGlobalSettings['piwik_url'];
-			$intSite = self::$arySettings['site_id'];
-			if (self::$bolWPMU && empty($intSite)) {
-				$aryReturn = $this->create_wpmu_site();
-				$intSite = $aryReturn['id'];
-			}
-			if (self::$bolOverall) $intSite = 'all';
-			if (empty($strToken) || empty($strURL)) {
-				$this->aryCache[$key] = array(
-					'result' => 'error',
-					'message' => 'Piwik base URL or auth token not set.'
-				);
-				return $this->aryCache[$strKey];
-			}			
-			$strURL .= '?module=API&method='.$strMethod;
-			$strURL .= '&idSite='.$intSite.'&period='.$strPeriod.'&date='.$strDate;
-			$strURL .= '&format=PHP&filter_limit='.$intLimit;
-			$strURL .= '&token_auth='.$strToken;
-			$strURL .= '&expanded='.$bolExpanded;
-			$strResult = $this->get_remote_file($strURL);			
-			$this->aryCache[$strKey] = unserialize($strResult);
-		}
-		return $this->aryCache[$strKey];	
-	}
-    
+
     
     public function get_remote_file($strURL) {
         
@@ -197,9 +167,8 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
     
     
     public function showVisitors($args = array()) {
-        
+
         $args = $this->setDefaults($args);
-        
         switch ($args['period']) {
             case 'day':
                 $args['date'] = 'last30';
@@ -246,6 +215,7 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
                 $strValues .= $intValue.',';
                 $strValuesU .= $data['Unique'][$strDate].',';
                 $strBounced .= $data['Bounced'][$strDate].',';
+                $label = '';
                 switch ($args['period']) {
                     case 'day':
                         $label = substr($strDate,-2);
@@ -275,7 +245,7 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
         $strValuesU = substr($strValuesU, 0, -1);
         $strLabels = substr($strLabels, 0, -1);
         $strBounced = substr($strBounced, 0, -1);
-        $strCounter = substr($strCounter, 0, -1);
+        //$strCounter = substr($strCounter, 0, -1);
         
 
         $data['Visitors'] = array_reverse($data['Visitors']);
@@ -310,7 +280,7 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
      * 
      * This function returns the links for the admin menu.
      * 
-     * @return arry Admin links
+     * @return array Admin links
      */
     public function getlinks()
     {
@@ -328,7 +298,7 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
                 'class' => 'z-icon-es-view'
             ),
             array(
-                'url' => 'http://'.$this->getVar(tracking_piwikpath), 
+                'url' => 'http://'.$this->getVar('tracking_piwikpath'),
                 'text' => $this->__('Piwik web interface'),
                 'class' => 'z-icon-es-url'
             ),

@@ -33,7 +33,7 @@ class Piwik_Api_User extends Zikula_AbstractApi
         // no security check because code should be loaded in every page!
 
         // check if we are in admin pages
-        $adminpage = (FormUtil::getPassedValue('type', isset($args['type']) ? $args['type'] : null, 'GET') == 'admin');
+        $adminpage = ($this->request->query->get('type', isset($args['type']) ? $args['type'] : null, 'GET') == 'admin');
 
         // return if admin pages should not be trackes
         if ($adminpage && $this->getVar('tracking_adminpages') == '0') {

@@ -54,12 +54,12 @@ class Piwik_Handler_Dashboard extends Zikula_Form_AbstractHandler
     }
 
     /**
-     * This function interprets the form handler
+     * Handle form submission.
      * 
      * @param Zikula_Form_View $view  Reference to Form render object.
      * @param array            &$args Arguments of the command.
      * 
-     * @return boolean
+     * @return bool|void
      */
     function handleCommand(Zikula_Form_View $view, &$args)
     {  

@@ -46,12 +46,12 @@ class Piwik_Handler_ModifyConfig  extends Zikula_Form_AbstractHandler
     }
 
     /**
-     * This function interprets the form handler.
-     * 
+     * Handle form submission.
+     *
      * @param Zikula_Form_View $view  Reference to Form render object.
      * @param array            &$args Arguments of the command.
-     * 
-     * @return boolean
+     *
+     * @return bool|void
      */
     function handleCommand(Zikula_Form_View $view, &$args)
     {
@@ -64,10 +64,7 @@ class Piwik_Handler_ModifyConfig  extends Zikula_Form_AbstractHandler
         if (!$view->isValid()) {
             return false;
         }
-        
-        
-        
-        
+
         $data = $view->getValues();
         
         $data['tracking_piwikpath'] = str_replace('https://', '', $data['tracking_piwikpath']);
@@ -78,5 +75,4 @@ class Piwik_Handler_ModifyConfig  extends Zikula_Form_AbstractHandler
         $url = ModUtil::url($this->name, 'admin', 'modifyconfig');
         return $this->view->redirect($url);
     }
-
 }
