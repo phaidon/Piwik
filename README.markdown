@@ -47,7 +47,7 @@ You have to fill out the path to Piwik installation, the site-id and your token.
 
 ## Changelog
 
-### Piwik 1.1.0 (2012-05-28)
+### Piwik 1.1.0 (2012-07-02)
   * API-Dashboard added.
   * Automatical site detection added.
   * Translation files updated.

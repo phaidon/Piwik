@@ -1,4 +1,4 @@
-Piwik 1.1.0 (2012-05-28)
+Piwik 1.1.0 (2012-07-02)
   * API-Dashboard added.
   * Automatical site detection added.
   * Translation files updated.
