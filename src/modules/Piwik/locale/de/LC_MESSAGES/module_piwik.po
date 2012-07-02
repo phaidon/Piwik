@@ -167,7 +167,7 @@ msgstr "Wenn Piwik die Seitenbesuche nicht aufgezeichnet, sollte folgende drei F
 
 #: templates/admin/troubleshooting.tpl:11
 msgid "Are your Piwik settings (path, token and side) corect configured?"
-msgstr "Ist Piwiki (Pfad, Token und Seite) richtig konfiguriert?"
+msgstr "Ist Piwik (Pfad, Token und Seite) richtig konfiguriert?"
 
 #: templates/admin/troubleshooting.tpl:12
 msgid "Does the Piwik code (see above) appears in the source code of your page."
