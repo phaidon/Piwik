@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
  <project name="Piwik" default="build">
 
-    <property name="builddir" value="${workspace}/build" />
-    <property name="sourcedir" value="${workspace}/source" />
-    <property name="package" value="${job_name}.build${build_number}" />
+    <property name="builddir" value="${env.WORKSPACE}/build" />
+    <property name="sourcedir" value="${env.WORKSPACE}/source" />
+    <property name="package" value="${env.JOB_NAME}.build${env.BUILD_NUMBER}" />
     <property name="exportdir" value="${builddir}/export" />
     <property name="archivedir" value="${builddir}/archive" />
-    <property name="packagepath" value="${exportdir}/${job_name}" />
+    <property name="packagepath" value="${exportdir}/${env.JOB_NAME}" />
     <property name="checksumpath" value="${archivedir}/${package}-checksums" />
     <property name="patchdir" value="${builddir}/patch" />
     <property name="tmpdir" value="${builddir}/tmp" />
@@ -38,7 +38,7 @@
         <!-- zip's don't play nicely in Phing - using direct command -->
         <!-- exec escape="false" command="cd ${exportdir}; zip -D -r ${archivedir}/${package}.zip ." / -->
         <zip destfile="${archivedir}/${package}.zip">
-            <fileset dir="${exportdir}/${job_name}">
+            <fileset dir="${exportdir}/${env.JOB_NAME}">
                 <include name="**/**" />
             </fileset>
         </zip>
