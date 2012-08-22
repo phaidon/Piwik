@@ -1,19 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
- <project name="Piwik" default="clean">
-
-    <!-- invokation
-        phing -f $WORKSPACE/source/build.xml clean prepare phpcs phpcb phpcpd phpunit pdepend phpmd phpdoc jsdoc build build_delete -Dworkspace=$WORKSPACE -Djob_name=$JOB_NAME -Dbuild_number=$BUILD_NUMBER -Dbuild_tag=$BUILD_TAG -Dbuild_id=$BUILD_ID -Dsvn_revision=$SVN_REVISION
-        # note phpcb must follow phpcs
-    -->
-
-    <!--
-        BUILD_NUMBER - The current build number, such as "153"
-        BUILD_ID - The current build id, (YYYY-MM-DD_hh-mm-ss)
-        JOB_NAME - Name of the project of this build, such as "foo"
-        BUILD_TAG - String of "hudson-${JOBNAME}-${BUILD_NUMBER}".
-        WORKSPACE - The absolute path of the workspace.
-        SVN_REVISION - The revision this build is based on.
-    -->
+ <project name="Piwik" default="build">
 
     <property name="builddir" value="${workspace}/build" />
     <property name="sourcedir" value="${workspace}/source" />
@@ -25,128 +11,27 @@
     <property name="patchdir" value="${builddir}/patch" />
     <property name="tmpdir" value="${builddir}/tmp" />
     <property name="ignorepaths" value="lib/vendor/*,javascript/*,lib/legacy" />
+    <property name="ownjslist" value="javascript/dashboard.js" />
 
-
-    <!-- need a second property since phpdoc doesn't respect wildcard patterns -->
-    <property name="phpdocignorepaths" value="lib/vendor/,javascript/" />
-    <property name="ignorefiletypes" value="*.css,*.js" />
-
-    <target name="clean">
-        <echo message="Clean..." />
-        <delete dir="${builddir}" includeemptydirs="true" />
-    </target>
-
-    <target name="prepare">
-        <echo message="Prepare..." />
-        <mkdir dir="${builddir}" />
-        <mkdir dir="${builddir}/logs" />
-        <mkdir dir="${builddir}/coverage" />
-        <mkdir dir="${builddir}/docs" />
-        <mkdir dir="${builddir}/phpcb" />
-        <mkdir dir="${builddir}/archive" />
-        <mkdir dir="${builddir}/export" />
-        <mkdir dir="${builddir}/patch" />
-        <mkdir dir="${builddir}/tmp" />
-        <mkdir dir="${builddir}/jsdoc" />
-    </target>
-
-    <!-- Build archives -->
-    <target name="build" depends="prepare">
-        <echo message="Exporting for build..." />
-        <!-- ATTN export urls require manual edit -->
-        <exec command="cp -a ${workspace}/source/src ${packagepath}" />
-
-        <!-- compress JS -->
-        <!-- foreach list="${ownjslist}" param="filename" target="compressownjs" / -->
-        <!-- echo message="Prepare permissions..." / -->
-        <!-- chmod file="${packagepath}/ztemp/Theme_Config" mode="0777" / -->
-
-        <echo message="Creating archive..." />
-        <!-- zip's don't play nicely in Phing - using direct command -->
-        <exec escape="false" command="cd ${exportdir}; zip -D -r ${archivedir}/${package}.zip ." />
-
-        <tar destfile="${archivedir}/${package}.tar.gz" compression="gzip">
-            <fileset dir="${exportdir}/${job_name}">
-                <include name="**/**" />
-            </fileset>
-        </tar>
-
-        <echo message="Files copied and compressed in build directory OK!" />
-
-        <phingcall target="build_checksums" />
-    </target>
-
-    <target name="build_delete">
-        <!-- clean up export dir, this is not needed (unless we are debugging) -->
-        <!-- delete dir="${packagepath}" includeemptydirs="true" -->
-    </target>
-
-    <target name="build_checksums">
-        <echo message="Creating MD5 and SHA1 checksums..." />
-        <exec escape="false" command="echo -----------------md5sums----------------- > ${checksumpath}.tmp" />
-        <exec escape="false" command="md5sum ${archivedir}/*.tar.gz ${archivedir}/*.zip >> ${checksumpath}.tmp" />
-
-        <exec escape="false" command="echo -----------------sha1sums----------------- >> ${checksumpath}.tmp" />
-        <exec escape="false" command="sha1sum ${archivedir}/*.tar.gz ${archivedir}/*.zip >> ${checksumpath}.tmp" />
-
-        <exec escape="false" command="cat ${checksumpath}.tmp | sed 's!${archivedir}/!!g' > ${checksumpath}.txt" />
-        <delete file="${checksumpath}.tmp" />
-    </target>
-
-    <!-- PHPDocumentor -->
-    <target name="phpdoc">
-        <echo message="PHPDocumentor..." />
-        <exec command="phpdoc --directory ${sourcedir}/src/lib/dbobject,${sourcedir}/src/lib/FileSystem" escape="false" />
-    </target>
-
-    <!-- PHP copy/paste analysis -->
-    <target name="phpcpd">
-        <echo message="PHP Copy/Paste..." />
-        <exec command="phpcpd --log-pmd ${builddir}/logs/phpcpd.xml --suffixes php --exclude ${ignorepaths} ${sourcedir}/src" escape="false" />
-    </target>
-
-    <!-- PHP MD analysis -->
-    <target name="phpmd">
-        <echo message="PHP_MD..." />
-        <exec command="phpmd ${sourcedir}/src xml codesize --reportfile ${builddir}/logs/pmd.xml --ignore ${ignorepaths}" escape="false" />
-    </target>
-
-    <!-- PHP dependency checker -->
-    <target name="pdepend">
-    <!-- PHP dependency checker -->
-        <echo message="PHP_Depend..." />
-        <exec command="pdepend --jdepend-xml=${builddir}/logs/jdepend.xml --jdepend-chart=${builddir}/logs/jdepend.png --phpunit-xml=${builddir}/logs/pdepend_phpunit.xml --overview-pyramid=${builddir}/logs/pdepend_pyramid.png  --summary-xml=${builddir}/logs/pdepend_summary.xml --ignore=${ignorepaths} --optimization=best --suffix=php ${sourcedir}/src" escape="false" />
-    </target>
-
-    <!-- PHP CodeSniffer -->
-    <target name="phpcs">
-        <echo message="PHP_CodeSniffer..." />
-        <exec command="phpcs --extensions=php --report=checkstyle --standard=Zikula --ignore=${ignorepaths} ${sourcedir}/src > ${builddir}/logs/phpcs.xml" escape="false" />
-    </target>
-
-    <!-- Unit Tests & coverage analysis -->
-    <target name="phpunit">
-        <echo message="PHPUnit..." />
-        <exec command="phpunit --log-junit ${builddir}/logs/phpunit.xml --coverage-clover ${builddir}/coverage/clover.xml --coverage-html ${builddir}/coverage/ ${sourcedir}/tests"/>
-    </target>
-
-    <!-- JSDoc -->
-    <target name="jsdoc">
-        <echo message="JSDoc..." />
-        <exec command="cd /opt/jsdoc-toolkit; /opt/jsdoc-toolkit/jsrun.sh -t=/opt/jsdoc-toolkit/templates/jsdoc --directory=${builddir}/jsdoc ${sourcedir}/src/javascript/helpers"/>
-        <!-- exec command="cd ${builddir}/jsdoc;/opt/jsdoc-toolkit ${sourcedir}/src/javascript/helpers"/ -->
-    </target>
-
-    <!-- Code Browser -->
-    <target name="phpcb">
-        <echo message="PHP_CodeBrowser on XML for voilations..." />
-        <exec command="phpcb --log ${builddir}/logs --output ${builddir}/phpcb" />
-    </target>
-
-    <!-- Compress own JS -->
+   <!-- Compress own JS -->
     <target name="compressownjs">
         <echo message="YUI_Compressor for JS files..." />
-        <!-- <exec command="BAREFILENAME=`echo ${filename}|sed 's/.js//g'`; /usr/bin/java -jar /var/lib/hudson/yuicompressor-2.4.2.jar -o ${packagepath}/$BAREFILENAME-min.js ${packagepath}/${filename}" /> -->
-        <exec command="/usr/bin/java -jar /var/lib/hudson/yuicompressor-2.4.2.jar -o ${packagepath}/${filename}.tmp ${packagepath}/${filename};echo '// Copyright Piwik Development Team 2012 - license GNU/LGPLv3 (or at your option, any later version).' > ${packagepath}/${filename};cat ${packagepath}/${filename}.tmp >> ${packagepath}/${filename};rm -f ${packagepath}/${filename}.tmp" />
+        <echo message="/usr/bin/java -jar /usr/share/yui-compressor/yui-compressor.jar -o ${packagepath}/${filename}.tmp ${packagepath}/${filename};" />
+        <!-- exec command="/usr/bin/java -jar /usr/share/yui-compressor/yui-compressor.jar -o ${packagepath}/${filename}.tmp ${packagepath}/${filename};" / -->
     </target>
+
+
+    <target name="build" depends="compressownjs">
+        <echo message="Creating archive..." />
+        <!-- zip's don't play nicely in Phing - using direct command -->
+        <!-- exec escape="false" command="cd ${exportdir}; zip -D -r ${archivedir}/${package}.zip ." / -->
+        <zip destfile="${archivedir}/${package}.zip">
+            <fileset dir="${exportdir}/${job_name">
+                <include name="**/**" />
+            </fileset>
+        </zip>
+
+        <!-- foreach list="${ownjslist}" param="filename" target="compressownjs" / -->
+</target>
+
 </project>
