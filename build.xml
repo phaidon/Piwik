@@ -32,12 +32,12 @@
     <property name="ignorefiletypes" value="*.css,*.js" />
 
     <target name="clean">
-        <echo msg="Clean..." />
+        <echo message="Clean..." />
         <delete dir="${builddir}" includeemptydirs="true" />
     </target>
 
     <target name="prepare">
-        <echo msg="Prepare..." />
+        <echo message="Prepare..." />
         <mkdir dir="${builddir}" />
         <mkdir dir="${builddir}/logs" />
         <mkdir dir="${builddir}/coverage" />
@@ -52,16 +52,16 @@
 
     <!-- Build archives -->
     <target name="build" depends="prepare">
-        <echo msg="Exporting for build..." />
+        <echo message="Exporting for build..." />
         <!-- ATTN export urls require manual edit -->
         <exec command="cp -a ${workspace}/source/src ${packagepath}" />
 
         <!-- compress JS -->
         <!-- foreach list="${ownjslist}" param="filename" target="compressownjs" / -->
-        <!-- echo msg="Prepare permissions..." / -->
+        <!-- echo message="Prepare permissions..." / -->
         <!-- chmod file="${packagepath}/ztemp/Theme_Config" mode="0777" / -->
 
-        <echo msg="Creating archive..." />
+        <echo message="Creating archive..." />
         <!-- zip's don't play nicely in Phing - using direct command -->
         <exec escape="false" command="cd ${exportdir}; zip -D -r ${archivedir}/${package}.zip ." />
 
@@ -71,7 +71,7 @@
             </fileset>
         </tar>
 
-        <echo msg="Files copied and compressed in build directory OK!" />
+        <echo message="Files copied and compressed in build directory OK!" />
 
         <phingcall target="build_checksums" />
     </target>
@@ -82,7 +82,7 @@
     </target>
 
     <target name="build_checksums">
-        <echo msg="Creating MD5 and SHA1 checksums..." />
+        <echo message="Creating MD5 and SHA1 checksums..." />
         <exec escape="false" command="echo -----------------md5sums----------------- > ${checksumpath}.tmp" />
         <exec escape="false" command="md5sum ${archivedir}/*.tar.gz ${archivedir}/*.zip >> ${checksumpath}.tmp" />
 
@@ -95,57 +95,57 @@
 
     <!-- PHPDocumentor -->
     <target name="phpdoc">
-        <echo msg="PHPDocumentor..." />
+        <echo message="PHPDocumentor..." />
         <exec command="phpdoc --directory ${sourcedir}/src/lib/dbobject,${sourcedir}/src/lib/FileSystem" escape="false" />
     </target>
 
     <!-- PHP copy/paste analysis -->
     <target name="phpcpd">
-        <echo msg="PHP Copy/Paste..." />
+        <echo message="PHP Copy/Paste..." />
         <exec command="phpcpd --log-pmd ${builddir}/logs/phpcpd.xml --suffixes php --exclude ${ignorepaths} ${sourcedir}/src" escape="false" />
     </target>
 
     <!-- PHP MD analysis -->
     <target name="phpmd">
-        <echo msg="PHP_MD..." />
+        <echo message="PHP_MD..." />
         <exec command="phpmd ${sourcedir}/src xml codesize --reportfile ${builddir}/logs/pmd.xml --ignore ${ignorepaths}" escape="false" />
     </target>
 
     <!-- PHP dependency checker -->
     <target name="pdepend">
     <!-- PHP dependency checker -->
-        <echo msg="PHP_Depend..." />
+        <echo message="PHP_Depend..." />
         <exec command="pdepend --jdepend-xml=${builddir}/logs/jdepend.xml --jdepend-chart=${builddir}/logs/jdepend.png --phpunit-xml=${builddir}/logs/pdepend_phpunit.xml --overview-pyramid=${builddir}/logs/pdepend_pyramid.png  --summary-xml=${builddir}/logs/pdepend_summary.xml --ignore=${ignorepaths} --optimization=best --suffix=php ${sourcedir}/src" escape="false" />
     </target>
 
     <!-- PHP CodeSniffer -->
     <target name="phpcs">
-        <echo msg="PHP_CodeSniffer..." />
+        <echo message="PHP_CodeSniffer..." />
         <exec command="phpcs --extensions=php --report=checkstyle --standard=Zikula --ignore=${ignorepaths} ${sourcedir}/src > ${builddir}/logs/phpcs.xml" escape="false" />
     </target>
 
     <!-- Unit Tests & coverage analysis -->
     <target name="phpunit">
-        <echo msg="PHPUnit..." />
+        <echo message="PHPUnit..." />
         <exec command="phpunit --log-junit ${builddir}/logs/phpunit.xml --coverage-clover ${builddir}/coverage/clover.xml --coverage-html ${builddir}/coverage/ ${sourcedir}/tests"/>
     </target>
 
     <!-- JSDoc -->
     <target name="jsdoc">
-        <echo msg="JSDoc..." />
+        <echo message="JSDoc..." />
         <exec command="cd /opt/jsdoc-toolkit; /opt/jsdoc-toolkit/jsrun.sh -t=/opt/jsdoc-toolkit/templates/jsdoc --directory=${builddir}/jsdoc ${sourcedir}/src/javascript/helpers"/>
         <!-- exec command="cd ${builddir}/jsdoc;/opt/jsdoc-toolkit ${sourcedir}/src/javascript/helpers"/ -->
     </target>
 
     <!-- Code Browser -->
     <target name="phpcb">
-        <echo msg="PHP_CodeBrowser on XML for voilations..." />
+        <echo message="PHP_CodeBrowser on XML for voilations..." />
         <exec command="phpcb --log ${builddir}/logs --output ${builddir}/phpcb" />
     </target>
 
     <!-- Compress own JS -->
     <target name="compressownjs">
-        <echo msg="YUI_Compressor for JS files..." />
+        <echo message="YUI_Compressor for JS files..." />
         <!-- <exec command="BAREFILENAME=`echo ${filename}|sed 's/.js//g'`; /usr/bin/java -jar /var/lib/hudson/yuicompressor-2.4.2.jar -o ${packagepath}/$BAREFILENAME-min.js ${packagepath}/${filename}" /> -->
         <exec command="/usr/bin/java -jar /var/lib/hudson/yuicompressor-2.4.2.jar -o ${packagepath}/${filename}.tmp ${packagepath}/${filename};echo '// Copyright Piwik Development Team 2012 - license GNU/LGPLv3 (or at your option, any later version).' > ${packagepath}/${filename};cat ${packagepath}/${filename}.tmp >> ${packagepath}/${filename};rm -f ${packagepath}/${filename}.tmp" />
     </target>
