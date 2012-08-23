@@ -33,7 +33,7 @@
         <mkdir dir="${archivedir}" />
         
         
-        <echo msg="PHP_CodeSniffer..." />
+        <echo message="PHP_CodeSniffer..." />
         <exec command="phpcs --extensions=php --report=checkstyle --standard=Zikula --ignore=${ignorepaths} src > ${logsdir}/phpcs.xml" escape="false" />
 
     
