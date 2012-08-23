@@ -41,9 +41,9 @@
         
 
         <!-- PHP MD analysis -->
-          <exec executable="phpmd" dir="${env.WORKSPACE}" failonerror="off">
+        <exec executable="phpmd" dir="${env.WORKSPACE}" failonerror="off">
            <arg line="src xml codesize,unusedcode --reportfile '${logsdir}/pmd.xml'" />
-          </exec>
+        </exec>
 
     
         <echo message="Creating archive..." />
