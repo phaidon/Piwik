@@ -49,16 +49,7 @@
           <arg line="--report xml ${jsfiles.clean}" />
         </exec>
         
-        
-        <echo message="csslint..." />
-        <fileset dir="src/modules/Piwik/style" id="cssfiles.raw">
-          <include name="**/*.css" />
-        </fileset>
-        <pathconvert pathsep=" " property="cssfiles.clean" refid="cssfiles.raw" />
-
-        <exec executable="csslint" output="build/logs/csslint.xml">
-          <arg line="--format=checkstyle.xml" />
-        </exec>
+       
         
 
         <!-- PHP MD analysis -->
