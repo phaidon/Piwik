@@ -31,6 +31,7 @@
         <mkdir dir="${builddir}/phpcb" />
         <mkdir dir="${builddir}/archive" />
         <mkdir dir="${builddir}/export" />
+        <mkdir dir="${builddir}/export/${env.JOB_NAME}" />
         <mkdir dir="${builddir}/patch" />
         <mkdir dir="${builddir}/tmp" />
         <mkdir dir="${builddir}/jsdoc" />
@@ -41,7 +42,6 @@
         <!-- exec escape="false" command="cd ${exportdir}; zip -D -r ${archivedir}/${package}.zip ." / -->
         <zip destfile="${archivedir}/${package}.zip">
             <fileset dir="${exportdir}/${env.JOB_NAME}">
-                       
                 <include name="**/**" />
             </fileset>
         </zip>
