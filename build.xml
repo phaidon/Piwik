@@ -2,7 +2,7 @@
  <project name="Piwik" default="build">
 
     <property environment="env" /> 
-    <property name="builddir" value="build" />
+    <property name="builddir" value="${env.WORKSPACE}/build" />
     <property name="package" value="${env.JOB_NAME}.build${env.BUILD_NUMBER}" />
     <property name="archivedir" value="${builddir}/archive" />
     <property name="logsdir" value="${builddir}/logs" />
