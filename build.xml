@@ -37,6 +37,13 @@
         <exec executable="phpcs">
             <arg line="--extensions=php --report=checkstyle --standard=Zikula --report-file=${logsdir}/phpcs.xml src" />
         </exec>
+        
+        
+
+        <!-- PHP MD analysis -->
+          <exec executable="phpmd" dir="src" failonerror="off">
+           <arg line="source xml codesize,unusedcode --reportfile '${logsdirs}/pmd.xml'" />
+          </exec>
 
     
         <echo message="Creating archive..." />
