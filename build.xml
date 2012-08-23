@@ -34,8 +34,9 @@
         
         
         <echo message="PHP_CodeSniffer..." />
-        <echo message="phpcs --extensions=php --report=checkstyle --standard=Zikula src > ${logsdir}/phpcs.xml" />
-        <exec command="phpcs --extensions=php --report=checkstyle --standard=Zikula src > ${logsdir}/phpcs.xml" />
+        <exec command="phpcs>
+            <args line="--extensions=php --report=checkstyle --standard=Zikula --report-file=${logsdir}/phpcs.xml src" />
+        </exec>
 
     
         <echo message="Creating archive..." />
