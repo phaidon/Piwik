@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
  <project name="Piwik" default="build">
 
-    <property name="builddir" value="${env.WORKSPACE}/build" />
+    <property name="builddir" value="build" />
     <property name="sourcedir" value="${env.WORKSPACE}/source" />
     <property name="package" value="${env.JOB_NAME}.build${env.BUILD_NUMBER}" />
     <property name="exportdir" value="${builddir}/export" />
@@ -39,6 +39,7 @@
         <!-- exec escape="false" command="cd ${exportdir}; zip -D -r ${archivedir}/${package}.zip ." / -->
         <zip destfile="${archivedir}/${package}.zip">
             <fileset dir="${exportdir}/${env.JOB_NAME}">
+                       
                 <include name="**/**" />
             </fileset>
         </zip>
