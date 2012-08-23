@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
  <project name="Piwik" default="build">
 
+    <property environment="env" /> 
     <property name="builddir" value="build" />
     <property name="sourcedir" value="${env.WORKSPACE}/source" />
     <property name="package" value="${env.JOB_NAME}.build${env.BUILD_NUMBER}" />
@@ -33,6 +34,7 @@
         <mkdir dir="${builddir}/patch" />
         <mkdir dir="${builddir}/tmp" />
         <mkdir dir="${builddir}/jsdoc" />
+    
     
         <echo message="Creating archive..." />
         <!-- zip's don't play nicely in Phing - using direct command -->
