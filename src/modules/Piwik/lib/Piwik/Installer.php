@@ -54,7 +54,7 @@ class Piwik_Installer extends Zikula_AbstractInstaller
      * This function is only ever called once during the lifetime of a particular
      * module instance.
      *
-     * @return bool
+     * @return boolean
      */
     public function defaultdata()
     {
@@ -90,7 +90,7 @@ class Piwik_Installer extends Zikula_AbstractInstaller
      * This function is only ever called once during the lifetime of a particular
      * module instance
      * 
-     * @return bool
+     * @return boolean
      */
     public function uninstall()
     {

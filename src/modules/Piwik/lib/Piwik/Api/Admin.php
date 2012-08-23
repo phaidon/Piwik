@@ -49,7 +49,7 @@ class Piwik_Api_Admin extends Zikula_AbstractApi {
         }
         
         $sites = array();
-        foreach($sites0 as $site) {
+        foreach ($sites0 as $site) {
             $sites[] = array(
                 'value' => $site['idsite'],
                 'text'  => $site['name']

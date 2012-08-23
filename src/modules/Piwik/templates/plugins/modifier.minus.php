@@ -13,7 +13,8 @@
 /**
  * This function modifies hypens to spaces.
  *
- * @param string $text Text.
+ * @param string $text  Text.
+ * @param string $minus Minus.
  * 
  * @return string
  */

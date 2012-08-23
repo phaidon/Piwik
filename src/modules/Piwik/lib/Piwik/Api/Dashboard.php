@@ -60,7 +60,7 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
      *
      * @param array $params Tracker arguments.
      *
-     * @return bool|string
+     * @return boolean|string
      */
     public function data($params)
     {
@@ -78,46 +78,62 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
         }
         
         $strURL    = 'http://'.$this->getVar('tracking_piwikpath');
-        $intSite   = $this->getVar('tracking_siteid');		
+        $intSite   = $this->getVar('tracking_siteid');        
         $strURL   .= '/index.php?module=API&method='.$params['method'];
         $strURL   .= '&idSite='.$intSite.'&period='.$params['period'].'&date='.$params['date'];
         $strURL   .= '&format=PHP&filter_limit='.$params['limit'];
         $strURL   .= '&token_auth='.$this->getVar('tracking_token');
-        $strResult = $this->get_remote_file($strURL);			
+        $strResult = $this->get_remote_file($strURL);            
         return unserialize($strResult);
     }
 
-    
-    public function get_remote_file($strURL) {
-        
-		// Use cURL if available	
-		if (function_exists('curl_init')) {
-			// Init cURL
-			$c = curl_init($strURL);
-			// Configure cURL CURLOPT_RETURNTRANSFER = 1
-			curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
-			// Configure cURL CURLOPT_HEADER = 0 
-			curl_setopt($c, CURLOPT_HEADER, 0);
-			// Get result
-			$strResult = curl_exec($c);
-			// Close connection			
-			curl_close($c);
-		// cURL not available but url fopen allowed
-		} elseif (ini_get('allow_url_fopen')) {
-			// Get file using file_get_contents
-			$strResult = file_get_contents($strURL);
-		// Error: Not possible to get remote file
+    /**
+     * Get remote file
+     *
+     * This function get remote file.
+     *
+     * @param string $strURL Url.
+     *
+     * @return string
+     */
+    public function get_remote_file($strURL)
+    {
+        // Use cURL if available    
+        if (function_exists('curl_init')) {
+            // Init cURL
+            $c = curl_init($strURL);
+            // Configure cURL CURLOPT_RETURNTRANSFER = 1
+            curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+            // Configure cURL CURLOPT_HEADER = 0 
+            curl_setopt($c, CURLOPT_HEADER, 0);
+            // Get result
+            $strResult = curl_exec($c);
+            // Close connection            
+            curl_close($c);
+            // cURL not available but url fopen allowed
+        } elseif (ini_get('allow_url_fopen')) {
+            // Get file using file_get_contents
+            $strResult = file_get_contents($strURL);
+            // Error: Not possible to get remote file
         } else {
             $strResult = serialize(array(
-				'result' => 'error',
-				'message' => 'Remote access to Piwik not possible. Enable allow_url_fopen or CURL.'
-			));
+                'result' => 'error',
+                'message' => 'Remote access to Piwik not possible. Enable allow_url_fopen or CURL.'
+            ));
         }
-		// Return result
-		return $strResult;
-	}
-    
-    
+        // Return result
+        return $strResult;
+    }
+
+    /**
+     * Show overview
+     *
+     * This function shows a overview.
+     *
+     * @param array $args Arguments.
+     *
+     * @return string
+     */
     public function showOverview($args = array()) {
         
         $args = $this->setDefaults($args);
@@ -140,8 +156,16 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
                           ->assign($args)
                           ->fetch('dashboard/overview.tpl');
     }
-    
-    
+
+    /**
+     * Show pages
+     *
+     * This function shows the pages.
+     *
+     * @param array $args Arguments.
+     *
+     * @return string
+     */
     public function showPages($args = array()) {
         
         if (!isset($args['period'])) {
@@ -164,8 +188,16 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
                           ->assign($args)
                           ->fetch('dashboard/pages.tpl');
     }
-    
-    
+
+    /**
+     * Show Visitors
+     *
+     * This function shows the visitors.
+     *
+     * @param array $args Arguments.
+     *
+     * @return string
+     */
     public function showVisitors($args = array()) {
 
         $args = $this->setDefaults($args);
@@ -209,7 +241,7 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
 
         $strValues = $strLabels = $strBounced =  $strValuesU = $strCounter = '';
         $intUSum = $intCount = 0; 
-        if (is_array($data['Visitors']))
+        if (is_array($data['Visitors'])) {
             foreach ($data['Visitors'] as $strDate => $intValue) {
                 $intCount++;
                 $strValues .= $intValue.',';
@@ -234,7 +266,7 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
                 $strLabels .= '['.$intCount.',"'.$label.'"],';
                 $intUSum += $data['Unique'][$strDate];
             }
-        else {
+        } else {
             $strValues = '0,';
             $strLabels = '[0,"-"],';
             $strValuesU = '0,';
@@ -260,10 +292,18 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
                           ->assign($args)
                           ->fetch('dashboard/visitors.tpl');
     }
-    
-    
-    private function setDefaults($args = array()) {
-        
+
+    /**
+     * Set defaults
+     *
+     * This function set the defaults.
+     *
+     * @param array $args Arguments.
+     *
+     * @return array
+     */
+    private function setDefaults($args = array())
+    {
         if (empty($args['period'])) {
             $args['period'] = 'days';
         }
