@@ -34,8 +34,8 @@
         
         
         <echo message="PHP_CodeSniffer..." />
-        <exec command="phpcs>
-            <args line="--extensions=php --report=checkstyle --standard=Zikula --report-file=${logsdir}/phpcs.xml src" />
+        <exec executable="phpcs>
+            <arg line="--extensions=php --report=checkstyle --standard=Zikula --report-file=${logsdir}/phpcs.xml src" />
         </exec>
 
     
