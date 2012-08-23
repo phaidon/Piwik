@@ -37,7 +37,7 @@
         <mkdir dir="${builddir}/jsdoc" />
         
         <echo message="Exporting for build..." />
-        <exec command="cp -a ${workspace}/source/src ${packagepath}" />
+        <exec command="cp -a ${env.WORKSPACE}/source/src ${packagepath}" />
     
     
         <echo message="Creating archive..." />
