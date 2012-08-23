@@ -80,6 +80,7 @@ class Piwik_Installer extends Zikula_AbstractInstaller
      */
     public function upgrade($oldversion)
     {
+        unset($oldversion);
         // Update successful
         return true;
     }

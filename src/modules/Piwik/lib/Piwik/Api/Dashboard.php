@@ -201,6 +201,7 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
     public function showVisitors($args = array()) {
 
         $args = $this->setDefaults($args);
+        
         switch ($args['period']) {
             case 'day':
                 $args['date'] = 'last30';
@@ -239,7 +240,7 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
             'limit'  => $args['limit']
         ));
 
-        $strValues = $strLabels = $strBounced =  $strValuesU = $strCounter = '';
+        $strValues = $strLabels = $strBounced =  $strValuesU = '';
         $intUSum = $intCount = 0; 
         if (is_array($data['Visitors'])) {
             foreach ($data['Visitors'] as $strDate => $intValue) {
@@ -277,8 +278,7 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
         $strValuesU = substr($strValuesU, 0, -1);
         $strLabels = substr($strLabels, 0, -1);
         $strBounced = substr($strBounced, 0, -1);
-        //$strCounter = substr($strCounter, 0, -1);
-        
+
 
         $data['Visitors'] = array_reverse($data['Visitors']);
         

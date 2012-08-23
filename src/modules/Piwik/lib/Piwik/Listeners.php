@@ -28,6 +28,7 @@ class Piwik_Listeners
      */
     public static function coreinit(Zikula_Event $event)
     {
+        unset($event);
         ModUtil::apiFunc('Piwik', 'user', 'tracker');
     }
 
