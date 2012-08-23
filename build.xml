@@ -3,10 +3,9 @@
 
     <property environment="env" /> 
     <property name="builddir" value="build" />
-    <property name="sourcedir" value="${env.WORKSPACE}/source" />
     <property name="package" value="${env.JOB_NAME}.build${env.BUILD_NUMBER}" />
-    <property name="exportdir" value="${builddir}/export" />
     <property name="archivedir" value="${builddir}/archive" />
+    <property name="logsdir" value="${builddir}/logs" />
     <property name="packagepath" value="${exportdir}/${env.JOB_NAME}" />
     <property name="checksumpath" value="${archivedir}/${package}-checksums" />
     <property name="patchdir" value="${builddir}/patch" />
@@ -23,27 +22,26 @@
 
 
     <target name="build">
+    
+        <echo message="Clean..." />
+        <delete dir="${builddir}" includeemptydirs="true" />
+    
+    
         <echo message="Prepare..." />
         <mkdir dir="${builddir}" />
-        <mkdir dir="${builddir}/logs" />
-        <mkdir dir="${builddir}/coverage" />
-        <mkdir dir="${builddir}/docs" />
-        <mkdir dir="${builddir}/phpcb" />
-        <mkdir dir="${builddir}/archive" />
-        <mkdir dir="${exportdir}" />
-        <mkdir dir="${builddir}/patch" />
-        <mkdir dir="${builddir}/tmp" />
-        <mkdir dir="${builddir}/jsdoc" />
+        <mkdir dir="${logsdir}" />
+        <mkdir dir="${archivedir}" />
         
-        <echo message="Exporting for build..." />
-        <exec command="cp -a ${env.WORKSPACE}/src/modules/* ${exportdir}" />
-    
+        
+        <echo msg="PHP_CodeSniffer..." />
+        <exec command="phpcs --extensions=php --report=checkstyle --standard=Zikula --ignore=${ignorepaths} src > ${logsdir}/phpcs.xml" escape="false" />
+
     
         <echo message="Creating archive..." />
         <!-- zip's don't play nicely in Phing - using direct command -->
         <!-- exec escape="false" command="cd ${exportdir}; zip -D -r ${archivedir}/${package}.zip ." / -->
         <zip destfile="${archivedir}/${package}.zip">
-            <fileset dir="${exportdir}">
+            <fileset dir="${env.WORKSPACE}/src/modules">
                 <include name="**/**" />
             </fileset>
         </zip>
