@@ -18,7 +18,11 @@
     </div>
     <div class="z-formrow">
         {formlabel for="date" __text='Date'}
+        {if $useFormDateInput}
         {formdateinput id="date" useSelectionMode=1 defaultValue='today' daFormat='%e. %B %Y'}
+        {else}
+        {formtextinput id="date" maxLength=10}
+        {/if}
     </div>
     
     

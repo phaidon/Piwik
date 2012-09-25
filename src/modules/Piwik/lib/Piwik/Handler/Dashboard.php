@@ -48,7 +48,19 @@ class Piwik_Handler_Dashboard extends Zikula_Form_AbstractHandler
             //array('value' =>  'range', 'text' => $this->__('Date range')),
         );
         $view->assign('periods', $periods);
-        
+
+        // formadateinput workaround for Zikula < 1.3.4 and lang != en
+        $useFormDateInput = true;
+        if (ZLanguage::getLocale() != 'en') {
+            $coreVersion = preg_replace('#(\d+\.\d+\.\d+).*#', '$1', Zikula_Core::VERSION_NUM);
+            $minok = version_compare($coreVersion, '1.3.4');
+            if ($minok < 0) {
+                $useFormDateInput = false;
+                $view->assign('date',   date('Y-m-d'));
+            }
+        }
+        $view->assign('useFormDateInput', $useFormDateInput);
+
         return true;
     }
 
