@@ -36,7 +36,6 @@ class Piwik_Handler_Dashboard extends Zikula_Form_AbstractHandler
         
         
         $view->caching = false;
-        $view->assign('date',   date('Y-m-d'));
         $view->assign('from',   'today');
         $view->assign('to',     'today');
         $view->assign('period', 'day');

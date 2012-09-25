@@ -18,7 +18,7 @@
     </div>
     <div class="z-formrow">
         {formlabel for="date" __text='Date'}
-        {formdateinput id="date" useSelectionMode=1 ifFormat='%Y-%m-%d'  daFormat='%e. %B %Y' defaultValue=$date}
+        {formdateinput id="date" useSelectionMode=1 defaultValue='today' daFormat='%e. %B %Y'}
     </div>
     
     
