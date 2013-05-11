@@ -1,0 +1,1 @@
+<iframe frameborder="no" width="{$width}" height="{$height}" src="http://{$tracking_piwikpath}/index.php?module=CoreAdminHome&action=optOut&language={lang}"></iframe>

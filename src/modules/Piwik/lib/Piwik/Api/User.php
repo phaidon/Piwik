@@ -50,5 +50,17 @@ class Piwik_Api_User extends Zikula_AbstractApi
         }
         return true;
     }
-    
+
+    public function optOut($args)
+    {
+        $width = isset($args['width']) ? $args['width'] : '100%';
+        $height = isset($args['height']) ? $args['height'] : '200px';
+
+        $view = Zikula_View::getInstance('Piwik');
+
+        return $view->assign('tracking_piwikpath', $this->getVar('tracking_piwikpath'))
+                    ->assign('width', $width)
+                    ->assign('height', $height)
+                    ->fetch('userapi/optOut.tpl');
+    }
 }

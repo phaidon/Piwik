@@ -21,8 +21,8 @@
     </div>
 </fieldset>
 
-<div id="piwik_settings_container">    
-    
+<div id="piwik_settings_container">
+
     <fieldset>
         <legend>{gt text='Account settings'}</legend>
         <div class="z-formrow">
