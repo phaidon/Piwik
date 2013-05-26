@@ -37,6 +37,8 @@ class Piwik_Installer extends Zikula_AbstractInstaller
             'core.postinit',
             array('Piwik_Listeners', 'coreinit')
         );
+
+        HookUtil::registerProviderBundles($this->version->getHookProviderBundles());
        
         // Initialisation successful
         $url = ModUtil::url(
@@ -80,7 +82,9 @@ class Piwik_Installer extends Zikula_AbstractInstaller
      */
     public function upgrade($oldversion)
     {
-        unset($oldversion);
+        if(version_compare($oldversion, '1.1.2', '<')) {
+            HookUtil::registerProviderBundles($this->version->getHookProviderBundles());
+        }
         // Update successful
         return true;
     }
@@ -103,6 +107,9 @@ class Piwik_Installer extends Zikula_AbstractInstaller
             'core.postinit',
             array('Piwik_Listeners', 'coreinit')
         );
+
+        HookUtil::unregisterProviderBundles($this->version->getHookProviderBundles());
+
         return true;
     }
 }
