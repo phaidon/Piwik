@@ -39,7 +39,7 @@
         </exec>
         
         <echo message="JSLint..." />
-        <fileset dir="src/modules/Piwik/javascript" id="jsfiles.raw">
+        <fileset dir="javascript" id="jsfiles.raw">
           <include name="**/*.js" />
           <exclude name="**/*.min.js" />
         </fileset>
