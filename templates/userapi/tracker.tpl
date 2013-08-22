@@ -1,6 +1,6 @@
 <!-- Piwik -->
 <script type="text/javascript">
-    var pkBaseURL = (("https:" == document.location.protocol) ? "https://{{$modvars.Piwik.tracking_piwikpath}}/" : "http://{{$modvars.Piwik.tracking_piwikpath}}/");
+    var pkBaseURL = '{{modapifunc modname='Piwik' type='user' func='getBaseUrl'}}';
     document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
 </script>
 <script type="text/javascript">
@@ -11,5 +11,5 @@
     }
     catch( err ) {}
 </script>
-<noscript><p><img src="http://{$modvars.Piwik.tracking_piwikpath}/piwik.php?idsite={$modvars.Piwik.tracking_siteid}" style="border:0" alt="" /></p></noscript>
+<noscript><p><img src="{modapifunc modname='Piwik' type='user' func='getBaseUrl'}piwik.php?idsite={$modvars.Piwik.tracking_siteid}" style="border:0" alt="" /></p></noscript>
 <!-- End Piwik Tag -->

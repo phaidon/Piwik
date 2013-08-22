@@ -77,13 +77,13 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
             $params['limit'] = -1;
         }
         
-        $strURL    = 'http://'.$this->getVar('tracking_piwikpath');
-        $intSite   = $this->getVar('tracking_siteid');        
-        $strURL   .= '/index.php?module=API&method='.$params['method'];
+        $strURL    = ModUtil::apiFunc($this->name, 'user', 'getBaseUrl');
+        $strURL   .= 'index.php?module=API&method='.$params['method'];
+        $intSite   = $this->getVar('tracking_siteid');
         $strURL   .= '&idSite='.$intSite.'&period='.$params['period'].'&date='.$params['date'];
         $strURL   .= '&format=PHP&filter_limit='.$params['limit'];
         $strURL   .= '&token_auth='.$this->getVar('tracking_token');
-        $strResult = $this->get_remote_file($strURL);            
+        $strResult = $this->get_remote_file($strURL);
         return unserialize($strResult);
     }
 
@@ -98,7 +98,7 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
      */
     public function get_remote_file($strURL)
     {
-        // Use cURL if available    
+        // Use cURL if available
         if (function_exists('curl_init')) {
             // Init cURL
             $c = curl_init($strURL);
@@ -108,7 +108,7 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
             curl_setopt($c, CURLOPT_HEADER, 0);
             // Get result
             $strResult = curl_exec($c);
-            // Close connection            
+            // Close connection
             curl_close($c);
             // cURL not available but url fopen allowed
         } elseif (ini_get('allow_url_fopen')) {

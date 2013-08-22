@@ -39,8 +39,18 @@ class Piwik_Handler_ModifyConfig  extends Zikula_Form_AbstractHandler
         
         $view->caching = false;
         $vars = $this->getVars();
-        $vars['tracking_piwikpath'] = 'http://'.$vars['tracking_piwikpath'];
-        $view->assign($vars);        
+        $vars['tracking_piwikpath'] = $vars['tracking_piwikpath'];
+        $view->assign($vars);
+        
+        $protocolOptions = array(
+            array('text' => $this->__('Only http (can produce problems if you are viewing your site via https)'),
+                  'value' => 1),
+            array('text' => $this->__('Only https (if you are able to connect via https)'),
+                  'value' => 2),
+            array('text' => $this->__('http/https (depending on the protocol which is used to request the site)'),
+                  'value' => 3)
+        );
+        $this->view->assign('protocolOptions', $protocolOptions);
         
         return true;
     }
