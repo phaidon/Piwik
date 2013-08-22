@@ -28,22 +28,27 @@
         <div class="z-formrow">
             {formlabel for="tracking_piwikpath" __text='URL to your Piwik installation'}
             {formurlinput id="tracking_piwikpath" text=$tracking_piwikpath cssClass=$error}
-            <em class="z-formnote z-sub">{gt text="Example: http://www.yourdomain.com/piwik"}</em>
+            <em class="z-formnote z-sub">{gt text="Example: www.yourdomain.com/piwik (without leading http(s)://)"}</em>
         </div>
         <div class="z-formrow">
             {formlabel for="tracking_token" __text='Piwik token'}
             {formtextinput size="40" maxLength="40" id="tracking_token" text=$tracking_token cssClass=$error}
             <em class="z-formnote z-sub">{gt text='Your personal authentification token can be found in the Piwik web interface on the API page. It looks like 1234a5cd6789e0a12345b678cd9012ef.'}<br /></em>
         </div>
+        <div class="z-formrow">
+            {formlabel for="tracking_protocol" __text='Used protocol'}
+            {formdropdownlist id="tracking_protocol" items=$protocolOptions mandatory=true}
+        </div>
+        
         
         {if $sites}
         <div class="z-formrow">
             {formlabel for="tracking_siteid" __text='Site'}
-            {formdropdownlist id="tracking_siteid" items=$sites}            
+            {formdropdownlist id="tracking_siteid" items=$sites}
         </div>
         {/if}
         
-    </fieldset>    
+    </fieldset>
  
     <fieldset>
         <legend>{gt text='Tracking settings'}</legend>
