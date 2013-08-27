@@ -113,7 +113,7 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
             // cURL not available but url fopen allowed
         } elseif (ini_get('allow_url_fopen')) {
             // Get file using file_get_contents
-            $strResult = file_get_contents($strURL);
+            $strResult = @file_get_contents($strURL);
             // Error: Not possible to get remote file
         } else {
             $strResult = serialize(array(
@@ -144,6 +144,11 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
             'date'   => $args['date']
         );
         $data = ModUtil::apiFunc($this->name, 'dashboard', 'data', $params);
+
+        if (empty($data)) {
+            return LogUtil::registerError($this->__('Could not connect to Piwik. Please check your settings.'));
+        }
+
         $data['total_time'] = 
             floor( $data['sum_visit_length'] / 3600).'h '.
             floor(($data['sum_visit_length'] % 3600)/60).'m '.
@@ -182,6 +187,9 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
         );
         $data = $this->data($params);
         
+        if (empty($data)) {
+            return LogUtil::registerError($this->__('Could not connect to Piwik. Please check your settings.'));
+        }
         
         return $this->view->assign('data', $data)
                           ->assign('intMax', 9)
@@ -226,7 +234,11 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
             'date'   => $args['date'],
             'limit'  => $args['limit']
         ));
-        
+
+        if (empty($data['Visitors'])) {
+            return LogUtil::registerError($this->__('Could not connect to Piwik. Please check your settings.'));
+        }
+
         $data['Unique'] = $this->data( array(
             'method' => 'VisitsSummary.getUniqueVisitors',
             'period' => $args['period'],
@@ -309,6 +321,9 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
         }
         if (empty($args['date'])) {
             $args['date'] = 'today';
+        }
+        if (empty($args['limit'])) {
+            $args['limit'] = -1;
         }
         
         return $args;
