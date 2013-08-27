@@ -146,7 +146,9 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
         $data = ModUtil::apiFunc($this->name, 'dashboard', 'data', $params);
 
         if (empty($data)) {
-            return LogUtil::registerError($this->__('Could not connect to Piwik. Please check your settings.'));
+            return false;
+            // Dont produce the messages
+            // return LogUtil::registerError($this->__('Could not connect to Piwik. Please check your settings.'));
         }
 
         $data['total_time'] = 
