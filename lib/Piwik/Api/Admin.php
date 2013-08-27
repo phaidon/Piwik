@@ -32,7 +32,7 @@ class Piwik_Api_Admin extends Zikula_AbstractApi {
         $tracking_enable = $this->getVar('tracking_enable', false);
         
         if (!$tracking_enable) {
-            return true;
+            return false;
         }
         
         if (empty($tracking_piwikpath)) {
