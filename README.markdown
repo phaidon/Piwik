@@ -47,6 +47,17 @@ You have to fill out the path to Piwik installation, the site-id and your token.
 
 ## Changelog
 
+### Piwik 1.2.0
+  * Workaround for Zikula < 1.3.4 and lang != en.
+  * Formdateinput fixes.
+  * Added opt-out funcitonality: Block, Hook, Api-Func, closes #7.
+  * Added option to set heigth and width in opt out block settings.
+  * Updated German translation.
+  * Site dropdown problem fixed, #11.
+  * Dashboard no connection fix, closes #12.
+  * Show no connection message just once.
+  * Piwik tracker updated, closes #13. 
+
 ### Piwik 1.1.0 (2012-07-02)
   * API-Dashboard added.
   * Automatical site detection added.
