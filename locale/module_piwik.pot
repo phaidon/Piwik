@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Zikula component\n"
+"Project-Id-Version: Zikula 1.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-28 14:23+0200\n"
+"POT-Creation-Date: 2013-08-22 21:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,52 +17,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: lib/Piwik/Api/Admin.php:77
-msgid "Settings"
+#: lib/Piwik/Block/OptOut.php:38
+msgid "Opt-Out functionality"
 msgstr ""
 
-#: lib/Piwik/Api/Admin.php:82 templates/admin/dashboard.tpl:5
-#: templates/admin/dashboard2.tpl:4
-msgid "Piwik dashboard"
-msgstr ""
-
-#: lib/Piwik/Api/Admin.php:87 templates/admin/troubleshooting.tpl:4
-msgid "Troubleshooting"
-msgstr ""
-
-#: lib/Piwik/Api/Dashboard.php:322 templates/dashboard/overview.tpl:5
-msgid "Overview"
-msgstr ""
-
-#: lib/Piwik/Api/Dashboard.php:327
-msgid "Visits in the last time"
-msgstr ""
-
-#: lib/Piwik/Api/Dashboard.php:332
-msgid "Piwik web interface"
-msgstr ""
-
-#: lib/Piwik/Handler/Dashboard.php:45
-msgid "Day"
-msgstr ""
-
-#: lib/Piwik/Handler/Dashboard.php:46 templates/dashboard/timeperiod.tpl:4
-msgid "Week"
-msgstr ""
-
-#: lib/Piwik/Handler/Dashboard.php:47
-msgid "Month"
-msgstr ""
-
-#: lib/Piwik/Handler/Dashboard.php:48
-msgid "Year"
-msgstr ""
-
-#: lib/Piwik/Installer.php:47
-#, php-format
-msgid ""
-"You installed the Piwik module succesfully. To activate the tracking please "
-"setup the module <a href='%s'>here</a>."
+#: lib/Piwik/Block/OptOut.php:39
+msgid "Includes Piwik's opt-out feature"
 msgstr ""
 
 #: lib/Piwik/Version.php:31
@@ -78,106 +38,93 @@ msgstr ""
 msgid "Piwik"
 msgstr ""
 
-#: templates/admin/dashboard.tpl:16 templates/admin/dashboard2.tpl:15
-msgid "Period"
+#: lib/Piwik/Version.php:48
+msgid "Piwik opt-out hook"
 msgstr ""
 
-#: templates/admin/dashboard.tpl:20 templates/dashboard/visitors.tpl:31
-msgid "Date"
+#: lib/Piwik/Handler/ModifyConfig.php:46
+msgid "Only http (can produce problems if you are viewing your site via https)"
 msgstr ""
 
-#: templates/admin/dashboard.tpl:27
-msgid "From"
+#: lib/Piwik/Handler/ModifyConfig.php:48
+msgid "Only https (if you are able to connect via https)"
 msgstr ""
 
-#: templates/admin/dashboard.tpl:31
-msgid "To"
-msgstr ""
-
-#: templates/admin/dashboard.tpl:37 templates/admin/dashboard2.tpl:20
-msgid "Show"
-msgstr ""
-
-#: templates/admin/modifyconfig.tpl:10
-msgid "Modify configuration"
-msgstr ""
-
-#: templates/admin/modifyconfig.tpl:17
-msgid "General settings"
-msgstr ""
-
-#: templates/admin/modifyconfig.tpl:19
-msgid "Enable Tracking"
-msgstr ""
-
-#: templates/admin/modifyconfig.tpl:27
-msgid "Account settings"
-msgstr ""
-
-#: templates/admin/modifyconfig.tpl:29
-msgid "URL to your Piwik installation"
-msgstr ""
-
-#: templates/admin/modifyconfig.tpl:31
-msgid "Example: http://www.yourdomain.com/piwik"
-msgstr ""
-
-#: templates/admin/modifyconfig.tpl:34
-msgid "Piwik token"
-msgstr ""
-
-#: templates/admin/modifyconfig.tpl:36
+#: lib/Piwik/Handler/ModifyConfig.php:50
 msgid ""
-"Your personal authentification token can be found in the Piwik web interface "
-"on the API page. It looks like 1234a5cd6789e0a12345b678cd9012ef."
+"http/https (depending on the protocol which is used to request the site)"
 msgstr ""
 
-#: templates/admin/modifyconfig.tpl:41
-msgid "Site"
+#: lib/Piwik/Handler/Dashboard.php:44
+msgid "Day"
 msgstr ""
 
-#: templates/admin/modifyconfig.tpl:49
-msgid "Tracking settings"
+#: lib/Piwik/Handler/Dashboard.php:45 templates/dashboard/timeperiod.tpl:4
+msgid "Week"
 msgstr ""
 
-#: templates/admin/modifyconfig.tpl:51
-msgid "Track admin pages"
+#: lib/Piwik/Handler/Dashboard.php:46
+msgid "Month"
 msgstr ""
 
-#: templates/admin/modifyconfig.tpl:55
-msgid "Track Links"
+#: lib/Piwik/Handler/Dashboard.php:47
+msgid "Year"
 msgstr ""
 
-#: templates/admin/modifyconfig.tpl:63
-msgid "Save"
+#: lib/Piwik/Api/Admin.php:77
+msgid "Settings"
 msgstr ""
 
-#: templates/admin/modifyconfig.tpl:64
-msgid "Cancel"
+#: lib/Piwik/Api/Admin.php:82 templates/admin/dashboard.tpl:5
+#: templates/admin/dashboard2.tpl:4
+msgid "Piwik dashboard"
 msgstr ""
 
-#: templates/admin/troubleshooting.tpl:8
+#: lib/Piwik/Api/Admin.php:87 templates/admin/troubleshooting.tpl:4
+msgid "Troubleshooting"
+msgstr ""
+
+#: lib/Piwik/Api/Dashboard.php:332 templates/dashboard/overview.tpl:5
+msgid "Overview"
+msgstr ""
+
+#: lib/Piwik/Api/Dashboard.php:337
+msgid "Visits in the last time"
+msgstr ""
+
+#: lib/Piwik/Api/Dashboard.php:342
+msgid "Piwik web interface"
+msgstr ""
+
+#: lib/Piwik/Installer.php:49
+#, php-format
 msgid ""
-"If Piwik does not log the page accesses please check the following questions:"
+"You installed the Piwik module succesfully. To activate the tracking please "
+"setup the module <a href='%s'>here</a>."
 msgstr ""
 
-#: templates/admin/troubleshooting.tpl:11
-msgid "Are your Piwik settings (path, token and side) corect configured?"
+#: templates/dashboard/pages.tpl:5
+msgid "Visited pages"
 msgstr ""
 
-#: templates/admin/troubleshooting.tpl:12
-msgid ""
-"Does the Piwik code (see above) appears in the source code of your page."
+#: templates/dashboard/pages.tpl:11
+msgid "Title"
 msgstr ""
 
-#: templates/admin/troubleshooting.tpl:14
-msgid ""
-"Is the Piwik code (see above) identical with this one of the Piwik web "
-"interface?"
+#: templates/dashboard/pages.tpl:14 templates/dashboard/visitors.tpl:33
+msgid "Unique"
 msgstr ""
 
-#: templates/admin/troubleshooting.tpl:31
-msgid "If this does not help feel free to ask in the Zikula forums for help."
+#: templates/dashboard/pages.tpl:17 templates/dashboard/visitors.tpl:32
+msgid "Visits"
+msgstr ""
+
+#: templates/dashboard/pages.tpl:47
+msgid "No data available."
+msgstr ""
+
+#: templates/dashboard/pages.tpl:56
+msgid "Others"
 msgstr ""
 
 #: templates/dashboard/overview.tpl:13
@@ -208,30 +155,6 @@ msgstr ""
 msgid "Bounce count"
 msgstr ""
 
-#: templates/dashboard/pages.tpl:5
-msgid "Visited pages"
-msgstr ""
-
-#: templates/dashboard/pages.tpl:11
-msgid "Title"
-msgstr ""
-
-#: templates/dashboard/pages.tpl:14 templates/dashboard/visitors.tpl:33
-msgid "Unique"
-msgstr ""
-
-#: templates/dashboard/pages.tpl:17 templates/dashboard/visitors.tpl:32
-msgid "Visits"
-msgstr ""
-
-#: templates/dashboard/pages.tpl:47
-msgid "No data available."
-msgstr ""
-
-#: templates/dashboard/pages.tpl:56
-msgid "Others"
-msgstr ""
-
 #: templates/dashboard/visitors.tpl:11
 #, php-format
 msgid "Visits in the last %s days"
@@ -252,6 +175,10 @@ msgstr ""
 msgid "Visits in the last %s years"
 msgstr ""
 
+#: templates/dashboard/visitors.tpl:31 templates/admin/dashboard.tpl:20
+msgid "Date"
+msgstr ""
+
 #: templates/dashboard/visitors.tpl:34
 msgid "Bounced"
 msgstr ""
@@ -266,4 +193,114 @@ msgstr ""
 
 #: templates/dashboard/visitors.tpl:48
 msgid "Avg"
+msgstr ""
+
+#: templates/block/optout_modify.tpl:2
+msgid "Height of block"
+msgstr ""
+
+#: templates/block/optout_modify.tpl:6
+msgid "Width of block"
+msgstr ""
+
+#: templates/admin/modifyconfig.tpl:10
+msgid "Modify configuration"
+msgstr ""
+
+#: templates/admin/modifyconfig.tpl:17
+msgid "General settings"
+msgstr ""
+
+#: templates/admin/modifyconfig.tpl:19
+msgid "Enable Tracking"
+msgstr ""
+
+#: templates/admin/modifyconfig.tpl:27
+msgid "Account settings"
+msgstr ""
+
+#: templates/admin/modifyconfig.tpl:29
+msgid "URL to your Piwik installation"
+msgstr ""
+
+#: templates/admin/modifyconfig.tpl:31
+msgid "Example: www.yourdomain.com/piwik (without leading http(s)://)"
+msgstr ""
+
+#: templates/admin/modifyconfig.tpl:34
+msgid "Piwik token"
+msgstr ""
+
+#: templates/admin/modifyconfig.tpl:36
+msgid ""
+"Your personal authentification token can be found in the Piwik web interface "
+"on the API page. It looks like 1234a5cd6789e0a12345b678cd9012ef."
+msgstr ""
+
+#: templates/admin/modifyconfig.tpl:39
+msgid "Used protocol"
+msgstr ""
+
+#: templates/admin/modifyconfig.tpl:46
+msgid "Site"
+msgstr ""
+
+#: templates/admin/modifyconfig.tpl:54
+msgid "Tracking settings"
+msgstr ""
+
+#: templates/admin/modifyconfig.tpl:56
+msgid "Track admin pages"
+msgstr ""
+
+#: templates/admin/modifyconfig.tpl:60
+msgid "Track Links"
+msgstr ""
+
+#: templates/admin/modifyconfig.tpl:68
+msgid "Save"
+msgstr ""
+
+#: templates/admin/modifyconfig.tpl:69
+msgid "Cancel"
+msgstr ""
+
+#: templates/admin/dashboard.tpl:16 templates/admin/dashboard2.tpl:15
+msgid "Period"
+msgstr ""
+
+#: templates/admin/dashboard.tpl:31
+msgid "From"
+msgstr ""
+
+#: templates/admin/dashboard.tpl:35
+msgid "To"
+msgstr ""
+
+#: templates/admin/dashboard.tpl:41 templates/admin/dashboard2.tpl:20
+msgid "Show"
+msgstr ""
+
+#: templates/admin/troubleshooting.tpl:8
+msgid ""
+"If Piwik does not log the page accesses please check the following questions:"
+msgstr ""
+
+#: templates/admin/troubleshooting.tpl:11
+msgid "Are your Piwik settings (path, token and side) corect configured?"
+msgstr ""
+
+#: templates/admin/troubleshooting.tpl:12
+msgid ""
+"Does the Piwik code (see above) appears in the source code of your page."
+msgstr ""
+
+#: templates/admin/troubleshooting.tpl:14
+msgid ""
+"Is the Piwik code (see above) identical with this one of the Piwik web "
+"interface?"
+msgstr ""
+
+#: templates/admin/troubleshooting.tpl:31
+msgid "If this does not help feel free to ask in the Zikula forums for help."
 msgstr ""

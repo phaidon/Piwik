@@ -39,6 +39,7 @@ class Piwik_Handler_Dashboard extends Zikula_Form_AbstractHandler
         $view->assign('from',   'today');
         $view->assign('to',     'today');
         $view->assign('period', 'day');
+        $view->assign('date',   date('Y-m-d'));
  
         $periods = array(
             array('value' =>  'day',   'text' => $this->__('Day')),
@@ -56,7 +57,6 @@ class Piwik_Handler_Dashboard extends Zikula_Form_AbstractHandler
             $minok = version_compare($coreVersion, '1.3.4');
             if ($minok < 0) {
                 $useFormDateInput = false;
-                $view->assign('date',   date('Y-m-d'));
             }
         }
         $view->assign('useFormDateInput', $useFormDateInput);

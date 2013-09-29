@@ -51,6 +51,16 @@ class Piwik_Api_User extends Zikula_AbstractApi
         return true;
     }
 
+
+    /**
+     * Opt out function
+     * 
+     * This function activates the opt out function needed for deactivating tracking by piwik.
+     * 
+     * @param array $args optOut arguments.
+     * 
+     * @return boolean
+     */
     public function optOut($args)
     {
         $width = isset($args['width']) ? $args['width'] : '100%';
@@ -62,5 +72,36 @@ class Piwik_Api_User extends Zikula_AbstractApi
                     ->assign('width', $width)
                     ->assign('height', $height)
                     ->fetch('userapi/optOut.tpl');
+    }
+
+
+    /**
+     * Get Piwik base url
+     * 
+     * This function provides the piwik base url
+     * 
+     * @param array $args getBaseUrl arguments.
+     * 
+     * @return boolean
+     */
+    public function getBaseUrl($args)
+    {
+        $protocol = isset($args['protocol']) ? $args['protocol'] : $this->getVar('tracking_protocol');
+
+        switch($protocol) {
+            case 1: //only http
+                return 'http://' . $this->getVar('tracking_piwikpath') . '/';
+                break;
+            case 2: //only https
+                return 'https://' . $this->getVar('tracking_piwikpath') . '/';
+                break;
+            case 3: //http/https
+                if($_SERVER['HTTPS'] != null) {
+                    return 'https://' . $this->getVar('tracking_piwikpath') . '/';
+                } else {
+                    return 'http://' . $this->getVar('tracking_piwikpath') . '/';
+                }
+                break;
+        }
     }
 }
