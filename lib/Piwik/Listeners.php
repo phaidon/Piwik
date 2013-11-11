@@ -28,8 +28,11 @@ class Piwik_Listeners
      */
     public static function coreinit(Zikula_Event $event)
     {
+        if (FormUtil::getPassedValue('type', 'user', 'GETPOST') == 'ajax') {
+            return;
+        }
+
         unset($event);
         ModUtil::apiFunc('Piwik', 'user', 'tracker');
     }
-
 }
