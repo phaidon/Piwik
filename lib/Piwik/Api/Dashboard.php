@@ -81,10 +81,10 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
         $strURL   .= 'index.php?module=API&method='.$params['method'];
         $intSite   = $this->getVar('tracking_siteid');
         $strURL   .= '&idSite='.$intSite.'&period='.$params['period'].'&date='.$params['date'];
-        $strURL   .= '&format=PHP&filter_limit='.$params['limit'];
+        $strURL   .= '&format=json&filter_limit='.$params['limit'];
         $strURL   .= '&token_auth='.$this->getVar('tracking_token');
         $strResult = $this->get_remote_file($strURL);
-        return unserialize($strResult);
+        return json_decode($strResult, true);
     }
 
     /**
@@ -116,7 +116,7 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
             $strResult = @file_get_contents($strURL);
             // Error: Not possible to get remote file
         } else {
-            $strResult = serialize(array(
+            $strResult = json_encode(array(
                 'result' => 'error',
                 'message' => 'Remote access to Piwik not possible. Enable allow_url_fopen or CURL.'
             ));
