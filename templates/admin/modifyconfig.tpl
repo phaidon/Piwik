@@ -27,7 +27,7 @@
         <legend>{gt text='Account settings'}</legend>
         <div class="z-formrow">
             {formlabel for="tracking_piwikpath" __text='URL to your Piwik installation'}
-            {formurlinput id="tracking_piwikpath" text=$tracking_piwikpath cssClass=$error}
+            {formtextinput id="tracking_piwikpath" maxLength="255" text=$tracking_piwikpath cssClass=$error}
             <em class="z-formnote z-sub">{gt text="Example: www.yourdomain.com/piwik (without leading http(s)://)"}</em>
         </div>
         <div class="z-formrow">
