@@ -148,7 +148,7 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
         );
         $data = ModUtil::apiFunc($this->name, 'dashboard', 'data', $params);
 
-        if (empty($data)) {
+        if (!is_array($data)) {
             return false;
             // Dont produce the messages
             // return LogUtil::registerError($this->__('Could not connect to Piwik. Please check your settings.'));
@@ -192,7 +192,7 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
         );
         $data = $this->data($params);
         
-        if (empty($data)) {
+        if (!is_array($data)) {
             return LogUtil::registerError($this->__('Could not connect to Piwik. Please check your settings.'));
         }
         
@@ -240,7 +240,7 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
             'limit'  => $args['limit']
         ));
 
-        if (empty($data['Visitors'])) {
+        if (!is_array($data['Visitors'])) {
             return LogUtil::registerError($this->__('Could not connect to Piwik. Please check your settings.'));
         }
 
