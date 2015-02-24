@@ -110,6 +110,9 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
             $strResult = curl_exec($c);
             // Close connection
             curl_close($c);
+            if($strResult === false) {
+                return LogUtil::registerError($this->__('Could connect to piwik. Probably the url is wrong?'));
+            }
             // cURL not available but url fopen allowed
         } elseif (ini_get('allow_url_fopen')) {
             // Get file using file_get_contents
