@@ -81,10 +81,10 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
         $strURL   .= 'index.php?module=API&method='.$params['method'];
         $intSite   = $this->getVar('tracking_siteid');
         $strURL   .= '&idSite='.$intSite.'&period='.$params['period'].'&date='.$params['date'];
-        $strURL   .= '&format=PHP&filter_limit='.$params['limit'];
+        $strURL   .= '&format=json&filter_limit='.$params['limit'];
         $strURL   .= '&token_auth='.$this->getVar('tracking_token');
         $strResult = $this->get_remote_file($strURL);
-        return unserialize($strResult);
+        return json_decode($strResult, true);
     }
 
     /**
@@ -110,13 +110,16 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
             $strResult = curl_exec($c);
             // Close connection
             curl_close($c);
+            if($strResult === false) {
+                return LogUtil::registerError($this->__('Could connect to piwik. Probably the url is wrong?'));
+            }
             // cURL not available but url fopen allowed
         } elseif (ini_get('allow_url_fopen')) {
             // Get file using file_get_contents
             $strResult = @file_get_contents($strURL);
             // Error: Not possible to get remote file
         } else {
-            $strResult = serialize(array(
+            $strResult = json_encode(array(
                 'result' => 'error',
                 'message' => 'Remote access to Piwik not possible. Enable allow_url_fopen or CURL.'
             ));
@@ -145,7 +148,7 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
         );
         $data = ModUtil::apiFunc($this->name, 'dashboard', 'data', $params);
 
-        if (empty($data)) {
+        if (!is_array($data)) {
             return false;
             // Dont produce the messages
             // return LogUtil::registerError($this->__('Could not connect to Piwik. Please check your settings.'));
@@ -189,7 +192,7 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
         );
         $data = $this->data($params);
         
-        if (empty($data)) {
+        if (!is_array($data)) {
             return LogUtil::registerError($this->__('Could not connect to Piwik. Please check your settings.'));
         }
         
@@ -237,7 +240,7 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
             'limit'  => $args['limit']
         ));
 
-        if (empty($data['Visitors'])) {
+        if (!is_array($data['Visitors'])) {
             return LogUtil::registerError($this->__('Could not connect to Piwik. Please check your settings.'));
         }
 

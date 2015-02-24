@@ -77,6 +77,7 @@ class Piwik_Handler_ModifyConfig  extends Zikula_Form_AbstractHandler
 
         $data = $view->getValues();
         
+        $data['tracking_piwikpath'] = filter_var($data['tracking_piwikpath'], FILTER_SANITIZE_URL);
         $data['tracking_piwikpath'] = str_replace('https://', '', $data['tracking_piwikpath']);
         $data['tracking_piwikpath'] = str_replace('http://', '',  $data['tracking_piwikpath']); 
         
