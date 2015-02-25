@@ -34,7 +34,7 @@ You have to check http://yourdomain.com/piwikpath/index.php?module=SitesManager&
 If you are tracking using only one site with Piwik the initial id works - but take care if you need a different one.
 
 ### Token
-Your token can be found at http://yourdomain.com/piwikpath/index.php?module=API&action=listAllAPI
+Your token can be found at http://yourdomain.com/piwikpath/index.php?module=UsersManager
 
 ## Module configuration
 
