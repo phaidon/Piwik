@@ -334,35 +334,4 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
 
         return $args;
     }
-
-    /**
-     * Get links
-     * 
-     * This function returns the links for the admin menu.
-     * 
-     * @return array Admin links
-     */
-    public function getlinks()
-    {
-        // create array of links
-        $links = [
-            [
-                'url' => ModUtil::url('Piwik', 'admin', 'dashboard'), 
-                'text' => $this->__('Overview'),
-                'class' => 'z-icon-es-display'
-            ],
-            [
-                'url' => ModUtil::url('Piwik', 'admin', 'dashboard2'), 
-                'text' => $this->__('Visits in the last time'),
-                'class' => 'z-icon-es-view'
-            ],
-            [
-                'url' => ModUtil::apiFunc('Piwik', 'user', 'getBaseUrl'),
-                'text' => $this->__('Piwik web interface'),
-                'class' => 'z-icon-es-url'
-            ]
-        );
-
-        return $links;
-    }
 }

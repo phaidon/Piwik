@@ -1,0 +1,3 @@
+phaidonpiwikmodule:
+    resource: "@PhaidonPiwikModule/Controller"
+    type:     annotation
