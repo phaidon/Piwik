@@ -1,12 +1,10 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
     <parameters>
         <parameter key="phaidon_piwik_module.container.link_container.class">Phaidon\PiwikModule\Container\LinkContainer</parameter>
     </parameters>
-
     <services>
         <service id="phaidon_piwik_module.container.link_container" class="%phaidon_piwik_module.container.link_container.class%">
             <argument type="service" id="translator.default" />
