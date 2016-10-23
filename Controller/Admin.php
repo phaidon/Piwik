@@ -40,10 +40,10 @@ class Piwik_Controller_Admin extends Zikula_AbstractController {
     public function modifyconfig()
     {
         $form = FormUtil::newForm('Piwik', $this);
+
         return $form->execute('admin/modifyconfig.tpl', new Piwik_Handler_ModifyConfig());
     }
-    
-    
+
     /**
      * Piwik dashboad
      *
@@ -54,10 +54,10 @@ class Piwik_Controller_Admin extends Zikula_AbstractController {
     public function dashboard()
     {
         $form = FormUtil::newForm('Piwik', $this);
+
         return $form->execute('admin/dashboard.tpl', new Piwik_Handler_Dashboard());
     }
-    
-    
+
     /**
      * Piwik dashboad
      *
@@ -68,9 +68,9 @@ class Piwik_Controller_Admin extends Zikula_AbstractController {
     public function dashboard2()
     {
         $form = FormUtil::newForm('Piwik', $this);
+
         return $form->execute('admin/dashboard2.tpl', new Piwik_Handler_Dashboard());
     }
-    
 
     /**
      * troubleshooting
@@ -86,8 +86,7 @@ class Piwik_Controller_Admin extends Zikula_AbstractController {
         if (!SecurityUtil::checkPermission('Piwik::', '::', ACCESS_ADMIN)) {
             throw new Zikula_Exception_Forbidden(LogUtil::getErrorMsgPermission());
         }
-        
+
         return $this->view->fetch('admin/troubleshooting.tpl');
     } 
-
 }

@@ -18,7 +18,6 @@
  */
 class Piwik_Listeners
 {
-
     /**
      * Event listener for 'core.postinit' event.
      * 

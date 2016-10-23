@@ -33,21 +33,20 @@ class Piwik_Handler_Dashboard extends Zikula_Form_AbstractHandler
         if (!SecurityUtil::checkPermission('Piwik::', '::', ACCESS_ADMIN)) {
             throw new Zikula_Exception_Forbidden(LogUtil::getErrorMsgPermission());
         }
-        
-        
+
         $view->caching = false;
-        $view->assign('from',   'today');
-        $view->assign('to',     'today');
-        $view->assign('period', 'day');
-        $view->assign('date',   date('Y-m-d'));
- 
-        $periods = array(
-            array('value' =>  'day',   'text' => $this->__('Day')),
-            array('value' =>  'week',  'text' => $this->__('Week')),
-            array('value' =>  'month', 'text' => $this->__('Month')),
-            array('value' =>  'year',  'text' => $this->__('Year')),
-            //array('value' =>  'range', 'text' => $this->__('Date range')),
-        );
+        $view->assign('from', 'today')
+             ->assign('to', 'today')
+             ->assign('period', 'day')
+             ->assign('date', date('Y-m-d'));
+
+        $periods = [
+            ['value' =>  'day',   'text' => $this->__('Day')],
+            ['value' =>  'week',  'text' => $this->__('Week')],
+            ['value' =>  'month', 'text' => $this->__('Month')],
+            ['value' =>  'year',  'text' => $this->__('Year')],
+            //['value' =>  'range', 'text' => $this->__('Date range')],
+        ];
         $view->assign('periods', $periods);
 
         // formadateinput workaround for Zikula < 1.3.4 and lang != en
@@ -75,15 +74,15 @@ class Piwik_Handler_Dashboard extends Zikula_Form_AbstractHandler
     function handleCommand(Zikula_Form_View $view, &$args)
     {  
         unset($args);
-        
+
         // check for valid form
         if (!$view->isValid()) {
             return false;
         }
-        
+
         $data = $view->getValues();       
         $this->view->assign($data);
+
         return true;
     }
-
 }

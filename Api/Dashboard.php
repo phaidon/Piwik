@@ -18,7 +18,6 @@
  */
 class Piwik_Api_Dashboard extends Zikula_AbstractApi
 {
-
     /**
      * Instance of Zikula_View.
      *
@@ -50,6 +49,7 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
         }
 
         $this->view = $view;
+
         return $this;
     }
 
@@ -76,14 +76,16 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
         if (!isset($params['limit'])) {
             $params['limit'] = -1;
         }
-        
-        $strURL    = ModUtil::apiFunc($this->name, 'user', 'getBaseUrl');
-        $strURL   .= 'index.php?module=API&method='.$params['method'];
-        $intSite   = $this->getVar('tracking_siteid');
-        $strURL   .= '&idSite='.$intSite.'&period='.$params['period'].'&date='.$params['date'];
-        $strURL   .= '&format=json&filter_limit='.$params['limit'];
-        $strURL   .= '&token_auth='.$this->getVar('tracking_token');
+
+        $siteId = $this->getVar('tracking_siteid');
+
+        $strURL = ModUtil::apiFunc($this->name, 'user', 'getBaseUrl');
+        $strURL .= 'index.php?module=API&method='.$params['method'];
+        $strURL .= '&idSite=' . $siteId . '&period='.$params['period'].'&date='.$params['date'];
+        $strURL .= '&format=json&filter_limit='.$params['limit'];
+        $strURL .= '&token_auth='.$this->getVar('tracking_token');
         $strResult = $this->get_remote_file($strURL);
+
         return json_decode($strResult, true);
     }
 
@@ -110,7 +112,7 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
             $strResult = curl_exec($c);
             // Close connection
             curl_close($c);
-            if($strResult === false) {
+            if (false === $strResult) {
                 return LogUtil::registerError($this->__('Could connect to piwik. Probably the url is wrong?'));
             }
             // cURL not available but url fopen allowed
@@ -119,11 +121,12 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
             $strResult = @file_get_contents($strURL);
             // Error: Not possible to get remote file
         } else {
-            $strResult = json_encode(array(
+            $strResult = json_encode([
                 'result' => 'error',
                 'message' => 'Remote access to Piwik not possible. Enable allow_url_fopen or CURL.'
-            ));
+            ]);
         }
+
         // Return result
         return $strResult;
     }
@@ -131,21 +134,21 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
     /**
      * Show overview
      *
-     * This function shows a overview.
+     * This function shows an overview.
      *
      * @param array $args Arguments.
      *
      * @return string
      */
-    public function showOverview($args = array()) {
-        
+    public function showOverview($args = [])
+    {
         $args = $this->setDefaults($args);
-        
-        $params = array(
+
+        $params = [
             'method' => 'VisitsSummary.get',
             'period' => $args['period'],
             'date'   => $args['date']
-        );
+        ];
         $data = ModUtil::apiFunc($this->name, 'dashboard', 'data', $params);
 
         if (!is_array($data)) {
@@ -162,9 +165,11 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
             floor( $data['avg_time_on_site'] / 3600).'h '.
             floor(($data['avg_time_on_site'] % 3600)/60).'m '.
             floor(($data['avg_time_on_site'] % 3600) % 60).'s';
-        return $this->view->assign('data', $data)
-                          ->assign($args)
-                          ->fetch('dashboard/overview.tpl');
+
+        return $this->view
+            ->assign('data', $data)
+            ->assign($args)
+            ->fetch('dashboard/overview.tpl');
     }
 
     /**
@@ -176,30 +181,31 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
      *
      * @return string
      */
-    public function showPages($args = array()) {
-        
+    public function showPages($args = [])
+    {
         if (!isset($args['period'])) {
             $args['period'] = 'days';
         }
         if (!isset($args['date'])) {
             $args['date'] = 'today';
         }
-        
-        $params = array(
+
+        $params = [
             'method' => 'Actions.getPageTitles',
             'period' => $args['period'],
             'date'   => $args['date']
-        );
+        ];
         $data = $this->data($params);
-        
+
         if (!is_array($data)) {
             return LogUtil::registerError($this->__('Could not connect to Piwik. Please check your settings.'));
         }
-        
-        return $this->view->assign('data', $data)
-                          ->assign('intMax', 9)
-                          ->assign($args)
-                          ->fetch('dashboard/pages.tpl');
+
+        return $this->view
+            ->assign('data', $data)
+            ->assign('intMax', 9)
+            ->assign($args)
+            ->fetch('dashboard/pages.tpl');
     }
 
     /**
@@ -211,10 +217,10 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
      *
      * @return string
      */
-    public function showVisitors($args = array()) {
-
+    public function showVisitors($args = [])
+    {
         $args = $this->setDefaults($args);
-        
+
         switch ($args['period']) {
             case 'day':
                 $args['date'] = 'last30';
@@ -229,59 +235,58 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
                 $args['date'] = 'last5';
                 break;
         }
-        
-        
-        $data = array();
-        
-        $data['Visitors'] = $this->data( array(
+
+        $data = [];
+
+        $data['Visitors'] = $this->data([
             'method' => 'VisitsSummary.getVisits', 
             'period' => $args['period'], 
             'date'   => $args['date'],
             'limit'  => $args['limit']
-        ));
+        ]);
 
         if (!is_array($data['Visitors'])) {
             return LogUtil::registerError($this->__('Could not connect to Piwik. Please check your settings.'));
         }
 
-        $data['Unique'] = $this->data( array(
+        $data['Unique'] = $this->data([
             'method' => 'VisitsSummary.getUniqueVisitors',
             'period' => $args['period'],
             'date'   => $args['date'],
             'limit'  => $args['limit']
-        ));
-        $data['Bounced'] = $this->data( array(
+        ]);
+        $data['Bounced'] = $this->data([
             'method' => 'VisitsSummary.getBounceCount',
             'period' => $args['period'],
             'date'   => $args['date'],
             'limit'  => $args['limit']
-        ));
+        ]);
 
         $strValues = $strLabels = $strBounced =  $strValuesU = '';
         $intUSum = $intCount = 0; 
         if (is_array($data['Visitors'])) {
             foreach ($data['Visitors'] as $strDate => $intValue) {
                 $intCount++;
-                $strValues .= $intValue.',';
-                $strValuesU .= $data['Unique'][$strDate].',';
-                $strBounced .= $data['Bounced'][$strDate].',';
+                $strValues .= $intValue . ',';
+                $strValuesU .= $data['Unique'][$strDate] . ',';
+                $strBounced .= $data['Bounced'][$strDate] . ',';
                 $label = '';
                 switch ($args['period']) {
                     case 'day':
-                        $label = substr($strDate,-2);
+                        $label = substr($strDate, -2);
                         break;
                     case 'week':
-                        $date = new DateTime(substr($strDate,5,10));
+                        $date = new DateTime(substr($strDate, 5, 10));
                         $label = $date->format('W/y');
                         break;
                     case 'month':
-                        $label = substr($strDate,-2).'/'.substr($strDate,2,2);
+                        $label = substr($strDate, -2) . '/' . substr($strDate, 2, 2);
                         break;
                     case 'year':
                         $label = $strDate;
                         break;
                 }
-                $strLabels .= '['.$intCount.',"'.$label.'"],';
+                $strLabels .= '[' . $intCount . ',"' . $label . '"],';
                 $intUSum += $data['Unique'][$strDate];
             }
         } else {
@@ -290,24 +295,24 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
             $strValuesU = '0,';
             $strBounced = '0,';    
         }
-        $intAvg = round($intUSum/30,0);
+        $intAvg = round($intUSum / 30, 0);
         $strValues = substr($strValues, 0, -1);
         $strValuesU = substr($strValuesU, 0, -1);
         $strLabels = substr($strLabels, 0, -1);
         $strBounced = substr($strBounced, 0, -1);
 
-
         $data['Visitors'] = array_reverse($data['Visitors']);
-        
-        return $this->view->assign('intUSum',    $intUSum)
-                          ->assign('intAvg',     $intAvg)
-                          ->assign('strValues',  $strValues)
-                          ->assign('strValuesU', $strValuesU)
-                          ->assign('strLabels',  $strLabels)
-                          ->assign('strBounced', $strBounced)
-                          ->assign($data)
-                          ->assign($args)
-                          ->fetch('dashboard/visitors.tpl');
+
+        return $this->view
+            ->assign('intUSum', $intUSum)
+            ->assign('intAvg', $intAvg)
+            ->assign('strValues', $strValues)
+            ->assign('strValuesU', $strValuesU)
+            ->assign('strLabels', $strLabels)
+            ->assign('strBounced', $strBounced)
+            ->assign($data)
+            ->assign($args)
+            ->fetch('dashboard/visitors.tpl');
     }
 
     /**
@@ -319,7 +324,7 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
      *
      * @return array
      */
-    private function setDefaults($args = array())
+    private function setDefaults($args = [])
     {
         if (empty($args['period'])) {
             $args['period'] = 'days';
@@ -330,11 +335,10 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
         if (empty($args['limit'])) {
             $args['limit'] = -1;
         }
-        
+
         return $args;
     }
-    
-    
+
     /**
      * Get links
      * 
@@ -344,26 +348,25 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
      */
     public function getlinks()
     {
-
         // create array of links
-        $links = array(
-            array(
+        $links = [
+            [
                 'url' => ModUtil::url('Piwik', 'admin', 'dashboard'), 
                 'text' => $this->__('Overview'),
                 'class' => 'z-icon-es-display'
-            ),
-            array(
+            ],
+            [
                 'url' => ModUtil::url('Piwik', 'admin', 'dashboard2'), 
                 'text' => $this->__('Visits in the last time'),
                 'class' => 'z-icon-es-view'
-            ),
-            array(
-                'url' => 'http://'.$this->getVar('tracking_piwikpath'),
+            ],
+            [
+                'url' => ModUtil::apiFunc('Piwik', 'user', 'getBaseUrl'),
                 'text' => $this->__('Piwik web interface'),
                 'class' => 'z-icon-es-url'
-            ),
+            ]
         );
+
         return $links;
     }
-    
 }

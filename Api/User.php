@@ -18,7 +18,6 @@
  */
 class Piwik_Api_User extends Zikula_AbstractApi
 {
-
     /**
      * Tracker
      * 
@@ -40,17 +39,18 @@ class Piwik_Api_User extends Zikula_AbstractApi
         if ($adminpage && $this->getVar('tracking_adminpages') == '0') {
             return true;
         }
+
         // only add piwik code to source if tracking is enabled
         if ($this->getVar('tracking_enable') == 1) {
             $view = Zikula_View::getInstance('Piwik');
             $trackercode = $view->fetch('userapi/tracker.tpl');
 
             // add the scripts to page footer
-            PageUtil::AddVar('footer', $trackercode);
+            PageUtil::addVar('footer', $trackercode);
         }
+
         return true;
     }
-
 
     /**
      * Opt out function
@@ -68,12 +68,12 @@ class Piwik_Api_User extends Zikula_AbstractApi
 
         $view = Zikula_View::getInstance('Piwik');
 
-        return $view->assign('tracking_piwikpath', $this->getVar('tracking_piwikpath'))
-                    ->assign('width', $width)
-                    ->assign('height', $height)
-                    ->fetch('userapi/optOut.tpl');
+        return $view
+            ->assign('tracking_piwikpath', $this->getVar('tracking_piwikpath'))
+            ->assign('width', $width)
+            ->assign('height', $height)
+            ->fetch('userapi/optOut.tpl');
     }
-
 
     /**
      * Get Piwik base url
@@ -87,19 +87,20 @@ class Piwik_Api_User extends Zikula_AbstractApi
     public function getBaseUrl($args)
     {
         $protocol = isset($args['protocol']) ? $args['protocol'] : $this->getVar('tracking_protocol');
+        $piwikPath = $this->getVar('tracking_piwikpath');
 
-        switch($protocol) {
+        switch ($protocol) {
             case 1: //only http
-                return 'http://' . $this->getVar('tracking_piwikpath') . '/';
+                return 'http://' . $piwikPath . '/';
                 break;
             case 2: //only https
-                return 'https://' . $this->getVar('tracking_piwikpath') . '/';
+                return 'https://' . $piwikPath . '/';
                 break;
             case 3: //http/https
-                if($_SERVER['HTTPS'] != null) {
-                    return 'https://' . $this->getVar('tracking_piwikpath') . '/';
+                if (null !== $_SERVER['HTTPS']) {
+                    return 'https://' . $piwikPath . '/';
                 } else {
-                    return 'http://' . $this->getVar('tracking_piwikpath') . '/';
+                    return 'http://' . $piwikPath . '/';
                 }
                 break;
         }

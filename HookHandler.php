@@ -18,7 +18,6 @@
  */
 class Piwik_HookHandler extends Zikula_Hook_AbstractHandler
 {
-
     /**
      * Display hook for view.
      *
@@ -35,11 +34,10 @@ class Piwik_HookHandler extends Zikula_Hook_AbstractHandler
         $view = Zikula_View::getInstance('Piwik', false, null, true);
 
         $view->assign('tracking_piwikpath', ModUtil::getVar('Piwik', 'tracking_piwikpath'))
-             ->assign('width', "100%")
-             ->assign('height', "160px");
+             ->assign('width', '100%')
+             ->assign('height', '160px');
 
         $response = new Zikula_Response_DisplayHook('provider_area.ui_hooks.piwik.optOut', $view, 'userapi/optOut.tpl');
         $hook->setResponse($response);
-        return;
     }
 }

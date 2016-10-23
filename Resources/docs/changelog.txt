@@ -1,0 +1,32 @@
+Piwik 1.3.0
+  * Migrated to Core-2.0 spec for improved compatibility with Zikula 1.4.3+.
+
+Piwik 1.2.0
+  * Workaround for Zikula < 1.3.4 and lang != en.
+  * Formdateinput fixes.
+  * Added opt-out funcitonality: Block, Hook, Api-Func, closes #7.
+  * Added option to set heigth and width in opt out block settings.
+  * Updated German translation.
+  * Site dropdown problem fixed, #11.
+  * Dashboard no connection fix, closes #12.
+  * Show no connection message just once.
+  * Piwik tracker updated, closes #13.  
+
+Piwik 1.1.0 (2012-07-02)
+  * API-Dashboard added.
+  * Automatical site detection added.
+  * Translation files updated.
+  * Troubleshooting page added.
+
+Piwik 1.0.0 (2011-08-20)
+  * Recoding of the module for Zikula 1.3.x
+
+Piwik 0.3
+  * New user views
+  * Bugfixes #2
+
+Piwik 0.2
+  * Gettext version of 0.1
+
+Piwik 0.1
+  * Initial release

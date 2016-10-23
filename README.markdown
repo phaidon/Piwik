@@ -6,6 +6,7 @@ Piwik is an open source web analytics software. It gives interesting reports on 
 
 * Piwik 0.x.x: Zikula < 1.3
 * Piwik 1.x.x: Zikula = 1.3.x
+* Piwik 1.2.x: Zikula = 1.4.3+
 * An installed Piwik instance
 
 ## Installation
@@ -46,6 +47,9 @@ You have to fill out the path to Piwik installation, the site-id and your token.
 * Bugs and feature requests can be posted here in the [Issues tracker](https://github.com/phaidon/Piwik/issues)
 
 ## Changelog
+
+### Piwik 1.3.0
+  * Migrated to Core-2.0 spec for improved compatibility with Zikula 1.4.3+.
 
 ### Piwik 1.2.0
   * Workaround for Zikula < 1.3.4 and lang != en.

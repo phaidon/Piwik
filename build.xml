@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
- <project name="Piwik" default="build">
-
+<project name="Piwik" default="build">
     <property environment="env" /> 
     <property name="builddir" value="${env.WORKSPACE}/build" />
     <property name="package" value="${env.JOB_NAME}.build${env.BUILD_NUMBER}" />
@@ -13,31 +12,27 @@
     <property name="ignorepaths" value="lib/vendor/*,javascript/*,lib/legacy" />
     <property name="ownjslist" value="javascript/dashboard.js" />
 
-   <!-- Compress own JS -->
+    <!-- Compress own JS -->
     <target name="compressownjs">
         <echo message="YUI_Compressor for JS files..." />
         <echo message="/usr/bin/java -jar /usr/share/yui-compressor/yui-compressor.jar -o ${packagepath}/${filename}.tmp ${packagepath}/${filename};" />
         <!-- exec command="/usr/bin/java -jar /usr/share/yui-compressor/yui-compressor.jar -o ${packagepath}/${filename}.tmp ${packagepath}/${filename};" / -->
     </target>
 
-
     <target name="build">
-    
         <echo message="Clean..." />
         <delete dir="${builddir}" includeemptydirs="true" />
-    
-    
+
         <echo message="Prepare..." />
         <mkdir dir="${builddir}" />
         <mkdir dir="${logsdir}" />
         <mkdir dir="${archivedir}" />
-        
-        
+
         <echo message="PHP_CodeSniffer..." />
         <exec executable="phpcs">
             <arg line="--extensions=php --report=checkstyle --standard=Zikula --report-file=${logsdir}/phpcs.xml src" />
         </exec>
-        
+
         <echo message="JSLint..." />
         <fileset dir="javascript" id="jsfiles.raw">
           <include name="**/*.js" />
@@ -48,9 +43,6 @@
         <exec executable="jslint4java" output="build/logs/jslint.xml">
           <arg line="--report xml ${jsfiles.clean}" />
         </exec>
-        
-       
-        
 
         <!-- PHP MD analysis -->
         <echo message="PHP MD..." />
@@ -58,7 +50,6 @@
            <arg line="src xml codesize,unusedcode --reportfile '${logsdir}/pmd.xml'" />
         </exec>
 
-    
         <echo message="Creating archive..." />
         <!-- zip's don't play nicely in Phing - using direct command -->
         <!-- exec escape="false" command="cd ${exportdir}; zip -D -r ${archivedir}/${package}.zip ." / -->
@@ -69,6 +60,5 @@
         </zip>
 
         <!-- foreach list="${ownjslist}" param="filename" target="compressownjs" / -->
-</target>
-
+    </target>
 </project>

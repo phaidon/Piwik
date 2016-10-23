@@ -27,7 +27,7 @@ class Piwik_Version extends Zikula_AbstractVersion
      */
     public function getMetaData()
     {
-        $meta = array();
+        $meta = [];
         $meta['description']    = $this->__('Piwik statistics module');
         $meta['displayname']    = $this->__('Piwik statistics');
         //!url must be different to displayname
@@ -35,11 +35,12 @@ class Piwik_Version extends Zikula_AbstractVersion
         $meta['version']        = '1.2.0';
         $meta['author']         = '';
         $meta['contact']        = 'https://github.com/phaidon/Piwik';
-        $meta['dependencies']   = array();
-        $meta['securityschema'] = array('Piwik::' => '::');
+        $meta['dependencies']   = [];
+        $meta['securityschema'] = ['Piwik::' => '::'];
 
-        $meta['capabilities'] = array();
-        $meta['capabilities'][HookUtil::PROVIDER_CAPABLE] = array('enabled' => true);
+        $meta['capabilities'] = [];
+        $meta['capabilities'][HookUtil::PROVIDER_CAPABLE] = ['enabled' => true];
+
         return $meta;
     }
 

@@ -44,7 +44,6 @@ class Piwik_Block_OptOut extends Zikula_Controller_AbstractBlock
         );
     }
 
-    
     /**
      * modify block
      *
@@ -65,13 +64,13 @@ class Piwik_Block_OptOut extends Zikula_Controller_AbstractBlock
         if (!isset($vars['height'])) {
             $vars['height'] = '200px';
         }
-        
+
         // builds and return the output
-        return $this->view->assign('vars', $vars)
-                          ->fetch('block/optout_modify.tpl');
+        return $this->view
+            ->assign('vars', $vars)
+            ->fetch('block/optout_modify.tpl');
     }
-    
-    
+
     /**
      * update block
      *
@@ -83,16 +82,16 @@ class Piwik_Block_OptOut extends Zikula_Controller_AbstractBlock
      */
     public function update($blockinfo)
     {
-        $vars = array (
-            'height'    => FormUtil::getPassedValue('piwik_height', null),
-            'width'     => FormUtil::getPassedValue('piwik_width', null)
-        );
+        $vars = [
+            'height' => FormUtil::getPassedValue('piwik_height', null),
+            'width'  => FormUtil::getPassedValue('piwik_width', null)
+        ];
 
         $blockinfo['content'] = BlockUtil::varsToContent($vars);
 
         return $blockinfo;
     }
-    
+
     /**
      * display block
      *
@@ -110,9 +109,8 @@ class Piwik_Block_OptOut extends Zikula_Controller_AbstractBlock
         }
 
         $vars = BlockUtil::varsFromContent($blockinfo['content']);
-        
-        
-        $blockinfo['content'] = ModUtil::apiFunc($this->name, 'user', 'optOut', array('height' => $vars['height'], 'width' => $vars['width']));
+
+        $blockinfo['content'] = ModUtil::apiFunc($this->name, 'user', 'optOut', ['height' => $vars['height'], 'width' => $vars['width']]);
 
         return BlockUtil::themeBlock($blockinfo);
     }

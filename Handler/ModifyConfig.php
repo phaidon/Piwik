@@ -18,7 +18,6 @@
  */
 class Piwik_Handler_ModifyConfig  extends Zikula_Form_AbstractHandler
 {
-
     /**
      * This function initialise the form handler.
      * 
@@ -36,22 +35,28 @@ class Piwik_Handler_ModifyConfig  extends Zikula_Form_AbstractHandler
 
         $sites = ModUtil::apiFunc($this->name, 'admin', 'getSites');
         $view->assign('sites', $sites);
-        
+
         $view->caching = false;
         $vars = $this->getVars();
         $vars['tracking_piwikpath'] = $vars['tracking_piwikpath'];
         $view->assign($vars);
         
-        $protocolOptions = array(
-            array('text' => $this->__('Only http (can produce problems if you are viewing your site via https)'),
-                  'value' => 1),
-            array('text' => $this->__('Only https (if you are able to connect via https)'),
-                  'value' => 2),
-            array('text' => $this->__('http/https (depending on the protocol which is used to request the site)'),
-                  'value' => 3)
+        $protocolOptions = [
+            [
+                'text' => $this->__('Only http (can produce problems if you are viewing your site via https)'),
+                'value' => 1
+            ],
+            [
+                'text' => $this->__('Only https (if you are able to connect via https)'),
+                'value' => 2
+            ],
+            [
+                'text' => $this->__('http/https (depending on the protocol which is used to request the site)'),
+                'value' => 3
+            ]
         );
         $this->view->assign('protocolOptions', $protocolOptions);
-        
+
         return true;
     }
 
@@ -67,23 +72,25 @@ class Piwik_Handler_ModifyConfig  extends Zikula_Form_AbstractHandler
     {
         if ($args['commandName'] == 'cancel') {
             $url = ModUtil::url($this->name, 'admin', 'modifyconfig' );
+
             return $view->redirect($url);
         }
-        
+
         // check for valid form
         if (!$view->isValid()) {
             return false;
         }
 
         $data = $view->getValues();
-        
+
         $data['tracking_piwikpath'] = filter_var($data['tracking_piwikpath'], FILTER_SANITIZE_URL);
         $data['tracking_piwikpath'] = str_replace('https://', '', $data['tracking_piwikpath']);
         $data['tracking_piwikpath'] = str_replace('http://', '',  $data['tracking_piwikpath']); 
-        
+
         $this->setVars($data);
-        
+
         $url = ModUtil::url($this->name, 'admin', 'modifyconfig');
+
         return $this->view->redirect($url);
     }
 }

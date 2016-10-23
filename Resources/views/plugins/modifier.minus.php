@@ -20,5 +20,5 @@
  */
 function smarty_modifier_minus($text, $minus)
 {
-    return (int)$text-(int)$minus;
+    return (int)$text - (int)$minus;
 }

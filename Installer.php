@@ -18,7 +18,6 @@
  */
 class Piwik_Installer extends Zikula_AbstractInstaller
 {
-
     /**
      * initialise the template module
      *
@@ -32,21 +31,14 @@ class Piwik_Installer extends Zikula_AbstractInstaller
         // Set default values for module
         $this->defaultdata();
 
-        EventUtil::registerPersistentModuleHandler(
-            'Piwik',
-            'core.postinit',
-            array('Piwik_Listeners', 'coreinit')
-        );
+        EventUtil::registerPersistentModuleHandler('Piwik', 'core.postinit', ['Piwik_Listeners', 'coreinit']);
 
         HookUtil::registerProviderBundles($this->version->getHookProviderBundles());
-       
+
         // Initialisation successful
-        $url = ModUtil::url(
-            'Piwik',
-            'admin',
-            'modifyconfig'
-        ); 
+        $url = ModUtil::url('Piwik', 'admin', 'modifyconfig'); 
         LogUtil::registerStatus($this->__f("You installed the Piwik module succesfully. To activate the tracking please setup the module <a href='%s'>here</a>.", $url));        
+
         return true;
     }
 
@@ -60,15 +52,15 @@ class Piwik_Installer extends Zikula_AbstractInstaller
      */
     public function defaultdata()
     {
-        $this->setVar('tracking_enable'       , false);
-        $this->setVar('tracking_piwikpath'    , 'yourdomain.com/piwikpath');
-        $this->setVar('tracking_siteid'       , 0);
-        $this->setVar('tracking_token'        , 'abcdef123456');
-        $this->setVar('tracking_adminpages'   , false);
-        $this->setVar('tracking_linktracking' , true);
+        $this->setVar('tracking_enable', false);
+        $this->setVar('tracking_piwikpath', 'yourdomain.com/piwikpath');
+        $this->setVar('tracking_siteid', 0);
+        $this->setVar('tracking_token', 'abcdef123456');
+        $this->setVar('tracking_adminpages', false);
+        $this->setVar('tracking_linktracking', true);
+
         return true;
     }
-
 
     /**
      * Upgrade the errors module from an old version
@@ -76,15 +68,16 @@ class Piwik_Installer extends Zikula_AbstractInstaller
      * This function must consider all the released versions of the module!
      * If the upgrade fails at some point, it returns the last upgraded version.
      *
-     * @param string $oldversion Version number string to upgrade from.
+     * @param string $oldVersion Version number string to upgrade from.
      * 
      * @return mixed True on success, last valid version string or false if fails.
      */
-    public function upgrade($oldversion)
+    public function upgrade($oldVersion)
     {
-        if(version_compare($oldversion, '1.1.2', '<')) {
+        if (version_compare($oldVersion, '1.1.2', '<')) {
             HookUtil::registerProviderBundles($this->version->getHookProviderBundles());
         }
+
         // Update successful
         return true;
     }
@@ -102,11 +95,7 @@ class Piwik_Installer extends Zikula_AbstractInstaller
         // Delete any module variables
         $this->delVars();
         // delete the system init hook
-        EventUtil::unregisterPersistentModuleHandler(
-            'Piwik',
-            'core.postinit',
-            array('Piwik_Listeners', 'coreinit')
-        );
+        EventUtil::unregisterPersistentModuleHandler('Piwik', 'core.postinit', ['Piwik_Listeners', 'coreinit']);
 
         HookUtil::unregisterProviderBundles($this->version->getHookProviderBundles());
 
