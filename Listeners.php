@@ -14,6 +14,8 @@
  */
 class Piwik_Listeners
 {
+    // TODO change to event subscriber
+
     /**
      * Event listener for 'core.postinit' event.
      * 
