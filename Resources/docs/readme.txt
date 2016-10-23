@@ -1,7 +1,7 @@
 Installation:
     Installation is quite easy
 
-    1. Upload to your Zikula modules directory 
+    1. Upload to your Zikula modules directory (modules/PhaidonPiwikModule/)
     2. Go the extensions area in the Zikula administration section 
     3. Aactivate Piwik
     4. Configure module in Piwik administration

@@ -1,0 +1,39 @@
+{
+    "name": "phaidon/piwik-module",
+    "version": "1.3.0",
+    "description": "Piwik statistics module.",
+    "type": "zikula-module",
+    "license": "LGPL-3.0+",
+    "authors": [
+        {
+            "name": "Phaidon",
+            "homepage": "https://github.com/phaidon"
+        },
+        {
+            "name": "Guite",
+            "homepage": "https://github.com/Guite"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "Phaidon\\PiwikModule\\": "" }
+    },
+    "require": {
+        "php": ">5.4.0"
+    },
+    "extra": {
+        "zikula": {
+            "class": "Phaidon\\PiwikModule\\PhaidonPiwikModule",
+            "core-compatibility": ">=1.4.3",
+            "displayname": "Piwik statistics",
+            "url": "piwik",
+            "capabilities": {
+                "admin": {"route": "phaidonpiwikmodule_config_config"},
+                "hook_provider": {"class": "Phaidon\\PiwikModule\\Container\\HookContainer"}
+            },
+            "securityschema": {
+                "PhaidonPiwikModule::": "::",
+                "OptOut::": "Block ID::"
+            }
+        }
+    }
+}

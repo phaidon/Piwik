@@ -6,11 +6,7 @@
  * Contributor Agreements and licensed to You under the following license:
  *
  * @license GNU/LGPLv3 (or at your option, any later version).
- * @package Piwik
  * @link https://github.com/phaidon/Piwik
- *
- * Please see the NOTICE file distributed with this source code for further
- * information regarding copyright and licensing.
  */
 
 /**
@@ -37,7 +33,7 @@ class Piwik_Installer extends Zikula_AbstractInstaller
 
         // Initialisation successful
         $url = ModUtil::url('Piwik', 'admin', 'modifyconfig'); 
-        LogUtil::registerStatus($this->__f("You installed the Piwik module succesfully. To activate the tracking please setup the module <a href='%s'>here</a>.", $url));        
+        LogUtil::registerStatus($this->__f('You successfully installed the Piwik module. To activate the tracking please setup the module <a href="%s" title="Piwik configuration">here</a>.', $url));        
 
         return true;
     }

@@ -11,7 +11,7 @@ Piwik is an open source web analytics software. It gives interesting reports on 
 
 ## Installation
 
-To install Piwik simply unpack the distribution inside your Zikula modules directory. This will create the ./modules/Piwik directory and should contain all the files of the distribution. (note: if you downloaded your module from the Zikula Extensions database, then you should unpack your module from your Zikula root directory.)
+To install Piwik simply unpack the distribution inside your Zikula modules directory. The directory `/modules/PhaidonPiwikModule/` should contain all the files of the distribution. (note: if you downloaded your module from the Zikula Extensions database, then you should unpack your module from your Zikula root directory.)
 
 Now, enter the administration portion of your Zikula site:
 
