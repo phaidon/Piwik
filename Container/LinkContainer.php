@@ -92,7 +92,7 @@ class LinkContainer implements LinkContainerInterface
         ];
 
         $links[] = [
-            'url' => $this->router->generate('phaidonpiwikmodule_admin_dashboard'),
+            'url' => $this->router->generate('phaidonpiwikmodule_dashboard_index'),
             'text' => $this->translator->__('Piwik dashboard'),
             'icon' => 'bar-chart'
         ];
