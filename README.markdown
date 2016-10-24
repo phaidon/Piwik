@@ -1,6 +1,6 @@
 ## About
 
-Piwik is an open source web analytics software. It gives interesting reports on your website visitors, your popular pages, the search engines keywords they used, the language they speak… and so much more. Piwik aims to be an open source alternative to Google Analytics. Because Piwik has been built on the top of APIs, all the data is available through simple to use APIs. All features in Piwik are built inside plugins: you can download new plugins, and easily build your own. The user interface is fully customizable and light speed. [[http://piwik.org/]]
+Piwik is an open source web analytics software. It gives interesting reports on your website visitors, your popular pages, the search engines keywords they used, the language they speak… and so much more. Piwik aims to be an open source alternative to Google Analytics. Because Piwik has been built on the top of APIs, all the data is available through simple to use APIs. All features in Piwik are built inside plugins: you can download new plugins, and easily build your own. The user interface is fully customizable and light speed. http://piwik.org/
 
 ## Requirements
 
@@ -49,7 +49,10 @@ You have to fill out the path to Piwik installation, the site-id and your token.
 ## Changelog
 
 ### Piwik 1.3.0
-  * Migrated to Core-2.0 spec for improved compatibility with Zikula 1.4.3+.
+  * Migrated to Core-2.0 spec for improved compatibility with Zikula 1.4.3+, #14.
+  * Migrated from Smarty to Twig.
+  * Migrated to Symfony Forms.
+  * Migrated JS from Prototype to jQuery, #15.
 
 ### Piwik 1.2.0
   * Workaround for Zikula < 1.3.4 and lang != en.
