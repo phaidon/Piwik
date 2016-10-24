@@ -54,7 +54,7 @@ class ConfigType extends AbstractType
             ])
             ->add('tracking_siteid', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', [
                 'label' => $translator->__('Site'),
-                'choices' => $options['sites'],
+                'choices' => false !== $options['sites'] ? $options['sites'] : [],
                 'choices_as_values' => true,
                 'expanded' => false,
                 'multiple' => false
@@ -106,7 +106,7 @@ class ConfigType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'translator' => null
+            'translator' => null,
             'sites' => []
         ]);
     }
