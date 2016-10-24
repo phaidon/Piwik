@@ -37,6 +37,7 @@
 
         <service id="phaidon_piwik_module.tracker_code_injector_listener" class="%phaidon_piwik_module.tracker_code_injector_listener.class%">
             <tag name="kernel.event_subscriber" />
+            <argument type="service" id="kernel" />
             <argument type="service" id="phaidon_piwik_module.helper.user_output_helper" />
         </service>
     </services>
