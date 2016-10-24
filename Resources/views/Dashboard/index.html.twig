@@ -1,0 +1,55 @@
+{% form_theme form with [
+    'ZikulaFormExtensionBundle:Form:bootstrap_3_zikula_admin_layout.html.twig',
+    'ZikulaFormExtensionBundle:Form:form_div_layout.html.twig'
+] %}
+{{ adminHeader() }}
+<div class="container-fluid">
+    <div class="row">
+        <h3>
+            {% if context == 'overview' %}
+                <span class="fa fa-bar-chart"></span>
+                {{ __('Piwik dashboard') }}
+                {{ pageSetVar('title', __('Piwik dashboard')) }}
+            {% elseif context == 'lastVisitors' %}
+                <span class="fa fa-tachometer"></span>
+                {{ __('Recent visits') }}
+                {{ pageSetVar('title', __('Recent visits')) }}
+            {% endif %}
+        </h3>
+
+        {{ moduleLinks(type='dashboard', modName='PhaidonPiwikModule') }}<br />
+
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        <fieldset>
+            <legend>{{ __('Display options') }}</legend>
+            {{ form_row(form.period) }}}
+
+            {% if context == 'overview' %}
+                {{ form_row(form.date) }}}
+                {# date ranges are not enabled yet
+                { form_row(form.from) }}}
+                {{ form_row(form.to) }}
+                #}
+            {% endif %}
+        </fieldset>
+
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+                {{ form_widget(form.save) }}
+            </div>
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+</div>
+
+{% if context == 'overview' %}
+    {{ overviewData }}
+    {{ pagesData }}
+{% elseif context == 'lastVisits' %}
+    {{ visitorsData }}
+{% endif %}
+
+{{ adminFooter() }}

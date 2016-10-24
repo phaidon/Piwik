@@ -41,7 +41,15 @@ class Piwik_Api_User extends Zikula_AbstractApi
             return true;
         }
 
+        $siteId = $this->getVar('tracking_siteid', 'SITEID');
+        if ($siteId == 'SITEID') {
+            return true;
+        }
+
         $view = Zikula_View::getInstance('Piwik');
+        $view->assign('piwikUrl', ModUtil::apiFunc($this->name, 'user', 'getBaseUrl'))
+             ->assign('siteId', $siteId)
+             ->assign('enableLinkTricking', $this->getVar('tracking_linktracking');
         $trackercode = $view->fetch('userapi/tracker.tpl');
 
         // add the scripts to page footer
@@ -67,7 +75,7 @@ class Piwik_Api_User extends Zikula_AbstractApi
         $view = Zikula_View::getInstance('Piwik');
 
         return $view
-            ->assign('tracking_piwikpath', $this->getVar('tracking_piwikpath'))
+            ->assign('piwikUrl', ModUtil::apiFunc($this->name, 'user', 'getBaseUrl'))
             ->assign('width', $width)
             ->assign('height', $height)
             ->fetch('userapi/optOut.tpl');

@@ -234,24 +234,24 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
 
         $data = [];
 
-        $data['Visitors'] = $this->data([
+        $data['visitors'] = $this->data([
             'method' => 'VisitsSummary.getVisits', 
             'period' => $args['period'], 
             'date'   => $args['date'],
             'limit'  => $args['limit']
         ]);
 
-        if (!is_array($data['Visitors'])) {
+        if (!is_array($data['visitors'])) {
             return LogUtil::registerError($this->__('Could not connect to Piwik. Please check your settings.'));
         }
 
-        $data['Unique'] = $this->data([
+        $data['unique'] = $this->data([
             'method' => 'VisitsSummary.getUniqueVisitors',
             'period' => $args['period'],
             'date'   => $args['date'],
             'limit'  => $args['limit']
         ]);
-        $data['Bounced'] = $this->data([
+        $data['bounced'] = $this->data([
             'method' => 'VisitsSummary.getBounceCount',
             'period' => $args['period'],
             'date'   => $args['date'],
@@ -260,12 +260,12 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
 
         $strValues = $strLabels = $strBounced =  $strValuesU = '';
         $intUSum = $intCount = 0; 
-        if (is_array($data['Visitors'])) {
-            foreach ($data['Visitors'] as $strDate => $intValue) {
+        if (is_array($data['visitors'])) {
+            foreach ($data['visitors'] as $strDate => $intValue) {
                 $intCount++;
                 $strValues .= $intValue . ',';
-                $strValuesU .= $data['Unique'][$strDate] . ',';
-                $strBounced .= $data['Bounced'][$strDate] . ',';
+                $strValuesU .= $data['unique'][$strDate] . ',';
+                $strBounced .= $data['bounced'][$strDate] . ',';
                 $label = '';
                 switch ($args['period']) {
                     case 'day':
@@ -283,7 +283,7 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
                         break;
                 }
                 $strLabels .= '[' . $intCount . ',"' . $label . '"],';
-                $intUSum += $data['Unique'][$strDate];
+                $intUSum += $data['unique'][$strDate];
             }
         } else {
             $strValues = '0,';
@@ -297,7 +297,7 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
         $strLabels = substr($strLabels, 0, -1);
         $strBounced = substr($strBounced, 0, -1);
 
-        $data['Visitors'] = array_reverse($data['Visitors']);
+        $data['visitors'] = array_reverse($data['visitors']);
 
         return $this->view
             ->assign('intUSum', $intUSum)

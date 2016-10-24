@@ -55,37 +55,29 @@ class AdminController extends AbstractController
     /**
      * This function shows the Piwik dashboard.
      * 
-     * @Route("/dashboard")
-     * @Template
-     *
      * @param Request $request
      * @throws AccessDeniedException Thrown if the user doesn't have admin access to the module
      * @return Response
      */
     public function dashboard(Request $request)
     {
-        // TODO legacy
-        $form = FormUtil::newForm('Piwik', $this);
+        @trigger_error('The admin_dashboard function is deprecated. please use phaidonpiwikmodule_dashboard_index route instead.', E_USER_DEPRECATED);
 
-        return $form->execute('admin/dashboard.tpl', new Piwik_Handler_Dashboard());
+        return $this->redirectToRoute('phaidonpiwikmodule_dashboard_index');
     }
 
     /**
      * This function shows the Piwik dashboard.
      * 
-     * @Route("/dashboard2")
-     * @Template
-     *
      * @param Request $request
      * @throws AccessDeniedException Thrown if the user doesn't have admin access to the module
      * @return Response
      */
     public function dashboard2(Request $request)
     {
-        // TODO legacy
-        $form = FormUtil::newForm('Piwik', $this);
+        @trigger_error('The admin_dashboard2 function is deprecated. please use phaidonpiwikmodule_dashboard_lastvisitors route instead.', E_USER_DEPRECATED);
 
-        return $form->execute('admin/dashboard2.tpl', new Piwik_Handler_Dashboard());
+        return $this->redirectToRoute('phaidonpiwikmodule_dashboard_lastvisitors');
     }
 
     /**
@@ -98,13 +90,16 @@ class AdminController extends AbstractController
      * @throws AccessDeniedException Thrown if the user doesn't have admin access to the module
      * @return Response
      */
-    public function troubleshooting(Request $request)
+    public function troubleshootingAction(Request $request)
     {
         if (!$this->hasPermission('PhaidonPiwikModule::', '::', ACCESS_ADMIN)) {
             throw new AccessDeniedException();
         }
 
-        // TODO legacy
-        return $this->view->fetch('admin/troubleshooting.tpl');
+        return [
+            // TODO legacy call
+            'piwikUrl' => \ModUtil::apiFunc('PhaidonPiwikModule', 'user', 'getBaseUrl'),
+            'siteId' => $this->getVar('tracking_siteid', 'SITEID')
+        ];
     } 
 }

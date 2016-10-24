@@ -79,8 +79,8 @@ class Piwik_Block_OptOut extends Zikula_Controller_AbstractBlock
     public function update($blockinfo)
     {
         $vars = [
-            'height' => FormUtil::getPassedValue('piwik_height', null),
-            'width'  => FormUtil::getPassedValue('piwik_width', null)
+            'width'  => FormUtil::getPassedValue('piwik_width', null),
+            'height' => FormUtil::getPassedValue('piwik_height', null)
         ];
 
         $blockinfo['content'] = BlockUtil::varsToContent($vars);
@@ -106,7 +106,10 @@ class Piwik_Block_OptOut extends Zikula_Controller_AbstractBlock
 
         $vars = BlockUtil::varsFromContent($blockinfo['content']);
 
-        $blockinfo['content'] = ModUtil::apiFunc($this->name, 'user', 'optOut', ['height' => $vars['height'], 'width' => $vars['width']]);
+        $blockinfo['content'] = ModUtil::apiFunc($this->name, 'user', 'optOut', [
+            'width' => $vars['width'],
+            'height' => $vars['height']
+        ]);
 
         return BlockUtil::themeBlock($blockinfo);
     }

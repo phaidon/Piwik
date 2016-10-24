@@ -108,28 +108,28 @@ class LinkContainer implements LinkContainerInterface
     {
         $links = [];
 
-        if (!$this->permissionApi->hasPermission($this->getBundleName() . '::', '::', ACCESS_READ)) {
-            return $links;
+        if ($this->permissionApi->hasPermission($this->getBundleName() . '::', '::', ACCESS_ADMIN)) {
+            $links[] = [
+                'url' => $this->router->generate('phaidonpiwikmodule_dashboard_index'),
+                'text' => $this->translator->__('Overview'),
+                'icon' => 'bar-chart'
+            ];
+
+            $links[] = [
+                'url' => $this->router->generate('phaidonpiwikmodule_dashboard_index', { context: 'lastVisits' } ),
+                'text' => $this->translator->__('Recent visits'),
+                'icon' => 'tachometer'
+            ];
         }
 
-        $links[] = [
-            'url' => $this->router->generate('phaidonpiwikmodule_admin_dashboard'),
-            'text' => $this->translator->__('Overview'),
-            'icon' => 'bar-chart'
-        ];
-
-        $links[] = [
-            'url' => $this->router->generate('phaidonpiwikmodule_admin_dashboard2'),
-            'text' => $this->translator->__('Visits in the last time'),
-            'icon' => 'tachometer'
-        ];
-
-        $links[] = [
-            // TODO legacy call
-            'url' => ModUtil::apiFunc('PhaidonPiwikModule', 'user', 'getBaseUrl'),
-            'text' => $this->translator->__('Piwik web interface'),
-            'icon' => 'external-link'
-        ];
+        if ($this->permissionApi->hasPermission($this->getBundleName() . '::', '::', ACCESS_READ)) {
+            $links[] = [
+                // TODO legacy call
+                'url' => ModUtil::apiFunc('PhaidonPiwikModule', 'user', 'getBaseUrl'),
+                'text' => $this->translator->__('Piwik web interface'),
+                'icon' => 'external-link'
+            ];
+        }
 
         return $links;
     }

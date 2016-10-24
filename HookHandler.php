@@ -29,7 +29,7 @@ class Piwik_HookHandler extends Zikula_Hook_AbstractHandler
     {
         $view = Zikula_View::getInstance('Piwik', false, null, true);
 
-        $view->assign('tracking_piwikpath', ModUtil::getVar('Piwik', 'tracking_piwikpath'))
+        $view->assign('piwikUrl', ModUtil::apiFunc('PhaidonPiwikModule', 'user', 'getBaseUrl'))
              ->assign('width', '100%')
              ->assign('height', '160px');
 

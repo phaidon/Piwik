@@ -1,102 +1,108 @@
-{pageaddvar name='stylesheet' value='modules/Piwik/javascript/jqplot/jquery.jqplot.min.css'}
-{pageaddvar name='javascript' value='modules/Piwik/javascript/jqplot/jquery.jqplot.min.js'}
-{pageaddvar name='javascript' value='modules/Piwik/javascript/jqplot/plugins/jqplot.trendline.min.js'}
+{{ pageAddAsset('stylesheet', zasset('@PhaidonPiwikModule:js/jsplot/jquery.jqplot.min.css')) }}
+{{ pageAddAsset('javascript', zasset('@PhaidonPiwikModule:js/jsplot/jquery.jqplot.min.js')) }}
+{{ pageAddAsset('javascript', zasset('@PhaidonPiwikModule:js/jsplot/plugins/jqplot.trendline.min.js')) }}
 
-<table class="z-admintable">
+<table class="table table-striped">
+    <caption>
+        {% if period == 'day' %}
+            {{ __f('Visits in the last %s days', { '%s': 30 }) }}
+        {% elseif period == 'week' %}
+            {{ __f('Visits in the last %s weeks', { '%s': 12 }) }}
+        {% elseif period == 'month' %}
+            {{ __f('Visits in the last %s months', { '%s': 12 }) }}
+        {% elseif period == 'year' %}
+            {{ __f('Visits in the last %s years', { '%s': 5 }) }}
+        {% endif %}
+    </caption>
+    <colgroup>
+        <col id="cDate" />
+        <col id="cVisits" />
+        <col id="cUnique" />
+        <col id="cBounced" />
+    </colgroup>
     <thead>
         <tr>
-            <th colspan=4>
-                {if $period == 'day'}
-                    {gt text='Visits in the last %s days' tag1=30}
-                {elseif $period == 'week'}
-                    {gt text='Visits in the last %s weeks' tag1=12}
-                {elseif $period == 'month'}
-                    {gt text='Visits in the last %s months' tag1=12}
-                {elseif $period == 'year'}
-                     {gt text='Visits in the last %s years' tag1=5}
-                {/if}
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td align=center colspan=4>
-                <div id="piwikVistorsGraph" style="height:220px;width:490px"></div>
+            <td colspan="4" class="text-center">
+                <div id="piwikVistorsGraph" style="height: 220px; width: 490px"></div>
             </td>
         </tr>
-    </tbody>
-    <thead>
         <tr>
-            <th>{gt text='Date'}</th>
-            <th>{gt text='Visits'}</th>
-            <th>{gt text='Unique'}</th>
-            <th>{gt text='Bounced'}</th>
+            <th id="hDate" scope="col">{{ __('Date') }}</th>
+            <th id="hVisits" scope="col">{{ __('Visits') }}</th>
+            <th id="hUnique" scope="col">{{ __('Unique') }}</th>
+            <th id="hBounced" scope="col">{{ __('Bounced') }}</th>
         </tr>
     </thead>
     <tbody>
-        {foreach from=$Visitors key='strDate' item='intValue'}
-        <tr class="{cycle values='z-odd,z-even'}">
-            <td>{$strDate}</td>
-            <td>{$intValue}</td>
-            <td>{$Unique.$strDate}</td>
-            <td>{$Bounced.$strDate}</td>
-        </tr>
-        {/foreach}
-        <tr class="{cycle values='z-odd,z-even'}">
+        {% for strDate, intValue in visitors %}
+            <tr>
+                <td headers="hDate">{{ strDate }}</td>
+                <td headers="hVisits">{{ intValue }}</td>
+                <td headers="hUnique">{{ unique[strDate] }}</td>
+                <td headers="hBounced">{{ bounced[strDate] }}</td>
+            </tr>
+        {% endfor %}
+        <tr>
             <td colspan="4">
-                <strong>{gt text='Unique TOTAL'}</strong> {gt text='Sum'}: {$intUSum} {gt text='Avg'}: {$intAvg}
+                <strong>{{ __('Unique TOTAL') }}</strong> {{ __('Sum') }}: {{ intUSum }} {{ __('Avg') }}: {{ intAvg }}
             </td>
         </tr>
     </tbody>
 </table>
 
+{% set plotScript %}
 <script type="text/javascript">
-   var $j = jQuery.noConflict();
-   $j.jqplot('piwikVistorsGraph', [[{{$strValues}}],[{{$strValuesU}}],[{{$strBounced}}]],
-        {
-            axes: {
-                yaxis: {
-                    min: 0,
-                    tickOptions: {
-                        formatString: '%.0f'
-                    }
-                },
-                xaxis: {
-                    min: 1,
-                    max: 30,
-                    ticks: [{{$strLabels}}]
+    var $j = jQuery.noConflict();
+    $j.jqplot('piwikVistorsGraph', [
+        [{{ strValues }}],
+        [{{ strValuesU }}],
+        [{{ strBounced }}]
+    ], {
+        axes: {
+            yaxis: {
+                min: 0,
+                tickOptions: {
+                    formatString: '%.0f'
                 }
             },
-            seriesDefaults: {
-                showMarker: false,
-                lineWidth: 1,
-                fill: true,
-                fillAndStroke: true,
-                fillAlpha: 0.9,
+            xaxis: {
+                min: 1,
+                max: 30,
+                ticks: [{{ strLabels }}]
+            }
+        },
+        seriesDefaults: {
+            showMarker: false,
+            lineWidth: 1,
+            fill: true,
+            fillAndStroke: true,
+            fillAlpha: 0.9,
+            trendline: {
+                show: false,
+                color: '#C00',
+                lineWidth: 1.5,
+                type: 'exp'
+            }
+        },
+        series: [
+            {
+                color: '#90AAD9',
+                fillColor: '#D4E2ED'
+            },
+            {
+                color: '#A3BCEA',
+                fillColor: '#E4F2FD',
                 trendline: {
-                    show: false,
-                    color: '#C00',
-                    lineWidth: 1.5,
-                    type: 'exp'
+                    show: true,
+                    label: '{{ __('Unique visitor trend') }}'
                 }
             },
-            series: [
-                {
-                    color: '#90AAD9',
-                    fillColor: '#D4E2ED'
-                },
-                {
-                    color: '#A3BCEA',
-                    fillColor: '#E4F2FD',
-                    trendline: {
-                        show: true,
-                        label: 'Unique visitor trend'
-                    }
-                },
-                {
-                    color: '#E9A0BA',
-                    fillColor: '#FDE4F2'
-                }
-            ],
-        });
+            {
+                color: '#E9A0BA',
+                fillColor: '#FDE4F2'
+            }
+        ],
+    });
 </script>
+{% endset %}
+{{ pageAddVar('footer', plotScript) }}

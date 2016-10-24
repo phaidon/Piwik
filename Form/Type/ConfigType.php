@@ -63,7 +63,7 @@ class ConfigType extends AbstractType
                 'label' => $translator->__('Track admin pages'),
                 'required' => false
             ])
-            ->add('tracking_enable', 'Symfony\Component\Form\Extension\Core\Type\CheckboxType', [
+            ->add('tracking_linktracking', 'Symfony\Component\Form\Extension\Core\Type\CheckboxType', [
                 'label' => $translator->__('Track links'),
                 'required' => false
             ])

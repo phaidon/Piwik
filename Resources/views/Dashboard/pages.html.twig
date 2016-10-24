@@ -1,60 +1,49 @@
-<table class="z-admintable">
+<table class="table table-striped">
+    <caption>
+        {{ __('Visited pages') }} {{ include('@PhaidonPiwikModule/Dashboard/timePeriod.html.twig') }}
+    </caption>
+    <colgroup>
+        <col id="cTitle" />
+        <col id="cVisits" />
+        <col id="cUnique" />
+    </colgroup>
     <thead>
         <tr>
-            <th colspan=3>
-                {gt text='Visited pages'}
-                {include file='dashboard/timeperiod.tpl'}
-            </th>
-        </tr>
-        <tr>
-            <th>{gt text='Title'}</th>
-            <th>{gt text='Unique'}</th>
-            <th>{gt text='Visits'}</th>
+            <th id="hTitle" scope="col">{{ __('Title') }}</th>
+            <th id="hVisits" scope="col">{{ __('Visits') }}</th>
+            <th id="hUnique" scope="col">{{ __('Unique') }}</th>
         </tr>
     </thead>
     <tbody>
-        {* Display 9 most popular pages *}
-        {assign var='u' value=0}
-        {assign var='v' value=0}
-        {foreach from=$data item='d'}
-            {counter assign='i'}
-            {if $i <= 9}
-                <tr class="{cycle values='z-odd,z-even'}">
-                    <td>
-                        {$d.label}
-                    </td>
-                    <td>
-                        {$d.sum_daily_nb_uniq_visitors}
-                    </td>
-                    <td>
-                        {$d.nb_visits}
-                    </td>
+        {# Display 9 most popular pages #}
+        {% set amountOfOtherUnique = 0 %}
+        {% set amountOfOtherVisits = 0 %}
+        {% for dataRow in data %}
+            {% if loop.index <= 9 %}
+                <tr>
+                    <td headers="hTitle">{{ dataRow.label }}</td>
+                    <td headers="hVisits">{{ dataRow.nb_visits }}</td>
+                    <td headers="hUnique">{{ dataRow.sum_daily_nb_uniq_visitors }}</td>
                 </tr>
-            {else}
-                {assign var='u' value=$u+$d.sum_daily_nb_uniq_visitors}
-                {assign var='v' value=$v+$d.nb_visits}
-            {/if}
-        {foreachelse}
-            <tr class="{cycle values='z-odd,z-even'}">
-                <td colspan='3'>
-                    {gt text='No data available.'}
+            {% else %}
+                {% set amountOfOtherVisits = amountOfOtherVisits + dataRow.nb_visits %}
+                {% set amountOfOtherUnique = u + dataRow.sum_daily_nb_uniq_visitors %}
+            {% endif %}
+        {% else %}
+            <tr>
+                <td colspan="3">
+                    {{ __('No data available.') }}
                 </td>
             </tr>   
-        {/foreach}
-        
-        {* Display other pages*}
-        {if $v > 0}
-            <tr class="{cycle values='z-odd,z-even'}">
-                <td>
-                    {gt text='Others'}
-                </td>
-                <td>
-                    {$u}
-                </td>
-                <td>
-                    {$v}
-                </td>
+        {% endfor %}
+
+        {# Display other pages #}
+        {% if amountOfOtherVisits > 0 %}
+            <tr>
+                <td headers="hTitle">{{ __('Others') }}</td>
+                <td headers="hVisits">{{ amountOfOtherVisits }}</td>
+                <td headers="hUnique">{{ amountOfOtherUnique }}</td>
             </tr>   
-        {/if}
+        {% endif %}
     </tbody>
 </table>
