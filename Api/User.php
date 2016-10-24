@@ -28,22 +28,24 @@ class Piwik_Api_User extends Zikula_AbstractApi
         // no security check because code should be loaded in every page!
 
         // check if we are in admin pages
-        $adminpage = (FormUtil::getPassedValue('type', isset($args['type']) ? $args['type'] : null, 'GET') == 'admin');
-        //$adminpage = ($this->request->query->get('type', isset($args['type']) ? $args['type'] : null) == 'admin');
+        $isAdminPage = (FormUtil::getPassedValue('type', isset($args['type']) ? $args['type'] : null, 'GET') == 'admin');
+        //$isAdminPage = ($this->request->query->get('type', isset($args['type']) ? $args['type'] : null) == 'admin');
 
         // return if admin pages should not be trackes
-        if ($adminpage && $this->getVar('tracking_adminpages') == '0') {
+        if ($isAdminPage && $this->getVar('tracking_adminpages') == '0') {
             return true;
         }
 
         // only add piwik code to source if tracking is enabled
-        if ($this->getVar('tracking_enable') == 1) {
-            $view = Zikula_View::getInstance('Piwik');
-            $trackercode = $view->fetch('userapi/tracker.tpl');
-
-            // add the scripts to page footer
-            PageUtil::addVar('footer', $trackercode);
+        if ($this->getVar('tracking_enable') != 1) {
+            return true;
         }
+
+        $view = Zikula_View::getInstance('Piwik');
+        $trackercode = $view->fetch('userapi/tracker.tpl');
+
+        // add the scripts to page footer
+        PageUtil::addVar('footer', $trackercode);
 
         return true;
     }
@@ -55,7 +57,7 @@ class Piwik_Api_User extends Zikula_AbstractApi
      * 
      * @param array $args optOut arguments.
      * 
-     * @return boolean
+     * @return string
      */
     public function optOut($args)
     {
@@ -78,11 +80,11 @@ class Piwik_Api_User extends Zikula_AbstractApi
      * 
      * @param array $args getBaseUrl arguments.
      * 
-     * @return boolean
+     * @return string
      */
     public function getBaseUrl($args)
     {
-        $protocol = isset($args['protocol']) ? $args['protocol'] : $this->getVar('tracking_protocol');
+        $protocol = isset($args['protocol']) ? $args['protocol'] : $this->getVar('tracking_protocol', 3);
         $piwikPath = $this->getVar('tracking_piwikpath');
 
         switch ($protocol) {

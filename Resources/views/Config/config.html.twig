@@ -1,0 +1,51 @@
+{{ pageAddAsset('javascript', zasset('@PhaidonPiwikModule:js/PhaidonPiwikModule.Config.js')) }}
+{% form_theme form with [
+    'ZikulaFormExtensionBundle:Form:bootstrap_3_zikula_admin_layout.html.twig',
+    'ZikulaFormExtensionBundle:Form:form_div_layout.html.twig'
+] %}
+{{ adminHeader() }}
+<div class="container-fluid">
+    <div class="row">
+        <h3>
+            <span class="fa fa-wrench"></span>
+            {{ __('Settings') }}
+            {{ pageSetVar('title', __('Piwik settings')) }}
+        </h3>
+
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        <fieldset>
+            <legend>{{ __('General settings') }}</legend>
+            {{ form_row(form.tracking_enable) }}
+        </fieldset>
+
+        <div id="piwikSettingsContainer">
+            <fieldset>
+                <legend>{{ __('Account settings') }}</legend>
+                {{ form_row(form.tracking_piwikpath) }}
+                {{ form_row(form.tracking_token) }}
+                {{ form_row(form.tracking_protocol) }}
+                {% if not sites %}
+                    <p class="alert alert-danger">{{ __('The available sites could not be loaded. Please ensure that the settings above are correct and click on \'Save\' once.') }}</p>
+                {% endif %}
+                {{ form_row(form.tracking_siteid) }}
+            </fieldset>
+            <fieldset>
+                <legend>{{ __('Tracking settings') }}</legend>
+                {{ form_row(form.tracking_adminpages) }}
+                {{ form_row(form.tracking_linktracking) }}
+            </fieldset>    
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+                {{ form_widget(form.save) }}
+                {{ form_widget(form.cancel) }}
+            </div>
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+</div>
+{{ adminFooter() }}

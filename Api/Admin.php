@@ -44,11 +44,10 @@ class Piwik_Api_Admin extends Zikula_AbstractApi
 
         $sites = [];
         foreach ($sites0 as $site) {
-            $sites[] = [
-                'value' => $site['idsite'],
-                'text'  => $site['name']
-            ];
+            $sites[$site['name']] = $site['idsite'];
         }
+
+        ksort($sites);
 
         return $sites;
     }

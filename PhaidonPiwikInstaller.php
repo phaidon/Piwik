@@ -9,7 +9,7 @@
  * @link https://github.com/phaidon/Piwik
  */
 
-namespace Phaidon/PiwikModule;
+namespace Phaidon\PiwikModule;
 
 use Zikula\Core\AbstractExtensionInstaller;
 
@@ -32,8 +32,7 @@ class PhaidonPiwikInstaller extends AbstractExtensionInstaller
         $this->hookApi->installProviderHooks($this->bundle->getMetaData());
 
         // initialisation successful
-        $url = ModUtil::url('Piwik', 'admin', 'modifyconfig'); 
-        LogUtil::registerStatus($this->__f('You successfully installed the Piwik module. To activate the tracking please setup the module <a href="%s" title="Piwik configuration">here</a>.', $url));        
+        $this->addFlash('status', $this->__f('You successfully installed the Piwik module. To activate the tracking please setup the module <a href="%s" title="Piwik configuration">here</a>.', ['%s' => $this->container->get('router')->generate('phaidonpiwikmodule_config_config')]));
 
         return true;
     }
@@ -50,6 +49,7 @@ class PhaidonPiwikInstaller extends AbstractExtensionInstaller
             'tracking_piwikpath' => 'yourdomain.com/piwikpath',
             'tracking_siteid' => 0,
             'tracking_token' => 'abcdef123456',
+            'tracking_protocol' => 3,
             'tracking_adminpages' => false,
             'tracking_linktracking' => true
         ]);
