@@ -1,8 +1,2 @@
-<div class="z-formrow">
-    <label for="piwik_width">{{ __('Width of block') }}</label>
-    <input id="piwik_width" name="piwik_width" type="text" size="30" maxlength="255" value="{{ vars.width|e('html_attr') }}" />
-</div>
-<div class="z-formrow">
-    <label for="piwik_height">{{ __('Height of block') }}</label>
-    <input id="piwik_height" name="piwik_height" type="text" size="30" maxlength="255" value="{{ vars.height|e('html_attr') }}" />
-</div>
+{{ form_row(form.optOutWidth) }}
+{{ form_row(form.optOutHeight) }}

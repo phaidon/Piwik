@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright Piwik Team 2013
+ * Copyright Piwik Team 2016
  *
  * This work is contributed to the Zikula Foundation under one or more
  * Contributor Agreements and licensed to You under the following license:
@@ -9,108 +9,60 @@
  * @link https://github.com/phaidon/Piwik
  */
 
+namespace Phaidon\PiwikModule\Block;
+
+use Zikula\BlocksModule\AbstractBlockHandler;
+use Zikula\SearchModule\AbstractSearchable;
+
 /**
  * OptOut block class.
  */
-class Piwik_Block_OptOut extends Zikula_Controller_AbstractBlock
+class OptOutBlock extends AbstractBlockHandler
 {
-    /**
-     * initialise block
-     */
-    public function init()
-    {
-        SecurityUtil::registerPermissionSchema('OptOut::', 'Block ID::');
-    }
-
-    /**
-     * get information on block
-     *
-     * @return array The block information
-     */
-    public function info()
-    {
-        return array(
-            'module'         => 'Piwik',
-            'text_type'      => $this->__('Opt-Out functionality'),
-            'text_type_long' => $this->__("Includes Piwik's opt-out feature"),
-            'allow_multiple' => true,
-            'form_content'   => false,
-            'form_refresh'   => false,
-            'show_preview'   => true
-        );
-    }
-
-    /**
-     * modify block
-     *
-     * @author The Zikula Development Team
-     *
-     * @param array $blockinfo a blockinfo structure
-     *
-     * @return output the modify form
-     */
-    public function modify($blockinfo)
-    {
-        $vars = BlockUtil::varsFromContent($blockinfo['content']);
-        
-        // defaults
-        if (!isset($vars['width'])) {
-            $vars['width'] = '100%';
-        }
-        if (!isset($vars['height'])) {
-            $vars['height'] = '200px';
-        }
-
-        // builds and return the output
-        return $this->view
-            ->assign('vars', $vars)
-            ->fetch('block/optout_modify.tpl');
-    }
-
-    /**
-     * update block
-     *
-     * @author The Zikula Development Team
-     *
-     * @param array $blockinfo a blockinfo structure
-     *
-     * @return array $blockinfo a blockinfo structure
-     */
-    public function update($blockinfo)
-    {
-        $vars = [
-            'width'  => FormUtil::getPassedValue('piwik_width', null),
-            'height' => FormUtil::getPassedValue('piwik_height', null)
-        ];
-
-        $blockinfo['content'] = BlockUtil::varsToContent($vars);
-
-        return $blockinfo;
-    }
-
     /**
      * display block
      *
-     * @author The Zikula Development Team
-     *
-     * @param  array $blockinfo a blockinfo structure
-     *
-     * @return output the rendered bock
+     * @param array $properties
+     * @return string the rendered bock
      */
-    public function display($blockinfo)
+    public function display(array $properties)
     {
-        // security check
-        if (!SecurityUtil::checkPermission('OptOut::', "$blockinfo[bid]::", ACCESS_READ)) {
-            return;
+        if (!$this->hasPermission('OptOut::', $properties['bid'] . '::', ACCESS_READ)) {
+            return '';
         }
 
-        $vars = BlockUtil::varsFromContent($blockinfo['content']);
+        // set some defaults
+        if (!isset($properties['optOutWidth'])) {
+            $properties['optOutWidth'] = '100%';
+        }
+        if (!isset($properties['optOutHeight'])) {
+            $properties['optOutHeight'] = '200px';
+        }
 
-        $blockinfo['content'] = ModUtil::apiFunc($this->name, 'user', 'optOut', [
-            'width' => $vars['width'],
-            'height' => $vars['height']
+        // TODO legacy call
+        return ModUtil::apiFunc('PhaidonPiwikModule', 'user', 'optOut', [
+            'width' => $properties['optOutWidth'],
+            'height' => $properties['optOutHeight']
         ]);
+    }
 
-        return BlockUtil::themeBlock($blockinfo);
+    /**
+     * Returns the fully qualified class name of the block's form class.
+     *
+     * @return string Template path
+     */
+    public function getFormClassName()
+    {
+        return 'Phaidon\PiwikModule\Block\Form\Type\OptOutBlockType';
+    }
+
+    /**
+     * Returns the template used for rendering the editing form.
+     *
+     * @return string Template path
+     */
+    public function getFormTemplate()
+    {
+        return '@PhaidonPiwikModule/Block/optout_modify.html.twig';
     }
 }
