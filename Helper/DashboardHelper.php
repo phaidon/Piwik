@@ -68,11 +68,14 @@ class DashboardHelper
             floor(($data['avg_time_on_site'] % 3600) / 60) . 'm ' .
             floor(($data['avg_time_on_site'] % 3600) % 60) . 's';
 
-        $data['period'] = $period;
-        $data['date'] = $date;
-        $data['limit'] = $limit;
+        $templateParameters = [
+            'data' => $data,
+            'period' => $period,
+            'date' => $date,
+            'limit' => $limit
+        ];
 
-        return $this->twig->render('@PhaidonPiwikModule/Dashboard/overview.html.twig', $data);
+        return $this->twig->render('@PhaidonPiwikModule/Dashboard/overview.html.twig', $templateParameters);
     }
 
     /**
@@ -92,11 +95,14 @@ class DashboardHelper
             return false;
         }
 
-        $data['period'] = $period;
-        $data['date'] = $date;
-        $data['maxAmountOfShownPages'] = 9;
+        $templateParameters = [
+            'data' => $data,
+            'period' => $period,
+            'date' => $date,
+            'maxAmountOfShownPages' => 9
+        ];
 
-        return $this->twig->render('@PhaidonPiwikModule/Dashboard/pages.html.twig', $data);
+        return $this->twig->render('@PhaidonPiwikModule/Dashboard/pages.html.twig', $templateParameters);
     }
 
     /**
@@ -173,17 +179,19 @@ class DashboardHelper
 
         $data['visitors'] = array_reverse($data['visitors']);
 
-        $data['period'] = $period;
-        $data['date'] = $date;
-        $data['limit'] = $limit;
+        $templateParameters = [
+            'data' => $data,
+            'period' => $period,
+            'date' => $date,
+            'limit' => $limit,
+            'intUSum' => $intUSum,
+            'intAvg' => $intAvg,
+            'strValues' => $strValues,
+            'strValuesU' => $strValuesU,
+            'strLabels' => $strLabels,
+            'strBounced' => $strBounced
+        ];
 
-        $data['intUSum'] = $intUSum;
-        $data['intAvg'] = $intAvg;
-        $data['strValues'] = $strValues;
-        $data['strValuesU'] = $strValuesU;
-        $data['strLabels'] = $strLabels;
-        $data['strBounced'] = $strBounced;
-
-        return $this->twig->render('@PhaidonPiwikModule/Dashboard/visitors.html.twig', $data);
+        return $this->twig->render('@PhaidonPiwikModule/Dashboard/visitors.html.twig', $templateParameters);
     }
 }

@@ -125,12 +125,14 @@ class PiwikDataHelper
             throw new Exception();
         }
 
+        $dateValue = $date instanceof \DateTime ? $date->format('Y-m-d') : $date;
+
         $siteId = $this->variableApi->get('PhaidonPiwikModule', 'tracking_siteid');
         $token = $this->variableApi->get('PhaidonPiwikModule', 'tracking_token');
 
         $url = $this->getBaseUrl();
         $url .= 'index.php?module=API&method=' . $method;
-        $url .= '&idSite=' . $siteId . '&period=' . $period . '&date=' . $date;
+        $url .= '&idSite=' . $siteId . '&period=' . $period . '&date=' . $dateValue;
         $url .= '&format=json&filter_limit=' . $limit;
         $url .= '&token_auth=' . $token;
 

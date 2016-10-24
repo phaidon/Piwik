@@ -38,8 +38,16 @@
             <td headers="hValue hTimePerVisit">{{ data.average_time }}</td>
         </tr>
         <tr>
+            <th id="hAverageTimeOnSite scope="row" headers="hName">{{ __('Average time on site') }}:</th>
+            <td headers="hValue hAverageTimeOnSite">{{ data.avg_time_on_site }}</td>
+        </tr>
+        <tr>
             <th id="hBounceCount" scope="row" headers="hName">{{ __('Bounce count') }}:</th>
-            <td headers="hValue hBounceCount">{{ data.bounce_rate }}</td>
+            <td headers="hValue hBounceCount">{{ data.bounce_count }}</td>
+        </tr>
+        <tr>
+            <th id="hBounceRate" scope="row" headers="hName">{{ __('Bounce rate') }}:</th>
+            <td headers="hValue hBounceRate">{{ data.bounce_rate }}</td>
         </tr>
     </tbody>
 </table>

@@ -24,12 +24,12 @@
 
         <fieldset>
             <legend>{{ __('Display options') }}</legend>
-            {{ form_row(form.period) }}}
+            {{ form_row(form.period) }}
 
             {% if context == 'overview' %}
-                {{ form_row(form.date) }}}
+                {{ form_row(form.date) }}
                 {# date ranges are not enabled yet
-                { form_row(form.from) }}}
+                {{ form_row(form.from) }}
                 {{ form_row(form.to) }}
                 #}
             {% endif %}
@@ -46,10 +46,10 @@
 </div>
 
 {% if context == 'overview' %}
-    {{ overviewData }}
-    {{ pagesData }}
+    {{ overviewData|raw }}
+    {{ pagesData|raw }}
 {% elseif context == 'lastVisits' %}
-    {{ visitorsData }}
+    {{ visitorsData|raw }}
 {% endif %}
 
 {{ adminFooter() }}

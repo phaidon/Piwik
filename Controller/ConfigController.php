@@ -65,6 +65,9 @@ class ConfigController extends AbstractController
                 $this->setVars($formData);
 
                 $this->addFlash('status', $this->__('Done! Module configuration updated.'));
+
+                // refetch sites
+                $sites = $this->get('phaidon_piwik_module.helper.piwik_data_helper')->getSites();
             }
             if ($form->get('cancel')->isClicked()) {
                 $this->addFlash('status', $this->__('Operation cancelled.'));

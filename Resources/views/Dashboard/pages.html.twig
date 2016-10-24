@@ -5,29 +5,40 @@
     <colgroup>
         <col id="cTitle" />
         <col id="cVisits" />
-        <col id="cUnique" />
+        <col id="cUniqueVisitors" />
+        <col id="cHits" />
+        <col id="cBounceRate" />
+        <col id="cExitRate" />
     </colgroup>
     <thead>
         <tr>
             <th id="hTitle" scope="col">{{ __('Title') }}</th>
             <th id="hVisits" scope="col">{{ __('Visits') }}</th>
-            <th id="hUnique" scope="col">{{ __('Unique') }}</th>
+            <th id="hUniqueVisitors" scope="col">{{ __('Unique visitors') }}</th>
+            <th id="hHits" scope="col">{{ __('Hits') }}</th>
+            <th id="hBounceRate" scope="col">{{ __('Bounce rate') }}</th>
+            <th id="hExitRate" scope="col">{{ __('Exit rate') }}</th>
         </tr>
     </thead>
     <tbody>
-        {# Display 9 most popular pages #}
-        {% set amountOfOtherUnique = 0 %}
+        {# Display maxAmountOfShownPages (9) most popular pages #}
         {% set amountOfOtherVisits = 0 %}
+        {% set amountOfOtherUniqueVisitors = 0 %}
+        {% set amountOfOtherHits = 0 %}
         {% for dataRow in data %}
             {% if loop.index <= maxAmountOfShownPages %}
                 <tr>
                     <td headers="hTitle">{{ dataRow.label }}</td>
                     <td headers="hVisits">{{ dataRow.nb_visits }}</td>
-                    <td headers="hUnique">{{ dataRow.sum_daily_nb_uniq_visitors }}</td>
+                    <td headers="hUniqueVisitors">{{ dataRow.nb_uniq_visitors }}</td>
+                    <td headers="hHits">{{ dataRow.nb_hits }}</td>
+                    <td headers="hBounceRate">{{ dataRow.bounce_rate }}</td>
+                    <td headers="hExitRate">{{ dataRow.exit_rate }}</td>
                 </tr>
             {% else %}
                 {% set amountOfOtherVisits = amountOfOtherVisits + dataRow.nb_visits %}
-                {% set amountOfOtherUnique = u + dataRow.sum_daily_nb_uniq_visitors %}
+                {% set amountOfOtherUniqueVisitors = amountOfOtherUniqueVisitors + dataRow.sum_daily_nb_uniq_visitors %}
+                {% set amountOfOtherHits = amountOfOtherHits + dataRow.nb_hits %}
             {% endif %}
         {% else %}
             <tr>
@@ -42,7 +53,10 @@
             <tr>
                 <td headers="hTitle">{{ __('Others') }}</td>
                 <td headers="hVisits">{{ amountOfOtherVisits }}</td>
-                <td headers="hUnique">{{ amountOfOtherUnique }}</td>
+                <td headers="hUniqueVisitors">{{ amountOfOtherUniqueVisitors }}</td>
+                <td headers="hHits">{{ amountOfOtherHits }}</td>
+                <td headers="hBounceRate">-</td>
+                <td headers="hExitRate">-</td>
             </tr>   
         {% endif %}
     </tbody>

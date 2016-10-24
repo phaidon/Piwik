@@ -1,6 +1,6 @@
-{{ pageAddAsset('stylesheet', zasset('@PhaidonPiwikModule:js/jsplot/jquery.jqplot.min.css')) }}
-{{ pageAddAsset('javascript', zasset('@PhaidonPiwikModule:js/jsplot/jquery.jqplot.min.js')) }}
-{{ pageAddAsset('javascript', zasset('@PhaidonPiwikModule:js/jsplot/plugins/jqplot.trendline.min.js')) }}
+{{ pageAddAsset('stylesheet', zasset('@PhaidonPiwikModule:js/jqplot/jquery.jqplot.min.css')) }}
+{{ pageAddAsset('javascript', zasset('@PhaidonPiwikModule:js/jqplot/jquery.jqplot.min.js')) }}
+{{ pageAddAsset('javascript', zasset('@PhaidonPiwikModule:js/jqplot/plugins/jqplot.trendline.min.js')) }}
 
 <table class="table table-striped">
     <caption>
@@ -22,8 +22,8 @@
     </colgroup>
     <thead>
         <tr>
-            <td colspan="4" class="text-center">
-                <div id="piwikVistorsGraph" style="height: 220px; width: 490px"></div>
+            <td colspan="4">
+                <div id="piwikVisitorsGraph" style="height: 220px; width: 490px; margin: 10px auto"></div>
             </td>
         </tr>
         <tr>
@@ -34,12 +34,12 @@
         </tr>
     </thead>
     <tbody>
-        {% for strDate, intValue in visitors %}
+        {% for strDate, intValue in data.visitors %}
             <tr>
                 <td headers="hDate">{{ strDate }}</td>
                 <td headers="hVisits">{{ intValue }}</td>
-                <td headers="hUnique">{{ unique[strDate] }}</td>
-                <td headers="hBounced">{{ bounced[strDate] }}</td>
+                <td headers="hUnique">{{ data.unique[strDate] }}</td>
+                <td headers="hBounced">{{ data.bounced[strDate] }}</td>
             </tr>
         {% endfor %}
         <tr>
@@ -53,7 +53,7 @@
 {% set plotScript %}
 <script type="text/javascript">
     var $j = jQuery.noConflict();
-    $j.jqplot('piwikVistorsGraph', [
+    $j.jqplot('piwikVisitorsGraph', [
         [{{ strValues }}],
         [{{ strValuesU }}],
         [{{ strBounced }}]
@@ -68,7 +68,7 @@
             xaxis: {
                 min: 1,
                 max: 30,
-                ticks: [{{ strLabels }}]
+                ticks: [{{ strLabels|raw }}]
             }
         },
         seriesDefaults: {

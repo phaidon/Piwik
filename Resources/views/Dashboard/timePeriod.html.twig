@@ -1,9 +1,9 @@
 {% if period == 'day' %}
-    ({{ date|localizedDate('medium', 'none') }})
+    ({{ date|localizeddate('medium', 'none') }})
 {% elseif period == 'week' %}
-    ({{ __f('Week %s', { '%s': date->format('%V, %Y') }) }})
-{% elseif $period == 'month' %}
-    ({{ date->format('%B %Y') }})
-{% elseif $period == 'year' %}
-    ({{ date->format('%Y') }})
+    ({{ __f('Week %s', { '%s': date.format('V, Y') }) }})
+{% elseif period == 'month' %}
+    ({{ date.format('B Y') }})
+{% elseif period == 'year' %}
+    ({{ date.format('Y') }})
 {% endif %}
