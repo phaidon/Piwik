@@ -1,7 +1,6 @@
-{pageaddvar name="javascript" value="jquery"}
-{pageaddvar name="stylesheet" value="modules/Piwik/javascript/jqplot/jquery.jqplot.min.css"}
-{pageaddvar name="javascript" value="modules/Piwik/javascript/jqplot/jquery.jqplot.min.js"}
-{pageaddvar name="javascript" value="modules/Piwik/javascript/jqplot/plugins/jqplot.trendline.min.js"}
+{pageaddvar name='stylesheet' value='modules/Piwik/javascript/jqplot/jquery.jqplot.min.css'}
+{pageaddvar name='javascript' value='modules/Piwik/javascript/jqplot/jquery.jqplot.min.js'}
+{pageaddvar name='javascript' value='modules/Piwik/javascript/jqplot/plugins/jqplot.trendline.min.js'}
 
 <table class="z-admintable">
     <thead>
@@ -51,54 +50,52 @@
     </tbody>
 </table>
 
-
-
 <script type="text/javascript">
    var $j = jQuery.noConflict();
    $j.jqplot('piwikVistorsGraph', [[{{$strValues}}],[{{$strValuesU}}],[{{$strBounced}}]],
         {
-            axes:{
-                yaxis:{
-                    min:0,
-                    tickOptions:{
-                        formatString:'%.0f'
+            axes: {
+                yaxis: {
+                    min: 0,
+                    tickOptions: {
+                        formatString: '%.0f'
                     }
                 },
-                xaxis:{
-                    min:1,
-                    max:30,
-                    ticks:[{{$strLabels}}]
+                xaxis: {
+                    min: 1,
+                    max: 30,
+                    ticks: [{{$strLabels}}]
                 }
             },
-            seriesDefaults:{
-                showMarker:false,
-                lineWidth:1,
-                fill:true,
-                fillAndStroke:true,
-                fillAlpha:0.9,
-                trendline:{
-                    show:false,
-                    color:'#C00',
-                    lineWidth:1.5,
-                    type:'exp'
+            seriesDefaults: {
+                showMarker: false,
+                lineWidth: 1,
+                fill: true,
+                fillAndStroke: true,
+                fillAlpha: 0.9,
+                trendline: {
+                    show: false,
+                    color: '#C00',
+                    lineWidth: 1.5,
+                    type: 'exp'
                 }
             },
-            series:[
+            series: [
                 {
-                    color:'#90AAD9',
-                    fillColor:'#D4E2ED'
+                    color: '#90AAD9',
+                    fillColor: '#D4E2ED'
                 },
                 {
-                    color:'#A3BCEA',
-                    fillColor:'#E4F2FD',
-                    trendline:{
-                        show:true,
-                        label:'Unique visitor trend'
+                    color: '#A3BCEA',
+                    fillColor: '#E4F2FD',
+                    trendline: {
+                        show: true,
+                        label: 'Unique visitor trend'
                     }
                 },
                 {
-                    color:'#E9A0BA',
-                    fillColor:'#FDE4F2'
+                    color: '#E9A0BA',
+                    fillColor: '#FDE4F2'
                 }
             ],
         });

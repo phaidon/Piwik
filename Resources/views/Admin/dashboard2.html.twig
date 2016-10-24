@@ -10,7 +10,6 @@
 {formvalidationsummary}
 
     <fieldset>
-
         <div class="z-formrow">
             {formlabel for="period" __text='Period'}
             {formdropdownlist id="period" items=$periods}
@@ -21,9 +20,7 @@
         </div>
     </fieldset>
 
-
-{modapifunc modname='Piwik' type='dashboard' func='showVisitors' period=$period}
-
+    {modapifunc modname='Piwik' type='dashboard' func='showVisitors' period=$period}
 {/form}
 
 {adminfooter}
