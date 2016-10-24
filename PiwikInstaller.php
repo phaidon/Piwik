@@ -16,7 +16,7 @@ use Zikula\Core\AbstractExtensionInstaller;
 /**
  * Provides module installation and upgrade services for the Piwik module.
  */
-class PhaidonPiwikInstaller extends AbstractExtensionInstaller
+class PiwikInstaller extends AbstractExtensionInstaller
 {
     /**
      * Initialise the Piwik module
