@@ -97,8 +97,7 @@ class AdminController extends AbstractController
         }
 
         return [
-            // TODO legacy call
-            'piwikUrl' => \ModUtil::apiFunc('PhaidonPiwikModule', 'user', 'getBaseUrl'),
+            'piwikUrl' => $this->get('phaidon_piwik_module.helper.piwik_data_helper')->getBaseUrl(),
             'siteId' => $this->getVar('tracking_siteid', 'SITEID')
         ];
     } 

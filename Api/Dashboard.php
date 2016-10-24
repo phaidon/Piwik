@@ -50,84 +50,6 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
     }
 
     /**
-     * Tracker
-     *
-     * This function activates tracker in site source.
-     *
-     * @param array $params Tracker arguments.
-     *
-     * @return boolean|string
-     */
-    public function data($params)
-    {
-        if (!isset($params['method'])) {
-            return LogUtil::registerArgsError();
-        }
-        if (!isset($params['period'])) {
-            $params['period'] = '';
-        }
-        if (!isset($params['date'])) {
-            $params['date'] = '';
-        }
-        if (!isset($params['limit'])) {
-            $params['limit'] = -1;
-        }
-
-        $siteId = $this->getVar('tracking_siteid');
-
-        $strURL = ModUtil::apiFunc($this->name, 'user', 'getBaseUrl');
-        $strURL .= 'index.php?module=API&method='.$params['method'];
-        $strURL .= '&idSite=' . $siteId . '&period='.$params['period'].'&date='.$params['date'];
-        $strURL .= '&format=json&filter_limit='.$params['limit'];
-        $strURL .= '&token_auth='.$this->getVar('tracking_token');
-        $strResult = $this->get_remote_file($strURL);
-
-        return json_decode($strResult, true);
-    }
-
-    /**
-     * Get remote file
-     *
-     * This function get remote file.
-     *
-     * @param string $strURL Url.
-     *
-     * @return string
-     */
-    public function get_remote_file($strURL)
-    {
-        // Use cURL if available
-        if (function_exists('curl_init')) {
-            // Init cURL
-            $c = curl_init($strURL);
-            // Configure cURL CURLOPT_RETURNTRANSFER = 1
-            curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
-            // Configure cURL CURLOPT_HEADER = 0 
-            curl_setopt($c, CURLOPT_HEADER, 0);
-            // Get result
-            $strResult = curl_exec($c);
-            // Close connection
-            curl_close($c);
-            if (false === $strResult) {
-                return LogUtil::registerError($this->__('Could connect to piwik. Probably the url is wrong?'));
-            }
-            // cURL not available but url fopen allowed
-        } elseif (ini_get('allow_url_fopen')) {
-            // Get file using file_get_contents
-            $strResult = @file_get_contents($strURL);
-            // Error: Not possible to get remote file
-        } else {
-            $strResult = json_encode([
-                'result' => 'error',
-                'message' => 'Remote access to Piwik not possible. Enable allow_url_fopen or CURL.'
-            ]);
-        }
-
-        // Return result
-        return $strResult;
-    }
-
-    /**
      * Show overview
      *
      * This function shows an overview.
@@ -140,12 +62,8 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
     {
         $args = $this->setDefaults($args);
 
-        $params = [
-            'method' => 'VisitsSummary.get',
-            'period' => $args['period'],
-            'date'   => $args['date']
-        ];
-        $data = ModUtil::apiFunc($this->name, 'dashboard', 'data', $params);
+        $dataHelper = \ServiceUtil::get('phaidon_piwik_module.helper.piwik_data_helper');
+        $data = $dataHelper->getData('VisitsSummary.get', $args['period'], $args['date']);
 
         if (!is_array($data)) {
             return false;
@@ -154,12 +72,12 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
         }
 
         $data['total_time'] = 
-            floor( $data['sum_visit_length'] / 3600).'h '.
-            floor(($data['sum_visit_length'] % 3600)/60).'m '.
+            floor( $data['sum_visit_length'] / 3600).'h ' .
+            floor(($data['sum_visit_length'] % 3600) / 60).'m ' .
             floor(($data['sum_visit_length'] % 3600) % 60).'s';
         $data['average_time'] = 
-            floor( $data['avg_time_on_site'] / 3600).'h '.
-            floor(($data['avg_time_on_site'] % 3600)/60).'m '.
+            floor( $data['avg_time_on_site'] / 3600).'h ' .
+            floor(($data['avg_time_on_site'] % 3600) / 60).'m ' .
             floor(($data['avg_time_on_site'] % 3600) % 60).'s';
 
         return $this->view
@@ -186,12 +104,8 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
             $args['date'] = 'today';
         }
 
-        $params = [
-            'method' => 'Actions.getPageTitles',
-            'period' => $args['period'],
-            'date'   => $args['date']
-        ];
-        $data = $this->data($params);
+        $dataHelper = \ServiceUtil::get('phaidon_piwik_module.helper.piwik_data_helper');
+        $data = $dataHelper->getData('Actions.getPageTitles', $args['period'], $args['date']);
 
         if (!is_array($data)) {
             return LogUtil::registerError($this->__('Could not connect to Piwik. Please check your settings.'));
@@ -232,31 +146,18 @@ class Piwik_Api_Dashboard extends Zikula_AbstractApi
                 break;
         }
 
+        $dataHelper = \ServiceUtil::get('phaidon_piwik_module.helper.piwik_data_helper');
+
         $data = [];
 
-        $data['visitors'] = $this->data([
-            'method' => 'VisitsSummary.getVisits', 
-            'period' => $args['period'], 
-            'date'   => $args['date'],
-            'limit'  => $args['limit']
-        ]);
+        $data['visitors'] = $dataHelper->getData('VisitsSummary.getVisits', $args['period'], $args['date'], $args['limit']);
 
         if (!is_array($data['visitors'])) {
             return LogUtil::registerError($this->__('Could not connect to Piwik. Please check your settings.'));
         }
 
-        $data['unique'] = $this->data([
-            'method' => 'VisitsSummary.getUniqueVisitors',
-            'period' => $args['period'],
-            'date'   => $args['date'],
-            'limit'  => $args['limit']
-        ]);
-        $data['bounced'] = $this->data([
-            'method' => 'VisitsSummary.getBounceCount',
-            'period' => $args['period'],
-            'date'   => $args['date'],
-            'limit'  => $args['limit']
-        ]);
+        $data['unique'] = $dataHelper->getData('VisitsSummary.getUniqueVisitors', $args['period'], $args['date'], $args['limit']);
+        $data['bounced'] = $dataHelper->getData('VisitsSummary.getBounceCount', $args['period'], $args['date'], $args['limit']);
 
         $strValues = $strLabels = $strBounced =  $strValuesU = '';
         $intUSum = $intCount = 0; 

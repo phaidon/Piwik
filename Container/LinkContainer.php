@@ -11,7 +11,7 @@
 
 namespace Phaidon\PiwikModule\Container;
 
-use ModUtil;
+use Phaidon\PiwikModule\Helper\PiwikDataHelper;
 use Symfony\Component\Routing\RouterInterface;
 use Zikula\Common\Translator\TranslatorInterface;
 use Zikula\Core\LinkContainer\LinkContainerInterface;
@@ -35,17 +35,24 @@ class LinkContainer implements LinkContainerInterface
     private $permissionApi;
 
     /**
+     * @var PiwikDataHelper
+     */
+    private $piwikDataHelper;
+
+    /**
      * LinkContainer constructor.
      *
-     * @param TranslatorInterface $translator    TranslatorInterface service instance
-     * @param RouterInterface     $router        RouterInterface service instance
-     * @param PermissionApi       $permissionApi PermissionApi service instance
+     * @param TranslatorInterface $translator      TranslatorInterface service instance
+     * @param RouterInterface     $router          RouterInterface service instance
+     * @param PermissionApi       $permissionApi   PermissionApi service instance
+     * @param PiwikDataHelper     $piwikDataHelper PiwikDataHelper service instance
      */
-    public function __construct(TranslatorInterface $translator, RouterInterface $router, PermissionApi $permissionApi)
+    public function __construct(TranslatorInterface $translator, RouterInterface $router, PermissionApi $permissionApi, PiwikDataHelper $piwikDataHelper)
     {
         $this->translator = $translator;
         $this->router = $router;
         $this->permissionApi = $permissionApi;
+        $this->piwikDataHelper = $piwikDataHelper;
     }
 
     /**
@@ -124,8 +131,7 @@ class LinkContainer implements LinkContainerInterface
 
         if ($this->permissionApi->hasPermission($this->getBundleName() . '::', '::', ACCESS_READ)) {
             $links[] = [
-                // TODO legacy call
-                'url' => ModUtil::apiFunc('PhaidonPiwikModule', 'user', 'getBaseUrl'),
+                'url' => $this->piwikDataHelper->getBaseUrl(),
                 'text' => $this->translator->__('Piwik web interface'),
                 'icon' => 'external-link'
             ];

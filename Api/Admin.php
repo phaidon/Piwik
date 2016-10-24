@@ -34,16 +34,14 @@ class Piwik_Api_Admin extends Zikula_AbstractApi
             return false;
         }
 
-        $params = [
-            'method' => 'SitesManager.getSitesWithAtLeastViewAccess'
-        ];
-        $sites0 = ModUtil::apiFunc($this->name, 'dashboard', 'data', $params);
-        if (!$sites0) {
+        $dataHelper = \ServiceUtil::get('phaidon_piwik_module.helper.piwik_data_helper');
+        $siteList = $dataHelper->getData('SitesManager.getSitesWithAtLeastViewAccess');
+        if (!$siteList) {
             return LogUtil::registerError($this->__('An error occured. Please check URL and auth token. You need at least view access to one site.'));
         }
 
         $sites = [];
-        foreach ($sites0 as $site) {
+        foreach ($siteList as $site) {
             $sites[$site['name']] = $site['idsite'];
         }
 

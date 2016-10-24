@@ -46,8 +46,10 @@ class Piwik_Api_User extends Zikula_AbstractApi
             return true;
         }
 
+        $dataHelper = \ServiceUtil::get('phaidon_piwik_module.helper.piwik_data_helper');
+
         $view = Zikula_View::getInstance('Piwik');
-        $view->assign('piwikUrl', ModUtil::apiFunc($this->name, 'user', 'getBaseUrl'))
+        $view->assign('piwikUrl', $dataHelper->getBaseUrl())
              ->assign('siteId', $siteId)
              ->assign('enableLinkTricking', $this->getVar('tracking_linktracking');
         $trackerCode = $view->fetch('userapi/tracker.tpl');
@@ -72,43 +74,14 @@ class Piwik_Api_User extends Zikula_AbstractApi
         $width = isset($args['width']) ? $args['width'] : '100%';
         $height = isset($args['height']) ? $args['height'] : '200px';
 
+        $dataHelper = \ServiceUtil::get('phaidon_piwik_module.helper.piwik_data_helper');
+
         $view = Zikula_View::getInstance('Piwik');
 
         return $view
-            ->assign('piwikUrl', ModUtil::apiFunc($this->name, 'user', 'getBaseUrl'))
+            ->assign('piwikUrl', $dataHelper->getBaseUrl())
             ->assign('width', $width)
             ->assign('height', $height)
             ->fetch('userapi/optOut.tpl');
-    }
-
-    /**
-     * Get Piwik base url
-     * 
-     * This function provides the piwik base url
-     * 
-     * @param array $args getBaseUrl arguments.
-     * 
-     * @return string
-     */
-    public function getBaseUrl($args)
-    {
-        $protocol = isset($args['protocol']) ? $args['protocol'] : $this->getVar('tracking_protocol', 3);
-        $piwikPath = $this->getVar('tracking_piwikpath');
-
-        switch ($protocol) {
-            case 1: //only http
-                return 'http://' . $piwikPath . '/';
-                break;
-            case 2: //only https
-                return 'https://' . $piwikPath . '/';
-                break;
-            case 3: //http/https
-                if (null !== $_SERVER['HTTPS']) {
-                    return 'https://' . $piwikPath . '/';
-                } else {
-                    return 'http://' . $piwikPath . '/';
-                }
-                break;
-        }
     }
 }

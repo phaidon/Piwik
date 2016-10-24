@@ -9,10 +9,14 @@
  * @link    https://github.com/phaidon/Piwik
  */
 
+namespace Phaidon\PiwikModule;
+
+use Zikula\Bundle\HookBundle\Hook\AbstractHookListener;
+
 /**
  * Piwik Hooks Handlers.
  */
-class Piwik_HookHandler extends Zikula_Hook_AbstractHandler
+class Piwik_HookHandler extends AbstractHookListener
 {
     /**
      * Display hook for view.
@@ -29,7 +33,9 @@ class Piwik_HookHandler extends Zikula_Hook_AbstractHandler
     {
         $view = Zikula_View::getInstance('Piwik', false, null, true);
 
-        $view->assign('piwikUrl', ModUtil::apiFunc('PhaidonPiwikModule', 'user', 'getBaseUrl'))
+        $dataHelper = \ServiceUtil::get('phaidon_piwik_module.helper.piwik_data_helper');
+
+        $view->assign('piwikUrl', $dataHelper->getBaseUrl())
              ->assign('width', '100%')
              ->assign('height', '160px');
 
