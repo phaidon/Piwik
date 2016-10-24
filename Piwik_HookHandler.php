@@ -11,27 +11,24 @@
 
 namespace Phaidon\PiwikModule;
 
+use Symfony\Component\HttpFoundation\Response;
 use Zikula\Bundle\HookBundle\Hook\AbstractHookListener;
-
-// TODO refactor this class
+use Zikula\Bundle\HookBundle\Hook\DisplayHook;
+use Zikula\Bundle\HookBundle\Hook\DisplayHookResponse;
 
 /**
- * Piwik Hooks Handlers.
+ * Piwik hooks handlers.
  */
 class Piwik_HookHandler extends AbstractHookListener
 {
     /**
      * Display hook for view.
      *
-     * Subject is the object being viewed that we're attaching to.
-     * args[id] Is the id of the object.
-     * args[caller] the module who notified of this event.
-     *
-     * @param Zikula_DisplayHook $hook The hook.
+     * @param DisplayHook $hook The hook.
      *
      * @return void
      */
-    public function displayView(Zikula_DisplayHook $hook)
+    public function displayView(DisplayHook $hook)
     {
         $twig = \ServiceUtil::get('twig');
         $dataHelper = \ServiceUtil::get('phaidon_piwik_module.helper.piwik_data_helper');
@@ -42,7 +39,9 @@ class Piwik_HookHandler extends AbstractHookListener
             'height' => '160px'
         ];
 
-        $response = new Zikula_Response_DisplayHook('provider_area.ui_hooks.piwik.optOut', $view, 'UserApi/optOut.html.twig');
-        $hook->setResponse($response);
+        $response = new Response($twig->render('@PhaidonPiwikModule/UserApi/optOut.html.twig', $templateParameters));
+
+        $hookResponse = new DisplayHookResponse('provider_area.ui_hooks.piwik.optOut', $response);
+        $hook->setResponse($hookResponse);
     }
 }

@@ -58,7 +58,7 @@ class UserOutputHelper
         // no security check because code should be loaded in every page!
 
         // check if we are in admin pages
-        // TODO legacy call
+        // NOTE not sure yet how to determine admin pages in core 2.0
         $isAdminPage = FormUtil::getPassedValue('type', null, 'GET') == 'admin';
         //$isAdminPage = $this->request->query->get('type', null) == 'admin';
 
