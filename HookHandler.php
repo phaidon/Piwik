@@ -31,6 +31,7 @@ class Piwik_HookHandler extends AbstractHookListener
      */
     public function displayView(Zikula_DisplayHook $hook)
     {
+        // TODO legacy calls
         $view = Zikula_View::getInstance('Piwik', false, null, true);
 
         $dataHelper = \ServiceUtil::get('phaidon_piwik_module.helper.piwik_data_helper');
@@ -39,7 +40,7 @@ class Piwik_HookHandler extends AbstractHookListener
              ->assign('width', '100%')
              ->assign('height', '160px');
 
-        $response = new Zikula_Response_DisplayHook('provider_area.ui_hooks.piwik.optOut', $view, 'userapi/optOut.tpl');
+        $response = new Zikula_Response_DisplayHook('provider_area.ui_hooks.piwik.optOut', $view, 'UserApi/optOut.html.twig');
         $hook->setResponse($response);
     }
 }

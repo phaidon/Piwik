@@ -44,8 +44,7 @@ class ConfigController extends AbstractController
         $variableApi = $this->get('zikula_extensions_module.api.variable');
         $modVars = $variableApi->getAll('PhaidonPiwikModule');
 
-        // TODO legacy call
-        $sites = \ModUtil::apiFunc('PhaidonPiwikModule', 'admin', 'getSites');
+        $sites = $this->get('phaidon_piwik_module.helper.piwik_data_helper')->getSites();
 
         $form = $this->createForm('Phaidon\PiwikModule\Form\Type\ConfigType',
             $modVars, [

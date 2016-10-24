@@ -39,11 +39,9 @@ class OptOutBlock extends AbstractBlockHandler
             $properties['optOutHeight'] = '200px';
         }
 
-        // TODO legacy call
-        return ModUtil::apiFunc('PhaidonPiwikModule', 'user', 'optOut', [
-            'width' => $properties['optOutWidth'],
-            'height' => $properties['optOutHeight']
-        ]);
+        $userOutputHelper = $this->get('phaidon_piwik_module.helper.user_output_helper');
+
+        return $userOutputHelper->optOut($properties['optOutWidth'], $properties['optOutHeight']);
     }
 
     /**

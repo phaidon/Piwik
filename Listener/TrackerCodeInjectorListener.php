@@ -11,6 +11,7 @@
 
 namespace Phaidon\PiwikModule\Listener;
 
+use Phaidon\PiwikModule\Helper\UserOutputHelper;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -22,6 +23,20 @@ use Symfony\Component\HttpKernel\KernelEvents;
  */
 class TrackerCodeInjectorListener implements EventSubscriberInterface
 {
+    /**
+     * @var UserOutputHelper
+     */
+    private $userOutputHelper;
+
+    /**
+     * Constructor.
+     *
+     * @param UserOutputHelper $userOutputHelper UserOutputHelper service instance
+     */
+    public function __construct(UserOutputHelper $userOutputHelper) {
+        $this->userOutputHelper = $userOutputHelper;
+    }
+
     public function onKernelResponse(FilterResponseEvent $event)
     {
         $response = $event->getResponse();
@@ -32,7 +47,7 @@ class TrackerCodeInjectorListener implements EventSubscriberInterface
             return;
         }
 
-        \ModUtil::apiFunc('PhaidonPiwikModule', 'user', 'tracker');
+        $this->userOutputHelper->tracker();
     }
 
     public static function getSubscribedEvents()

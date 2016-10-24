@@ -15,7 +15,7 @@ use Phaidon\PiwikModule\Helper\PiwikDataHelper;
 use Twig_Environment;
 
 /**
- * Dashboard api class.
+ * Dashboard helper class.
  */
 class DashboardHelper
 {

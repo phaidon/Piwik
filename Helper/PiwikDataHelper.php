@@ -76,6 +76,36 @@ class PiwikDataHelper
         return $httpPath;
     }
 
+    /**
+     * Get list of sites from a Piwik instance.
+     * 
+     * @return array Piwik sites
+     */
+    public function getSites()
+    {
+        $piwikPath = $this->variableApi->get('PhaidonPiwikModule', 'tracking_piwikpath', '');
+        $enableTracking = $this->variableApi->get('PhaidonPiwikModule', 'tracking_enable', false);
+
+        if (!$enableTracking || empty($piwikPath)) {
+            return false;
+        }
+
+        $siteList = $this->getData('SitesManager.getSitesWithAtLeastViewAccess');
+        if (!$siteList) {
+            $this->session->getFlashBag()->addFlash('error', $this->translator->__('An error occured. Please check URL and auth token. You need at least view access to one site.'));
+
+            return false;
+        }
+
+        $sites = [];
+        foreach ($siteList as $site) {
+            $sites[$site['name']] = $site['idsite'];
+        }
+
+        ksort($sites);
+
+        return $sites;
+    }
 
     /**
      * Retrieves desired data from a Piwik instance.
