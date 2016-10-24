@@ -19,7 +19,7 @@
         {% set amountOfOtherUnique = 0 %}
         {% set amountOfOtherVisits = 0 %}
         {% for dataRow in data %}
-            {% if loop.index <= 9 %}
+            {% if loop.index <= maxAmountOfShownPages %}
                 <tr>
                     <td headers="hTitle">{{ dataRow.label }}</td>
                     <td headers="hVisits">{{ dataRow.nb_visits }}</td>

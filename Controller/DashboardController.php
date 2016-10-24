@@ -72,12 +72,13 @@ class DashboardController extends AbstractController
             'form' => $form->createView()
         ]);
 
-        // TODO legacy calls
+        $dashboardHelper = $this->get('phaidon_piwik_module.helper.dashboard_helper');
+
         if ($context == 'overview') {
-            $templateParameters['overviewData'] = \ModUtil::apiFunc('PhaidonPiwikModule', 'dashboard', 'showOverview', [ 'period' => $period, 'date' => $date ]);
-            $templateParameters['pagesData'] = \ModUtil::apiFunc('PhaidonPiwikModule', 'dashboard', 'showPages', [ 'period' => $period, 'date' => $date ]);
+            $templateParameters['overviewData'] = $dashboardHelper->showOverview($period, $date);
+            $templateParameters['pagesData'] = $dashboardHelper->showPages($period, $date);
         } elseif ($context == 'lastVisits') {
-            $templateParameters['visitorsData'] = \ModUtil::apiFunc('PhaidonPiwikModule', 'dashboard', 'showVisitors', [ 'period' => $period ]);
+            $templateParameters['visitorsData'] = $dashboardHelper->showVisitors($period);
         }
 
         return $templateParameters;
