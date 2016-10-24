@@ -123,7 +123,7 @@ class LinkContainer implements LinkContainerInterface
             ];
 
             $links[] = [
-                'url' => $this->router->generate('phaidonpiwikmodule_dashboard_index', { context: 'lastVisits' } ),
+                'url' => $this->router->generate('phaidonpiwikmodule_dashboard_index', [ 'context' => 'lastVisits' ] ),
                 'text' => $this->translator->__('Recent visits'),
                 'icon' => 'tachometer'
             ];
