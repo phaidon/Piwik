@@ -87,8 +87,7 @@ class UserOutputHelper
         $trackerCode = $this->twig->render('@PhaidonPiwikModule/UserApi/tracker.html.twig', $templateParameters);
 
         // add the scripts to page footer
-        // TODO legacy call
-        PageUtil::addVar('footer', $trackerCode);
+        \PageUtil::addVar('footer', $trackerCode);
 
         return true;
     }

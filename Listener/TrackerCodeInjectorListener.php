@@ -42,8 +42,7 @@ class TrackerCodeInjectorListener implements EventSubscriberInterface
         $response = $event->getResponse();
         $request = $event->getRequest();
 
-        // TODO legacy calls
-        if (\FormUtil::getPassedValue('type', 'user', 'GETPOST') == 'ajax') {
+        if ($request->isXmlHttpRequest()) {
             return;
         }
 

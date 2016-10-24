@@ -13,6 +13,8 @@ namespace Phaidon\PiwikModule;
 
 use Zikula\Bundle\HookBundle\Hook\AbstractHookListener;
 
+// TODO refactor this class
+
 /**
  * Piwik Hooks Handlers.
  */
@@ -31,14 +33,14 @@ class Piwik_HookHandler extends AbstractHookListener
      */
     public function displayView(Zikula_DisplayHook $hook)
     {
-        // TODO legacy calls
-        $view = Zikula_View::getInstance('Piwik', false, null, true);
-
+        $twig = \ServiceUtil::get('twig');
         $dataHelper = \ServiceUtil::get('phaidon_piwik_module.helper.piwik_data_helper');
 
-        $view->assign('piwikUrl', $dataHelper->getBaseUrl())
-             ->assign('width', '100%')
-             ->assign('height', '160px');
+        $templateParameters = [
+            'piwikUrl' => $dataHelper->getBaseUrl(),
+            'width' => '100%',
+            'height' => '160px'
+        ];
 
         $response = new Zikula_Response_DisplayHook('provider_area.ui_hooks.piwik.optOut', $view, 'UserApi/optOut.html.twig');
         $hook->setResponse($response);
