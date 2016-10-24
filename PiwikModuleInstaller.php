@@ -32,8 +32,6 @@ class PiwikModuleInstaller extends AbstractExtensionInstaller
         $this->hookApi->installProviderHooks($this->bundle->getMetaData());
 
         // initialisation successful
-        $this->addFlash('status', $this->__f('You successfully installed the Piwik module. To activate the tracking please setup the module <a href="%s" title="Piwik configuration">here</a>.', ['%s' => $this->container->get('router')->generate('phaidonpiwikmodule_config_config')]));
-
         return true;
     }
 
