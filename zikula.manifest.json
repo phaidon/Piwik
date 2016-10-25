@@ -21,8 +21,8 @@
         "version": "",
         "docs": "",
         "demo": "",
-        "download": "",
-        "issues": ""
+        "download": "https://github.com/phaidon/Piwik/releases",
+        "issues": "https://github.com/phaidon/Piwik/issues"
     },
     "dependencies": [
     ]
