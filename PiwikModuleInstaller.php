@@ -165,28 +165,28 @@ class PiwikModuleInstaller extends AbstractExtensionInstaller
         ");
 
         $conn->executeQuery("UPDATE $dbName.hook_binding
-                             SET sowner = 'PhaidonPiwikModule'
-                             WHERE sowner = 'Piwik';
+                             SET powner = 'PhaidonPiwikModule'
+                             WHERE powner = 'Piwik';
         ");
 
-        $conn->executeQuery("UPDATE $dbName.hook_runtime
-                             SET sowner = 'PhaidonPiwikModule'
-                             WHERE sowner = 'Piwik';
-        ");
-
-        $componentLength = strlen('«name.formatForDB»') + 1;
-        $conn->executeQuery("UPDATE $dbName.hook_runtime
-                             SET eventname = CONCAT('«appName.formatForDB»', SUBSTRING(eventname, $componentLength))
-                             WHERE eventname LIKE '«name.formatForDB»%';
-        ");
-
-        $conn->executeQuery("UPDATE $dbName.hook_subscriber
+        $conn->executeQuery("UPDATE $dbName.hook_provider
                              SET owner = 'PhaidonPiwikModule'
                              WHERE owner = 'Piwik';
         ");
 
         $componentLength = strlen('«name.formatForDB»') + 1;
-        $conn->executeQuery("UPDATE $dbName.hook_subscriber
+        $conn->executeQuery("UPDATE $dbName.hook_provider
+                             SET eventname = CONCAT('«appName.formatForDB»', SUBSTRING(eventname, $componentLength))
+                             WHERE eventname LIKE '«name.formatForDB»%';
+        ");
+
+        $conn->executeQuery("UPDATE $dbName.hook_runtime
+                             SET powner = 'PhaidonPiwikModule'
+                             WHERE powner = 'Piwik';
+        ");
+
+        $componentLength = strlen('«name.formatForDB»') + 1;
+        $conn->executeQuery("UPDATE $dbName.hook_runtime
                              SET eventname = CONCAT('«appName.formatForDB»', SUBSTRING(eventname, $componentLength))
                              WHERE eventname LIKE '«name.formatForDB»%';
         ");
