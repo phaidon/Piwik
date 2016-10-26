@@ -2,7 +2,7 @@
 {{ pageAddAsset('javascript', zasset('@PhaidonPiwikModule:js/jqplot/jquery.jqplot.min.js')) }}
 {{ pageAddAsset('javascript', zasset('@PhaidonPiwikModule:js/jqplot/plugins/jqplot.trendline.min.js')) }}
 
-<table class="table table-striped">
+<table class="table table-bordered table-striped">
     <caption>
         {% if period == 'day' %}
             {{ __f('Visits in the last %s days', { '%s': 30 }) }}
