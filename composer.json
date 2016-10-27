@@ -26,6 +26,7 @@
             "core-compatibility": ">=1.4.3",
             "displayname": "Piwik statistics",
             "url": "piwik",
+            "oldnames": ["Piwik"],
             "capabilities": {
                 "admin": {"route": "phaidonpiwikmodule_config_config"},
                 "hook_provider": {"class": "Phaidon\\PiwikModule\\Container\\HookContainer"}
