@@ -23,7 +23,7 @@
     "extra": {
         "zikula": {
             "class": "Phaidon\\PiwikModule\\PhaidonPiwikModule",
-            "core-compatibility": ">=1.4.3",
+            "core-compatibility": ">=1.4.4",
             "displayname": "Piwik statistics",
             "url": "piwik",
             "oldnames": ["Piwik"],
