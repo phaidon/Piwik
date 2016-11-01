@@ -11,6 +11,7 @@
 
 namespace Phaidon\PiwikModule\Helper;
 
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Zikula\Common\Translator\TranslatorInterface;
 use Zikula\ExtensionsModule\Api\VariableApi;
@@ -36,16 +37,23 @@ class PiwikDataHelper
     private $session;
 
     /**
+     * @var RequestStack
+     */
+    private $requestStack;
+
+    /**
      * Constructor.
      *
-     * @param TranslatorInterface $translator  TranslatorInterface service instance
-     * @param VariableApi         $variableApi VariableApi service instance
-     * @param SessionInterface    $session     SessionInterface service instance
+     * @param TranslatorInterface $translator   TranslatorInterface service instance
+     * @param VariableApi         $variableApi  VariableApi service instance
+     * @param SessionInterface    $session      SessionInterface service instance
+     * @param RequestStack        $requestStack RequestStack service instance
      */
-    public function __construct(TranslatorInterface $translator, VariableApi $variableApi, SessionInterface $session) {
+    public function __construct(TranslatorInterface $translator, VariableApi $variableApi, SessionInterface $session, RequestStack $requestStack) {
         $this->translator = $translator;
         $this->variableApi = $variableApi;
         $this->session = $session;
+        $this->requestStack = $requestStack;
     }
 
     /**
@@ -69,7 +77,8 @@ class PiwikDataHelper
                 return $httpsPath;
                 break;
             case 3: //http/https
-                return null !== $_SERVER['HTTPS'] ? $httpsPath : $httpPath;
+                $request = $this->requestStack->getCurrentRequest();
+                return null !== $request && $request->getScheme() == 'https' ? $httpsPath : $httpPath;
                 break;
         }
 
