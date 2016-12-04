@@ -1,0 +1,34 @@
+parameters:
+    phaidon_piwik_module.container.link_container.class: Phaidon\PiwikModule\Container\LinkContainer
+    phaidon_piwik_module.helper.piwik_data_helper.class: Phaidon\PiwikModule\Helper\PiwikDataHelper
+    phaidon_piwik_module.helper.user_output_helper.class: Phaidon\PiwikModule\Helper\UserOutputHelper
+    phaidon_piwik_module.helper.dashboard_helper.class: Phaidon\PiwikModule\Helper\DashboardHelper
+    phaidon_piwik_module.tracker_code_injector_listener.class: Phaidon\PiwikModule\Listener\TrackerCodeInjectorListener
+
+services:
+    phaidon_piwik_module.container.link_container:
+        class: %phaidon_piwik_module.container.link_container.class%
+        arguments: ["@translator.default", "@jms_i18n_routing.router", "@zikula_permissions_module.api.permission", "@phaidon_piwik_module.helper.piwik_data_helper"]
+        tags:
+            - { name: zikula.link_container }
+
+    phaidon_piwik_module.helper.piwik_data_helper:
+        class: %phaidon_piwik_module.helper.piwik_data_helper.class%
+        lazy: true
+        arguments: ["@translator.default", "@zikula_extensions_module.api.variable", "@session", "@request_stack"]
+
+    phaidon_piwik_module.helper.user_output_helper:
+        class: %phaidon_piwik_module.helper.user_output_helper.class%
+        lazy: true
+        arguments: ["@zikula_extensions_module.api.variable", "@phaidon_piwik_module.helper.piwik_data_helper", "@twig"]
+
+    phaidon_piwik_module.helper.dashboard_helper:
+        class: %phaidon_piwik_module.helper.dashboard_helper.class%
+        lazy: true
+        arguments: ["@phaidon_piwik_module.helper.piwik_data_helper", "@twig"]
+
+    phaidon_piwik_module.tracker_code_injector_listener:
+        class: %phaidon_piwik_module.tracker_code_injector_listener.class%
+        arguments: ["@kernel", "@phaidon_piwik_module.helper.user_output_helper"]
+        tags:
+            - { name: kernel.event_subscriber }
