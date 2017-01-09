@@ -38,7 +38,9 @@ class ConfigType extends AbstractType
             ])
             ->add('tracking_token', 'Symfony\Component\Form\Extension\Core\Type\TextType', [
                 'label' => $translator->__('Piwik token'),
-                'max_length' => 40,
+                'attr' => [
+                    'max_length' => 40
+                ],
                 'help' => $translator->__('Your personal authentification token can be found in the Piwik web interface on the API page. It looks like 1234a5cd6789e0a12345b678cd9012ef.')
             ])
             ->add('tracking_protocol', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', [
