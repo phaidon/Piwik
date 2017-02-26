@@ -87,19 +87,19 @@ class LinkContainer implements LinkContainerInterface
 
         $links[] = [
             'url' => $this->router->generate('phaidonpiwikmodule_config_config'),
-            'text' => $this->translator->__('Settings'),
+            'text' => $this->translator->__('Settings', 'phaidonpiwikmodule'),
             'icon' => 'wrench'
         ];
 
         $links[] = [
             'url' => $this->router->generate('phaidonpiwikmodule_dashboard_index'),
-            'text' => $this->translator->__('Piwik dashboard'),
+            'text' => $this->translator->__('Piwik dashboard', 'phaidonpiwikmodule'),
             'icon' => 'bar-chart'
         ];
 
         $links[] = [
             'url' => $this->router->generate('phaidonpiwikmodule_admin_troubleshooting'), 
-            'text' => $this->translator->__('Troubleshooting'),
+            'text' => $this->translator->__('Troubleshooting', 'phaidonpiwikmodule'),
             'icon' => 'life-ring'
         ];
 
@@ -118,13 +118,13 @@ class LinkContainer implements LinkContainerInterface
         if ($this->permissionApi->hasPermission($this->getBundleName() . '::', '::', ACCESS_ADMIN)) {
             $links[] = [
                 'url' => $this->router->generate('phaidonpiwikmodule_dashboard_index'),
-                'text' => $this->translator->__('Overview'),
+                'text' => $this->translator->__('Overview', 'phaidonpiwikmodule'),
                 'icon' => 'bar-chart'
             ];
 
             $links[] = [
                 'url' => $this->router->generate('phaidonpiwikmodule_dashboard_index', [ 'context' => 'lastVisits' ] ),
-                'text' => $this->translator->__('Recent visits'),
+                'text' => $this->translator->__('Recent visits', 'phaidonpiwikmodule'),
                 'icon' => 'tachometer'
             ];
         }
@@ -132,7 +132,7 @@ class LinkContainer implements LinkContainerInterface
         if ($this->permissionApi->hasPermission($this->getBundleName() . '::', '::', ACCESS_READ)) {
             $links[] = [
                 'url' => $this->piwikDataHelper->getBaseUrl(),
-                'text' => $this->translator->__('Piwik web interface'),
+                'text' => $this->translator->__('Piwik web interface', 'phaidonpiwikmodule'),
                 'icon' => 'external-link'
             ];
         }
