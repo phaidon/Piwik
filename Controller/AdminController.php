@@ -84,7 +84,7 @@ class AdminController extends AbstractController
      * This function give hints for the troubleshooting.
      * 
      * @Route("/troubleshooting")
-     * @Template
+     * @Template("PhaidonPiwikModule:Admin:troubleshooting.html.twig")
      *
      * @param Request $request
      * @throws AccessDeniedException Thrown if the user doesn't have admin access to the module

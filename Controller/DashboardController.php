@@ -30,7 +30,7 @@ class DashboardController extends AbstractController
      * 
      * @Route("/")
      * @Theme("admin")
-     * @Template
+     * @Template("PhaidonPiwikModule:Dashboard:index.html.twig")
      *
      * @param Request $request
      * @throws AccessDeniedException Thrown if the user doesn't have admin access to the module
