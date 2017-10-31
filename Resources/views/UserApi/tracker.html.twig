@@ -4,7 +4,7 @@
 var _paq = _paq || [];
 _paq.push(['setSiteId', {{ siteId }}]);
 _paq.push(['trackPageView']);
-{% if enableLinkTracking %}
+{% if enableLinkTracking|default(true) %}
     _paq.push(['enableLinkTracking']);
 {% endif %}
 (function() {
