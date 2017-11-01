@@ -1,0 +1,366 @@
+# Piwik statistics for Zikula.
+# Copyright (C) 2009
+# This file is distributed under the same license as the piwik package.
+# Sven Schomacker <hilope@gmail.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: Piwik\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2017-11-01 09:27+0100\n"
+"Last-Translator: Axel Guckelsberger <info@guite.de>\n"
+"Language-Team: Piwik Developement Team\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.0.4\n"
+
+msgid "Account settings"
+msgstr "Piwik Benutzer Einstellungen"
+
+msgid ""
+"An error occured. Please check URL and auth token. You need at least view "
+"access to one site."
+msgstr ""
+"Ein Fehler ist aufgetreten. Bitte URL und Auth-Token überprüfen. Man "
+"benötigt mindestens view-Zugriff zu einer Seite."
+
+msgid "Are your Piwik settings (path, token and site) correctly configured?"
+msgstr "Ist Piwik (Pfad, Token und Seite) richtig konfiguriert?"
+
+msgid "Average time on site"
+msgstr "Durchschnittliche Aufenthaltsdauer auf der Seite"
+
+msgid "Avg"
+msgstr "Durchschnitt"
+
+msgid "Bounce count"
+msgstr "Absprungrate"
+
+msgid "Bounce rate"
+msgstr "Absprungrate"
+
+msgid "Bounced"
+msgstr "Absprungrate"
+
+msgid "Cancel"
+msgstr "Abbrechen"
+
+msgid "Could connect to Piwik. Probably the url is wrong?"
+msgstr "Konnte nicht zu Piwik verbinden. Vermutlich ist die URL falsch?"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "Day"
+msgstr "Tag"
+
+msgid "Display options"
+msgstr "Anzeige-Optionen"
+
+msgid "Does the Piwik code (see below) appear in the source code of your page?"
+msgstr "Erscheint der Piwik-Code (siehe unten) im Quellcode der Seite?"
+
+msgid "Done! Module configuration updated."
+msgstr "Die Konfiguration wurde aktualisiert."
+
+msgid "Enable tracking"
+msgstr "Erfassung aktivieren"
+
+msgid "Example: www.yourdomain.com/piwik (without leading http(s)://)"
+msgstr "Beispiel:www.yourdomain.com/path (ohne vorangehendes http(s)://)"
+
+msgid "Exit rate"
+msgstr "Ausstiegsrate"
+
+msgid "General settings"
+msgstr "Allgemeine Einstellungen"
+
+msgid "Height of block"
+msgstr "Höhe des Blocks"
+
+msgid "Hits"
+msgstr "Zugriffe"
+
+msgid ""
+"If Piwik does not properly log the page accesses please check the following "
+"questions:"
+msgstr ""
+"Wenn Piwik die Seitenbesuche nicht aufgezeichnet, sollte folgenden drei "
+"Fragen nachgegangen werden:"
+
+msgid ""
+"Is the Piwik code (see below) identical with this one of the Piwik web "
+"interface?"
+msgstr ""
+"Sind der Piwik-Code (siehe unten) und derjenige aus dem Piwik-Frontend "
+"identisch?"
+
+msgid "Max. page views in one visit"
+msgstr "Max. Seiten/Besuch"
+
+msgid "Month"
+msgstr "Monat"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "No data available."
+msgstr "Keine Daten verfügbar"
+
+msgid "Only http (can produce problems if you are viewing your site via https)"
+msgstr ""
+"Nur http (dies kann zu Problemen führen, wenn Sie Ihre Seite auch per https "
+"ansehen)"
+
+msgid "Only https (if you are able to connect via https)"
+msgstr "Nur https (wenn Sie sich per https verbinden können)"
+
+msgid "Operation cancelled."
+msgstr "Operation abgebrochen."
+
+msgid "Others"
+msgstr "Andere"
+
+msgid "Overview"
+msgstr "Übersicht"
+
+msgid "Page views"
+msgstr "Seitenaufrufe"
+
+msgid "Period"
+msgstr "Zeitraum"
+
+msgid "Piwik dashboard"
+msgstr "Piwik Dashboard"
+
+msgid "Piwik opt-out hook"
+msgstr "Piwik Opt-Out Hook"
+
+msgid "Piwik settings"
+msgstr "Piwik Einstellungen"
+
+msgid "Piwik token"
+msgstr "Piwik Token"
+
+msgid "Recent visits"
+msgstr "Kürzliche Besuche"
+
+msgid "Save"
+msgstr "Speichern"
+
+msgid "Settings"
+msgstr "Konfiguration"
+
+msgid "Show"
+msgstr "Anzeigen"
+
+msgid "Show Piwik tracker code"
+msgstr "Piwik Tracker-Code anzeigen"
+
+msgid "Site"
+msgstr "Seite"
+
+msgid "Sum"
+msgstr "Summe"
+
+msgid ""
+"The available sites could not be loaded. Please ensure that the settings "
+"above are correct and click on 'Save' once."
+msgstr ""
+"Die verfügbaren Seiten konnte nicht geladen werden. Bitte sicherstellen, "
+"dass die obigen Einstellungen korrekt sind, und einmal auf 'Speichern' "
+"klicken."
+
+msgid "Time/visit"
+msgstr "Zeit/Besuch"
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "Total time spent"
+msgstr "Verbrachte Zeit"
+
+msgid "Track admin pages"
+msgstr "Auch Seiten der Administration erfassen"
+
+msgid "Track links"
+msgstr "Links erfassen"
+
+msgid "Tracking settings"
+msgstr "Tracking-Einstellungen"
+
+msgid "Troubleshooting"
+msgstr "Problembehebung"
+
+msgid "URL to your Piwik installation"
+msgstr "URL zur Piwik-Installation"
+
+msgid "Unique"
+msgstr "Einzigartig"
+
+msgid "Unique TOTAL"
+msgstr "Unique GESAMT"
+
+msgid "Unique visitor trend"
+msgstr "Einzigartige Besuche"
+
+msgid "Unique visitors"
+msgstr "Einzigartige Besuche"
+
+msgid "Used protocol"
+msgstr "Genutztes Protokoll"
+
+msgid "Value"
+msgstr "Wert"
+
+msgid "Visited pages"
+msgstr "Besuche Seiten"
+
+msgid "Visitors"
+msgstr "Besucher"
+
+msgid "Visits"
+msgstr "Besuche"
+
+msgid "Visits in the last %s days"
+msgstr "Besuche in den %s letzten Tagen"
+
+msgid "Visits in the last %s months"
+msgstr "Besuche in den %s letzten Monaten"
+
+msgid "Visits in the last %s weeks"
+msgstr "Besuche in den %s letzten Wochen"
+
+msgid "Visits in the last %s years"
+msgstr "Besuche in den %s letzten Jahren"
+
+msgid "Week"
+msgstr "Woche"
+
+msgid "Week %s"
+msgstr "Woche %s"
+
+msgid "Width of block"
+msgstr "Breite des Blocks"
+
+msgid "Year"
+msgstr "Jahr"
+
+msgid ""
+"Your personal authentification token can be found in the Piwik web interface "
+"on the API page. It looks like 1234a5cd6789e0a12345b678cd9012ef."
+msgstr ""
+"Der persönliche Authentifizierungs-Schüssel (Token) kann im eigenen Piwik "
+"Web-Interface gefunden werden. Er sieht z.B. so aus: "
+"1234a5cd6789e0a12345b678cd9012ef."
+
+msgid ""
+"http/https (depending on the protocol which is used to request the site)"
+msgstr "http/https (je nachdem, welches Protokoll gerade genutzt wird)"
+
+#~ msgid "Opt-Out functionality"
+#~ msgstr "Opt-Out Funktion"
+
+#~ msgid "Includes Piwik's opt-out feature"
+#~ msgstr "Stellt die Opt-Out Funktion von Piwik bereit"
+
+#~ msgid "Piwik statistics module"
+#~ msgstr "Piwik-Statistik-Modull"
+
+#~ msgid "Piwik"
+#~ msgstr "Piwik"
+
+#~ msgid "Visits in the last time"
+#~ msgstr "Besuche in der letzten Zeit"
+
+#~ msgid "Piwik web interface"
+#~ msgstr "Piwik Web-Interface"
+
+#~ msgid ""
+#~ "You installed the Piwik module succesfully. To activate the tracking "
+#~ "please setup the module <a href='%s'>here</a>."
+#~ msgstr ""
+#~ "Die Piwik-Installation wurde erfolgreich durchgeführt. Zum Aktivieren des "
+#~ "Trackings muss das Modul <a href='%s'>hier</a> konfiguriert werden."
+
+#~ msgid "Modify configuration"
+#~ msgstr "Konfiguration speichern"
+
+#~ msgid "From"
+#~ msgstr "Von"
+
+#~ msgid "To"
+#~ msgstr "Bis"
+
+#~ msgid ""
+#~ "If this does not help feel free to ask in the Zikula forums for help."
+#~ msgstr "Weitere Hilfe gibt es in den Zikula-Foren."
+
+#~ msgid "Date range"
+#~ msgstr "Zeitspanne"
+
+#~ msgid "Dashboard"
+#~ msgstr "Dashboard"
+
+#~ msgid "The token can be found here:"
+#~ msgstr "Der Token kann hier gefunden werden:"
+
+#~ msgid "Page"
+#~ msgstr "Seite"
+
+#~ msgid ""
+#~ "Please insert the url of the Piwik installation WITHOUT http:// or "
+#~ "https:// and WITHOUT a trailing slash.<br />Example: yourdomain.com/"
+#~ "piwikpathh"
+#~ msgstr ""
+#~ "Bitte die URL der Piwik Installation ohne das http:// or https:// "
+#~ "einfügen. <br />Beispiel: yourdomain.com/piwikpathh"
+
+#~ msgid "The side-id can be found here:"
+#~ msgstr "Die Seiten-ID kann hier gefunden werden:"
+
+#~ msgid "No token for Piwik found."
+#~ msgstr "Es konnte kein Piwik-Token gefunden werden."
+
+#, fuzzy
+#~ msgid "Usage statistics overall"
+#~ msgstr "Statistiken ansehen"
+
+#, fuzzy
+#~ msgid "Global visitor configuration"
+#~ msgstr "Speichern der Konfiguration"
+
+#~ msgid "piwik statistics"
+#~ msgstr "Piwik Statistiken"
+
+#, fuzzy
+#~ msgid "Page statistic"
+#~ msgstr "Statistiken ansehen"
+
+#~ msgid "This version of piwik only works with Zikula 1.2.x and higher."
+#~ msgstr "Diese Version von piwik benötigt Zikula 1.2.x oder höher"
+
+#~ msgid "Error creating Hook!"
+#~ msgstr "Fehler beim Erstellen des Hooks!"
+
+#~ msgid "Error deleting Hook!"
+#~ msgstr "Fehler beim Löschen des Hooks!"
+
+#~ msgid ""
+#~ "Invalid 'authkey':  this probably means that you pressed the 'Back' "
+#~ "button, or that the page 'authkey' expired. Please refresh the page and "
+#~ "try again."
+#~ msgstr ""
+#~ "Ungültiger Authentifizierungsschlüssel ('AuthKey'): Möglichweise wurde "
+#~ "der 'Zurück' Button im Browser benutzt, gesicherte Formulare in mehreren "
+#~ "Browser-Tabs gespeichert oder der 'AuthKey' ist abgelaufen. Bitte die "
+#~ "Seite neu laden und es erneut versuchen."
+
+#~ msgid "Configuration not updated"
+#~ msgstr "Konfiguration wurde nicht aktualisiert"
+
+#~ msgid "Piwik-URL starts not with http or https!"
+#~ msgstr "Piwik-URL beginnt nicht mit http oder https!"

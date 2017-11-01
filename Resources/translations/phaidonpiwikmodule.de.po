@@ -6,306 +6,223 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Piwik\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-22 21:23+0200\n"
-"PO-Revision-Date: 2013-08-22 21:26+0100\n"
-"Last-Translator: Leonard Marschke <leonardmarschke@googlemail.com>\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2017-11-01 09:24+0100\n"
+"Last-Translator: Axel Guckelsberger <info@guite.de>\n"
 "Language-Team: Piwik Developement Team\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.1\n"
-"X-Poedit-Language: German\n"
-"X-Poedit-Country: GERMANY\n"
+"X-Generator: Poedit 2.0.4\n"
 
-#: lib/Piwik/Block/OptOut.php:38
-msgid "Opt-Out functionality"
-msgstr "Opt-Out Funktion"
-
-#: lib/Piwik/Block/OptOut.php:39
-msgid "Includes Piwik's opt-out feature"
-msgstr "Stellt die Opt-Out Funktion von Piwik bereit"
-
-#: lib/Piwik/Version.php:31
-msgid "Piwik statistics module"
-msgstr "Piwik-Statistik-Modull"
-
-#: lib/Piwik/Version.php:32
-msgid "Piwik statistics"
-msgstr "Piwik-Statistiken"
-
-#. !url must be different to displayname
-#: lib/Piwik/Version.php:34
-msgid "Piwik"
-msgstr "Piwik"
-
-#: lib/Piwik/Version.php:48
-msgid "Piwik opt-out hook"
-msgstr "Piwik Opt-Out Hook"
-
-#: lib/Piwik/Handler/ModifyConfig.php:46
-msgid "Only http (can produce problems if you are viewing your site via https)"
-msgstr "Nur http (dies kann zu Problemen führen, wenn Sie Ihre Seite auch per https ansehen)"
-
-#: lib/Piwik/Handler/ModifyConfig.php:48
-msgid "Only https (if you are able to connect via https)"
-msgstr "Nur https (wenn Sie sich per https verbinden können)"
-
-#: lib/Piwik/Handler/ModifyConfig.php:50
-msgid "http/https (depending on the protocol which is used to request the site)"
-msgstr "http/https (je nachdem, welches Protokoll gerade genutzt wird)"
-
-#: lib/Piwik/Handler/Dashboard.php:44
-msgid "Day"
-msgstr "Tag"
-
-#: lib/Piwik/Handler/Dashboard.php:45
-#: templates/dashboard/timeperiod.tpl:4
-msgid "Week"
-msgstr "Woche"
-
-#: lib/Piwik/Handler/Dashboard.php:46
-msgid "Month"
-msgstr "Monat"
-
-#: lib/Piwik/Handler/Dashboard.php:47
-msgid "Year"
-msgstr "Jahr"
-
-#: lib/Piwik/Api/Admin.php:77
-msgid "Settings"
-msgstr "Konfiguration"
-
-#: lib/Piwik/Api/Admin.php:82
-#: templates/admin/dashboard.tpl:5
-#: templates/admin/dashboard2.tpl:4
-msgid "Piwik dashboard"
-msgstr "Piwik-Dashboard"
-
-#: lib/Piwik/Api/Admin.php:87
-#: templates/admin/troubleshooting.tpl:4
-msgid "Troubleshooting"
-msgstr "Problembehebung"
-
-#: lib/Piwik/Api/Dashboard.php:332
-#: templates/dashboard/overview.tpl:5
 msgid "Overview"
 msgstr "Übersicht"
 
-#: lib/Piwik/Api/Dashboard.php:337
-msgid "Visits in the last time"
-msgstr "Besuche in der letzten Zeit"
+msgid "Piwik dashboard"
+msgstr "Piwik Dashboard"
 
-#: lib/Piwik/Api/Dashboard.php:342
 msgid "Piwik web interface"
 msgstr "Piwik Web-Interface"
 
-#: lib/Piwik/Installer.php:49
-#, php-format
-msgid "You installed the Piwik module succesfully. To activate the tracking please setup the module <a href='%s'>here</a>."
-msgstr "Die Piwik-Installation wurde erfolgreich durchgeführt. Zum Aktivieren des Trackings muss das Modul <a href='%s'>hier</a> konfiguriert werden."
+msgid "Recent visits"
+msgstr "Kürzliche Besuche"
 
-#: templates/dashboard/pages.tpl:5
-msgid "Visited pages"
-msgstr "Besuche Seiten"
+msgid "Settings"
+msgstr "Konfiguration"
 
-#: templates/dashboard/pages.tpl:11
-msgid "Title"
-msgstr "Titel"
+msgid "Troubleshooting"
+msgstr "Problembehebung"
 
-#: templates/dashboard/pages.tpl:14
-#: templates/dashboard/visitors.tpl:33
-msgid "Unique"
-msgstr "Einzigartig"
+#~ msgid "Opt-Out functionality"
+#~ msgstr "Opt-Out Funktion"
 
-#: templates/dashboard/pages.tpl:17
-#: templates/dashboard/visitors.tpl:32
-msgid "Visits"
-msgstr "Besuche"
+#~ msgid "Includes Piwik's opt-out feature"
+#~ msgstr "Stellt die Opt-Out Funktion von Piwik bereit"
 
-#: templates/dashboard/pages.tpl:47
-msgid "No data available."
-msgstr "Keine Daten verfügbar"
+#~ msgid "Piwik statistics module"
+#~ msgstr "Piwik-Statistik-Modull"
 
-#: templates/dashboard/pages.tpl:56
-msgid "Others"
-msgstr "Andere"
+#~ msgid "Piwik statistics"
+#~ msgstr "Piwik-Statistiken"
 
-#: templates/dashboard/overview.tpl:13
-msgid "Visitors"
-msgstr "Besucher"
+#~ msgid "Piwik"
+#~ msgstr "Piwik"
 
-#: templates/dashboard/overview.tpl:21
-msgid "Unique visitors"
-msgstr "Einzigartige Besuche"
+#~ msgid "Piwik opt-out hook"
+#~ msgstr "Piwik Opt-Out Hook"
 
-#: templates/dashboard/overview.tpl:29
-msgid "Page Views"
-msgstr "Seitenbesuche"
+#~ msgid "Only http (can produce problems if you are viewing your site via https)"
+#~ msgstr "Nur http (dies kann zu Problemen führen, wenn Sie Ihre Seite auch per https ansehen)"
 
-#: templates/dashboard/overview.tpl:37
-msgid "Max. page views in one visit"
-msgstr "Max. Seiten/Besuch"
+#~ msgid "Only https (if you are able to connect via https)"
+#~ msgstr "Nur https (wenn Sie sich per https verbinden können)"
 
-#: templates/dashboard/overview.tpl:45
-msgid "Total time spent"
-msgstr "Verbrachte Zeit"
+#~ msgid "http/https (depending on the protocol which is used to request the site)"
+#~ msgstr "http/https (je nachdem, welches Protokoll gerade genutzt wird)"
 
-#: templates/dashboard/overview.tpl:53
-msgid "Time/visit"
-msgstr "Zeit/Besuch"
+#~ msgid "Day"
+#~ msgstr "Tag"
 
-#: templates/dashboard/overview.tpl:61
-msgid "Bounce count"
-msgstr "Absprungrate"
+#~ msgid "Week"
+#~ msgstr "Woche"
 
-#: templates/dashboard/visitors.tpl:11
-#, php-format
-msgid "Visits in the last %s days"
-msgstr "Besuche in den %s letzten Tagen"
+#~ msgid "Month"
+#~ msgstr "Monat"
 
-#: templates/dashboard/visitors.tpl:13
-#, php-format
-msgid "Visits in the last %s weeks"
-msgstr "Besuche in den %s letzten Wochen"
+#~ msgid "Year"
+#~ msgstr "Jahr"
 
-#: templates/dashboard/visitors.tpl:15
-#, php-format
-msgid "Visits in the last %s months"
-msgstr "Besuche in den %s letzten Monaten"
+#~ msgid "Visits in the last time"
+#~ msgstr "Besuche in der letzten Zeit"
 
-#: templates/dashboard/visitors.tpl:17
-#, php-format
-msgid "Visits in the last %s years"
-msgstr "Besuche in den %s letzten Jahren"
+#~ msgid "You installed the Piwik module succesfully. To activate the tracking please setup the module <a href='%s'>here</a>."
+#~ msgstr "Die Piwik-Installation wurde erfolgreich durchgeführt. Zum Aktivieren des Trackings muss das Modul <a href='%s'>hier</a> konfiguriert werden."
 
-#: templates/dashboard/visitors.tpl:31
-#: templates/admin/dashboard.tpl:20
-msgid "Date"
-msgstr "Datum"
+#~ msgid "Visited pages"
+#~ msgstr "Besuche Seiten"
 
-#: templates/dashboard/visitors.tpl:34
-msgid "Bounced"
-msgstr "Absprungrate"
+#~ msgid "Title"
+#~ msgstr "Titel"
 
-#: templates/dashboard/visitors.tpl:48
-msgid "Unique TOTAL"
-msgstr "Unique GESAMT"
+#~ msgid "Unique"
+#~ msgstr "Einzigartig"
 
-#: templates/dashboard/visitors.tpl:48
-msgid "Sum"
-msgstr "Summe"
+#~ msgid "Visits"
+#~ msgstr "Besuche"
 
-#: templates/dashboard/visitors.tpl:48
-msgid "Avg"
-msgstr "Durchschnitt"
+#~ msgid "No data available."
+#~ msgstr "Keine Daten verfügbar"
 
-#: templates/block/optout_modify.tpl:2
-msgid "Height of block"
-msgstr "Höhe des Blocks"
+#~ msgid "Others"
+#~ msgstr "Andere"
 
-#: templates/block/optout_modify.tpl:6
-msgid "Width of block"
-msgstr "Breite des Blocks"
+#~ msgid "Visitors"
+#~ msgstr "Besucher"
 
-#: templates/admin/modifyconfig.tpl:10
-msgid "Modify configuration"
-msgstr "Konfiguration speichern"
+#~ msgid "Unique visitors"
+#~ msgstr "Einzigartige Besuche"
 
-#: templates/admin/modifyconfig.tpl:17
-msgid "General settings"
-msgstr "Allgemeine Einstellungen"
+#~ msgid "Page Views"
+#~ msgstr "Seitenbesuche"
 
-#: templates/admin/modifyconfig.tpl:19
-msgid "Enable Tracking"
-msgstr "Erfassung aktiviere"
+#~ msgid "Max. page views in one visit"
+#~ msgstr "Max. Seiten/Besuch"
 
-#: templates/admin/modifyconfig.tpl:27
-msgid "Account settings"
-msgstr "Piwik Benutzer Einstellungen"
+#~ msgid "Total time spent"
+#~ msgstr "Verbrachte Zeit"
 
-#: templates/admin/modifyconfig.tpl:29
-msgid "URL to your Piwik installation"
-msgstr "URL zur Piwik-Installation"
+#~ msgid "Time/visit"
+#~ msgstr "Zeit/Besuch"
 
-#: templates/admin/modifyconfig.tpl:31
-msgid "Example: www.yourdomain.com/piwik (without leading http(s)://)"
-msgstr "Beispiel:www.yourdomain.com/path (ohne vorangehendes http(s)://)"
+#~ msgid "Bounce count"
+#~ msgstr "Absprungrate"
 
-#: templates/admin/modifyconfig.tpl:34
-msgid "Piwik token"
-msgstr "Piwik-Token"
+#~ msgid "Visits in the last %s days"
+#~ msgstr "Besuche in den %s letzten Tagen"
 
-#: templates/admin/modifyconfig.tpl:36
-msgid "Your personal authentification token can be found in the Piwik web interface on the API page. It looks like 1234a5cd6789e0a12345b678cd9012ef."
-msgstr "Der persönliche Authentifizierungs-Schüssel (Token) kann im eigenen Piwik Web-Interface gefunden werden. Er sieht z.B. so aus: 1234a5cd6789e0a12345b678cd9012ef."
+#~ msgid "Visits in the last %s weeks"
+#~ msgstr "Besuche in den %s letzten Wochen"
 
-#: templates/admin/modifyconfig.tpl:39
-msgid "Used protocol"
-msgstr "Genutztes Protokoll"
+#~ msgid "Visits in the last %s months"
+#~ msgstr "Besuche in den %s letzten Monaten"
 
-#: templates/admin/modifyconfig.tpl:46
-msgid "Site"
-msgstr "Seite"
+#~ msgid "Visits in the last %s years"
+#~ msgstr "Besuche in den %s letzten Jahren"
 
-#: templates/admin/modifyconfig.tpl:54
-msgid "Tracking settings"
-msgstr "Tracking-Einstellungen"
+#~ msgid "Date"
+#~ msgstr "Datum"
 
-#: templates/admin/modifyconfig.tpl:56
-msgid "Track admin pages"
-msgstr "Erfasse auch Seiten der Administration"
+#~ msgid "Bounced"
+#~ msgstr "Absprungrate"
 
-#: templates/admin/modifyconfig.tpl:60
-msgid "Track Links"
-msgstr "Erfasse Links"
+#~ msgid "Unique TOTAL"
+#~ msgstr "Unique GESAMT"
 
-#: templates/admin/modifyconfig.tpl:68
-msgid "Save"
-msgstr "Speichern"
+#~ msgid "Sum"
+#~ msgstr "Summe"
 
-#: templates/admin/modifyconfig.tpl:69
-msgid "Cancel"
-msgstr "Abbrechen"
+#~ msgid "Avg"
+#~ msgstr "Durchschnitt"
 
-#: templates/admin/dashboard.tpl:16
-#: templates/admin/dashboard2.tpl:15
-msgid "Period"
-msgstr "Zeitraum"
+#~ msgid "Height of block"
+#~ msgstr "Höhe des Blocks"
 
-#: templates/admin/dashboard.tpl:31
-msgid "From"
-msgstr "Von"
+#~ msgid "Width of block"
+#~ msgstr "Breite des Blocks"
 
-#: templates/admin/dashboard.tpl:35
-msgid "To"
-msgstr "Bis"
+#~ msgid "Modify configuration"
+#~ msgstr "Konfiguration speichern"
 
-#: templates/admin/dashboard.tpl:41
-#: templates/admin/dashboard2.tpl:20
-msgid "Show"
-msgstr "Anzeigen"
+#~ msgid "General settings"
+#~ msgstr "Allgemeine Einstellungen"
 
-#: templates/admin/troubleshooting.tpl:8
-msgid "If Piwik does not log the page accesses please check the following questions:"
-msgstr "Wenn Piwik die Seitenbesuche nicht aufgezeichnet, sollte folgende drei Fragen nachgegangen werden:"
+#~ msgid "Enable Tracking"
+#~ msgstr "Erfassung aktiviere"
 
-#: templates/admin/troubleshooting.tpl:11
-msgid "Are your Piwik settings (path, token and side) corect configured?"
-msgstr "Ist Piwik (Pfad, Token und Seite) richtig konfiguriert?"
+#~ msgid "Account settings"
+#~ msgstr "Piwik Benutzer Einstellungen"
 
-#: templates/admin/troubleshooting.tpl:12
-msgid "Does the Piwik code (see above) appears in the source code of your page."
-msgstr "Erscheint der Piwik-Code (siehe unten) im Quellcode der Seite?"
+#~ msgid "URL to your Piwik installation"
+#~ msgstr "URL zur Piwik-Installation"
 
-#: templates/admin/troubleshooting.tpl:14
-msgid "Is the Piwik code (see above) identical with this one of the Piwik web interface?"
-msgstr "Ist der Piwik-Code (sie unten) und derjenige aus dem Piwik-Frontend identisch?"
+#~ msgid "Example: www.yourdomain.com/piwik (without leading http(s)://)"
+#~ msgstr "Beispiel:www.yourdomain.com/path (ohne vorangehendes http(s)://)"
 
-#: templates/admin/troubleshooting.tpl:31
-msgid "If this does not help feel free to ask in the Zikula forums for help."
-msgstr "Weitere Hilfe gibt es in den Zikula-Foren."
+#~ msgid "Piwik token"
+#~ msgstr "Piwik-Token"
+
+#~ msgid "Your personal authentification token can be found in the Piwik web interface on the API page. It looks like 1234a5cd6789e0a12345b678cd9012ef."
+#~ msgstr "Der persönliche Authentifizierungs-Schüssel (Token) kann im eigenen Piwik Web-Interface gefunden werden. Er sieht z.B. so aus: 1234a5cd6789e0a12345b678cd9012ef."
+
+#~ msgid "Used protocol"
+#~ msgstr "Genutztes Protokoll"
+
+#~ msgid "Site"
+#~ msgstr "Seite"
+
+#~ msgid "Tracking settings"
+#~ msgstr "Tracking-Einstellungen"
+
+#~ msgid "Track admin pages"
+#~ msgstr "Erfasse auch Seiten der Administration"
+
+#~ msgid "Track Links"
+#~ msgstr "Erfasse Links"
+
+#~ msgid "Save"
+#~ msgstr "Speichern"
+
+#~ msgid "Cancel"
+#~ msgstr "Abbrechen"
+
+#~ msgid "Period"
+#~ msgstr "Zeitraum"
+
+#~ msgid "From"
+#~ msgstr "Von"
+
+#~ msgid "To"
+#~ msgstr "Bis"
+
+#~ msgid "Show"
+#~ msgstr "Anzeigen"
+
+#~ msgid "If Piwik does not log the page accesses please check the following questions:"
+#~ msgstr "Wenn Piwik die Seitenbesuche nicht aufgezeichnet, sollte folgende drei Fragen nachgegangen werden:"
+
+#~ msgid "Are your Piwik settings (path, token and side) corect configured?"
+#~ msgstr "Ist Piwik (Pfad, Token und Seite) richtig konfiguriert?"
+
+#~ msgid "Does the Piwik code (see above) appears in the source code of your page."
+#~ msgstr "Erscheint der Piwik-Code (siehe unten) im Quellcode der Seite?"
+
+#~ msgid "Is the Piwik code (see above) identical with this one of the Piwik web interface?"
+#~ msgstr "Ist der Piwik-Code (sie unten) und derjenige aus dem Piwik-Frontend identisch?"
+
+#~ msgid "If this does not help feel free to ask in the Zikula forums for help."
+#~ msgstr "Weitere Hilfe gibt es in den Zikula-Foren."
 
 #~ msgid "Date range"
 #~ msgstr "Zeitspanne"
@@ -319,13 +236,8 @@ msgstr "Weitere Hilfe gibt es in den Zikula-Foren."
 #~ msgid "Page"
 #~ msgstr "Seite"
 
-#~ msgid ""
-#~ "Please insert the url of the Piwik installation WITHOUT http:// or "
-#~ "https:// and WITHOUT a trailing slash.<br />Example: yourdomain.com/"
-#~ "piwikpathh"
-#~ msgstr ""
-#~ "Bitte die URL der Piwik Installation ohne das http:// or https:// "
-#~ "einfügen. <br />Beispiel: yourdomain.com/piwikpathh"
+#~ msgid "Please insert the url of the Piwik installation WITHOUT http:// or https:// and WITHOUT a trailing slash.<br />Example: yourdomain.com/piwikpathh"
+#~ msgstr "Bitte die URL der Piwik Installation ohne das http:// or https:// einfügen. <br />Beispiel: yourdomain.com/piwikpathh"
 
 #~ msgid "The side-id can be found here:"
 #~ msgstr "Die Seiten-ID kann hier gefunden werden:"
@@ -357,15 +269,8 @@ msgstr "Weitere Hilfe gibt es in den Zikula-Foren."
 #~ msgid "Error deleting Hook!"
 #~ msgstr "Fehler beim Löschen des Hooks!"
 
-#~ msgid ""
-#~ "Invalid 'authkey':  this probably means that you pressed the 'Back' "
-#~ "button, or that the page 'authkey' expired. Please refresh the page and "
-#~ "try again."
-#~ msgstr ""
-#~ "Ungültiger Authentifizierungsschlüssel ('AuthKey'): Möglichweise wurde "
-#~ "der 'Zurück' Button im Browser benutzt, gesicherte Formulare in mehreren "
-#~ "Browser-Tabs gespeichert oder der 'AuthKey' ist abgelaufen. Bitte die "
-#~ "Seite neu laden und es erneut versuchen."
+#~ msgid "Invalid 'authkey':  this probably means that you pressed the 'Back' button, or that the page 'authkey' expired. Please refresh the page and try again."
+#~ msgstr "Ungültiger Authentifizierungsschlüssel ('AuthKey'): Möglichweise wurde der 'Zurück' Button im Browser benutzt, gesicherte Formulare in mehreren Browser-Tabs gespeichert oder der 'AuthKey' ist abgelaufen. Bitte die Seite neu laden und es erneut versuchen."
 
 #~ msgid "Configuration not updated"
 #~ msgstr "Konfiguration wurde nicht aktualisiert"
