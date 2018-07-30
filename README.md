@@ -43,7 +43,7 @@ You have to fill out the path to Piwik installation, the site-id and your token.
 
 ## Support
 
-* All support questions should be posted to the [Zikula Modules forum](http://community.zikula.org/module-Forum-viewforum-forum-23.htm)
+* All support questions should be posted to the [Zikula slack channels](https://zikula.slack.com)
 * Bugs and feature requests can be posted here in the [Issues tracker](https://github.com/phaidon/Piwik/issues)
 
 ## Changelog
