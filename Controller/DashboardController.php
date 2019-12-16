@@ -11,6 +11,7 @@
 
 namespace Phaidon\PiwikModule\Controller;
 
+use Phaidon\PiwikModule\Form\Type\DashboardType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,8 +30,8 @@ class DashboardController extends AbstractController
      * This function shows the Piwik dashboard.
      * 
      * @Route("/")
+     * @Template("@PhaidonPiwikModule/Dashboard/index.html.twig")
      * @Theme("admin")
-     * @Template("PhaidonPiwikModule:Dashboard:index.html.twig")
      *
      * @param Request $request
      * @throws AccessDeniedException Thrown if the user doesn't have admin access to the module
@@ -55,7 +56,7 @@ class DashboardController extends AbstractController
             'to' => new \DateTime()*/
         ];
 
-        $form = $this->createForm('Phaidon\PiwikModule\Form\Type\DashboardType',
+        $form = $this->createForm(DashboardType::class,
             $formData, [
                 'translator' => $this->get('translator.default'),
                 'context' => $context

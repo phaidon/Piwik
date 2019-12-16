@@ -11,6 +11,7 @@
 
 namespace Phaidon\PiwikModule\Controller;
 
+use Phaidon\PiwikModule\Form\Type\ConfigType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,8 +28,8 @@ class ConfigController extends AbstractController
 {
     /**
      * @Route("/config")
+     * @Template("@PhaidonPiwikModule/Config/config.html.twig")
      * @Theme("admin")
-     * @Template("PhaidonPiwikModule:Config:config.html.twig")
      *
      * @param Request $request
      * @throws AccessDeniedException Thrown if the user doesn't have admin access to the module
@@ -46,7 +47,7 @@ class ConfigController extends AbstractController
 
         $sites = $this->get('phaidon_piwik_module.helper.piwik_data_helper')->getSites();
 
-        $form = $this->createForm('Phaidon\PiwikModule\Form\Type\ConfigType',
+        $form = $this->createForm(ConfigType::class,
             $modVars, [
                 'translator' => $this->get('translator.default'),
                 'sites' => $sites
