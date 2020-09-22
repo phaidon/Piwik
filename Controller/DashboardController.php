@@ -37,7 +37,7 @@ class DashboardController extends AbstractController
      * @throws AccessDeniedException Thrown if the user doesn't have admin access to the module
      * @return Response
      */
-    public function indexAction(Request $request)
+    public function index(Request $request)
     {
         // Security check
         if (!$this->hasPermission('PhaidonPiwikModule::', '::', ACCESS_ADMIN)) {
